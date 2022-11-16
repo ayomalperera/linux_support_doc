@@ -1,0 +1,65 @@
+How to set hostname and FQDN on CentOS 7 and RHEL 7
+September 27, 2014 by Sharad Chhetri 9 Comments
+
+The tutorial will explain about how to set hostname and FQDN on CentOS 7 and RHEL 7 (Red Hat Enterprise Linux 7). In our previous post “How to change hostname on CentOS and Red Hat“, we have already define the difference between hostname and FQDN. Hence suggest to read this post.
+
+In Red Hat Enterprise Linux 7 or CentOS 7 , we have found slight changes.
+
+You must have the ip address of system , which you can get by using the command ip addr list.
+
+The given below is our system information, replace these values as per your system information.
+
+IP Address : 192.168.56.101
+Hostname : nix (We have selected this hostname, use hostname as per your interest)
+FQDN (Fully Qualified Domain Name) : FQDN is combination of hostname+domain-name . Hence , here we are taking domain name as example.com .Therefore FQDN is nix.example.com
+
+To change the hostname and FQDN on RHEL 7 and CentOS follow the given below steps.
+
+Step 1: Edit /etc/hosts file
+Now edit the /etc/hosts file in system. And add new line as given below
+
+vi /etc/hosts
+
+192.168.56.101 nix.example.com nix
+This is the screenshot from our system.
+Hostname CentOS 7
+
+Step 2: Edit /etc/hostname
+Edit the /etc/hostname file and give the hostname you have selected.
+
+vi /etc/hostname
+
+nix
+The below given is reference from our system.
+
+[root@localhost ~]# cat /etc/hostname
+nix
+[root@localhost ~]#
+
+Alternatively,you can also use hostnamectl command to set the hostname. It also update the /etc/hostname file which we have edit manually in above steps.
+
+hostname nix is used in below given command.
+
+hostnamectl --static set-hostname nix
+Step 3: Print the hostname and FQDN
+Now you do not require to restart or logout-login from RHEL 7 and CentOS 7 which is the best thing we have found. Hostname and FQDN are set.
+Now print the hostname and FQDN of system.
+
+To print the hostname ,use the command –
+
+hostname
+To print the FQDN ,use the command –
+
+hostname -f
+Whereas, in case hostname and FQDN is not taking effect. Then run the below command
+
+systemctl restart systemd-hostnamed
+Below given is reference from our system
+
+[root@nix ~]# hostname
+nix
+[root@nix ~]# 
+[root@nix ~]# hostname -f
+nix.example.com
+[root@nix ~]# 
+[root@nix ~]#

@@ -1,0 +1,35 @@
+#Starting Named Session #
+
+screen -S session_name
+
+
+Below are some most common commands for managing Linux Screen Windows:
+
+    Ctrl+a c Create a new window (with shell).
+    Ctrl+a " List all windows.
+    Ctrl+a 0 Switch to window 0 (by number).
+    Ctrl+a A Rename the current window.
+    Ctrl+a S Split current region horizontally into two regions.
+    Ctrl+a | Split current region vertically into two regions.
+    Ctrl+a tab Switch the input focus to the next region.
+    Ctrl+a Ctrl+a Toggle between the current and previous windows
+    Ctrl+a Q Close all regions but the current one.
+    Ctrl+a X Close the current region.
+
+Detach from Linux Screen Session #
+
+
+Detach from Linux Screen Session
+
+You can detach from the screen session at any time by typing:
+
+Ctrl+a d
+Reattach to a Linux Screen #Reattach to a Linux Screen #
+
+screen -r
+To find the session ID list the current running screen sessions with:
+screen -ls
+
+If you want to restore screen 10835.pts-0, then type the following command:
+
+screen -r 10835

@@ -1,0 +1,19 @@
+sudo yum install java-11-openjdk-devel
+
+
+vim /etc/profile
+
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-11.0.7.10-4.el7_8.x86_64/"
+
+export PATH=$PATH:"/usr/lib/jvm/java-11-openjdk-11.0.7.10-4.el7_8.x86_64/bin/"
+
+
+source /etc/profile
+env | grep -i java
+
+java –version
+
+sudo alternatives --config java
+
+
+

@@ -1,0 +1,95 @@
+
+#########################HOW TO MAKE TOMCAT AS SERVICE##################################
+
+
+1.	cd /etc/systemd/system
+2.	vim tomcat.service
+3.	(insert below sript to it)
+4.	systemctl daemon-reload
+5.	systemctl enable tomcat.service
+6.	systemctl start tomcat.service
+7.	(Now you can use)
+8.	systemctl start/stop/status tomcat
+
+
+
+
+#######################################################################################
+[Unit]
+Description=Tomcat 
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+User=root
+Group=root
+
+WorkingDirectory=/opt/apache-tomcat-8.5.38
+
+Environment="JAVA_HOME=/opt/jdk1.8.0_201"
+
+
+
+Environment="CATALINA_BASE=/opt/apache-tomcat-8.5.38"
+Environment="CATALINA_HOME=/opt/apache-tomcat-8.5.38"
+
+
+ExecStart=/u01/tomcat/apache-tomcat-8.5.38/bin/startup.sh
+ExecStop=/u01/tomcat/apache-tomcat-8.5.38/bin/shutdown.sh
+
+#RestartSec=10
+#Restart=always
+
+[Install]
+WantedBy=multi-user.target
+########################################################################################
+
+
+
+
+################### working###########################
+[Unit]
+Description=Tomcat
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+User=root
+Group=root
+
+WorkingDirectory=/opt/apache-tomcat-8.5.53
+
+Environment="JAVA_HOME=/opt/jdk1.8.0_201/"
+
+
+
+Environment="CATALINA_BASE=/opt/apache-tomcat-8.5.53/"
+Environment="CATALINA_HOME=/opt/apache-tomcat-8.5.53"
+
+
+ExecStart=/opt/apache-tomcat-8.5.53/bin/startup.sh
+ExecStop=/opt/apache-tomcat-8.5.53/bin/shutdown.sh
+
+#RestartSec=10
+#Restart=always
+
+[Install]
+WantedBy=multi-user.target
+~
+~
+~
+~
+~
+~
+systemctl daemon-reload;
+systemctl start tomcat;
+systemctl enable tomcat
+
+
+
+
+
+
+

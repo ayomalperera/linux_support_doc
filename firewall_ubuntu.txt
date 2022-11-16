@@ -1,0 +1,35 @@
+sudo ufw allow from any to any port 443 proto tcp
+
+sudo ufw allow from any to any port 84 proto tcp
+
+sudo ufw allow from any to any port 22 proto tcp
+
+sudo ufw allow from any to any port 81 proto tcp
+
+sudo ufw allow from any to any port 87 proto tcp
+
+
+
+sudo systemctl status ufw
+
+
+sudo systemctl enable ufw
+
+
+sudo systemctl restart ufw
+
+
+## DENY
+
+sudo ufw allow from any to any port 22 proto tcp
+
+
+sudo ufw deny from any to any port 50000 proto tcp
+
+ sudo ufw app list
+
+
+
+
+
+

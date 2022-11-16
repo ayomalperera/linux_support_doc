@@ -1,0 +1,41 @@
+#Remote Server IP
+
+#rserver=10.0.135.136
+#user=a_peraraj
+#Local backup location
+
+lbackuploc=/var/www/global/wp-content/uploads/
+
+
+#Remote backup location
+
+#rbackuploc=/var/www/global/wp-content/uploads
+
+#rsync command with standard port
+
+rsync --omit-dir-times  -avz -e ssh $lbackuploc a_peraraj@10.0.135.136:/var/www/global/wp-content/uploads
+
+###############################################################
+
+https://www.howtoinstall.me/ubuntu/18-04/inotify-tools/
+
+#########################################################
+
+
+#!/bin/sh
+while inotifywait -r -e modify,create,delete /var/www/global/wp-content/uploads
+do
+/opt/scripts/rsync_upload.sh
+done
+
+####################################################################
+
+
+#!/bin/sh
+while inotifywait -r -e modify,create,delete /var/www/global/wp-content/uploads
+do
+/opt/scripts/rsync_upload.sh
+done
+
+
+#########################################################################################

@@ -1,0 +1,6 @@
+docker run --name wprd_my8 -e MYSQL_ROOT_PASSWORD=Ep1klanka@321 -p 3306:553013 -d mysql:8
+
+
+docker run --name eight-mysql -e MYSQL_ROOT_PASSWORD=password -d mysql:latest --default-authentication-plugin=mysql_native_password
+
+https://buddy.works/guides/wordpress-docker-kubernetes-part-1

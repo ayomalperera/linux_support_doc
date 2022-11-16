@@ -1,0 +1,5 @@
+echo 3 > /proc/sys/vm/drop_caches
+
+
+Ubuntu
+sync; echo 3 > /proc/sys/vm/drop_caches

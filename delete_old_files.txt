@@ -1,0 +1,13 @@
+delete files older than X days
+
+# find /path/to/files* -mtime +X -exec rm {} \;
+
+# echo > catalina.out
+
+# find * -mtime +7 -exec rm {} \;
+
+
+################################
+empty the trash using terminal?
+
+rm -rf ~/.local/share/Trash/*

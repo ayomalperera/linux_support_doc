@@ -1,0 +1,135 @@
+#!/bin/bash
+mysqldump -u root -pp@$$w0rd elottery > "/data/elotterybackup/elottey_$(date +\%m%d%H%M).sql"
+
+mysqldump --login-path=myhostalias  elottery > "/data/elotterybackup/elottey_$(date +\%Y%m%d%H%M).sql"
+
+
+cron every 12 hours
+* */12 * * *
+@ 23:00 hours
+
+define myhostalias for secure login=========================================
+
+
+# mysql_config_editor set --login-path=myhostalias --host=localhost.localdomain --user=root --password
+# enter password ?
+
+
+====================================================================================================================================
+
+docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE > backup.sql
+
+# Backup
+docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE > backup.sql
+
+docker exec 085ca7e74c23 sh -c 'exec mysqldump --databases mysql  -uroot -p"$MYSQL_ROOT_PASSWORD"' > 2aa22all-databases.sql 2>/dev/null
+
+docker exec 085ca7e74c23  sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases_$(date +\%Y%m%d%H%M).sql 2> /dev/null
+
+docker exec 7599d64093f1  sh -c 'exec mysqldump --databases vdvb  -uroot -p"$MYSQL_ROOT_PASSWORD" -P 55309' > yourDB_$(date +\%Y%m%d%H%M).sql 2> /dev/null
+
+
+# Restore
+docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE < backup.sql
+
+
+EnpzB5UB]Z84,`-+
+
+prasanna@immigration.gov.lk
+
+########Backup Multiple MySQL Databases #
+
+mysqldump -u root -p --databases database_name_a database_name_b > databases_a_b.sql
+
+
+###### Backup All MySQL Databases #
+mysqldump -u root -p --all-databases > all_databases.sql
+
+
+##########Restore a Single MySQL Database from a Full MySQL Dump #
+mysql --one-database database_name < all_databases.sql
+
+
+
+
+
+
+
+
+############ working ########################################################
+
+docker exec 8eaf8de779f9  sh -c 'exec mysqldump bitnami_redmine -u bn_redmine -p ' >  "/db_backups/redmine_db$(date +\%y%m%d%H%M).sql" 2> /dev/null
+
+
+
+
+##############3 Azure working####################################
+
+#!/bin/bash
+# (1) set up all the mysqldump variables
+
+
+DATE=`date +"%d_%b_%Y_%H%M"`
+SQLFILE=/opt/Database_backups/Db_feb_15_fuso_global_fixed_${DATE}.sql
+HOST=fusoglobal-wp-feb-15-2022.mysql.database.azure.com
+DATABASE=fuso_global_fixed
+USER=global_dbadmin@fusoglobal-wp-feb-15-2022
+PASSWORD='Fe4r8DH&CK8i'
+ 
+# (2) in case you run this more than once a day,
+# remove the previous version of the file
+unalias rm     2> /dev/null
+rm ${SQLFILE}     2> /dev/null
+rm ${SQLFILE}.gz  2> /dev/null
+ 
+# (3) do the mysql database backup (dump)
+sudo mysqldump -h ${HOST} -u ${USER} -p${PASSWORD} ${DATABASE}|gzip > ${SQLFILE}.gz
+
+#################################################################################################
+
+
+
+
+
+
+
+#################################### MFA WORKING #######################################################
+#!/bin/sh
+now="$(date +'%d_%m_%Y_%H_%M_%S')"
+filename="mfadoxprodb_backup_$now".sql
+backupfolder="/opt/webapp/dbbackup"
+fullpathbackupfile="$backupfolder/backup/$filename"
+logfile="/opt/webapp/logs/"mfadoxprodb_backup_log_"$(date +'%Y_%m')".txt
+echo "mysqldump started at $(date +'%d-%m-%Y %H:%M:%S')" >> "$logfile"
+mysqldump --host 172.18.100.123 --user=admin --password=Ep1k@mfa mfadoxprodb > "$fullpathbackupfile"
+echo "mysqldump finished at $(date +'%d-%m-%Y %H:%M:%S')" >> "$logfile"
+chown root "$fullpathbackupfile"
+chown root "$logfile"
+echo "file permission changed" >> "$logfile"
+find "$backupfolder" -name mfadoxprodb_backup_* -mtime +8 -exec rm {} \;
+echo "old files deleted" >> "$logfile"
+echo "operation finished at $(date +'%d-%m-%Y %H:%M:%S')" >> "$logfile"
+echo "*****************" >> "$logfile"
+
+########################################################################################################
+
+####################### Niseko working
+
+
+#!/bin/bash
+mysqldump bitnami_wordpress | gzip >  "/opt/Database_backups/niseko_pro_bitnami_wordpress-$(date +\%d_%b_%y_%H%M).sql.gz"
+
+
+rsync -avz -e ssh /opt/Database_backups/*.gz  ubuntu@54.178.140.3:/opt/database_dumps/
+
+
+find /opt/Database_backups/* -mtime +14 -exec rm {} \;
+
+
+########################  SKYN
+#!/bin/bash
+
+mysqldump --login-path=jude@usnSriLanka  -h skynbun.cwlnqoi0m24n.ap-northeast-1.rds.amazonaws.com --column-statistics=0 skynbun | gzip  > "/opt/database_dumps/skynbun/skynbun-$(date +\%d_%b_%y_%H%M).sql.gz"
+
+############################################
+

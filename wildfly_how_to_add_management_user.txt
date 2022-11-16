@@ -1,0 +1,8 @@
+
+
+1.go to wildfly bin
+2. ./add press tab and run 
+3.folow the questions 
+
+
+To represent the user add the following to the server-identities definition <secret value="RXAxa2xhbmthQDMyMQ==" />

@@ -1,0 +1,6 @@
+
+
+OPTIMIZE TABLE fd_options;
+
+
+https://10up.com/blog/2017/wp-options-table/

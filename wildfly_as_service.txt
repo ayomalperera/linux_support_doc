@@ -1,0 +1,18 @@
+
+
+
+[Unit]
+Description=WildFly application server
+Wants=network-online.target 
+After=network-online.target
+
+[Service]
+Type=simple
+User=web
+Group=web
+ExecStart=/opt/wildfly-10.1.0.Final/bin/domain.sh
+Restart=always
+RestartSec=20
+
+[Install]
+WantedBy=multi-user.target

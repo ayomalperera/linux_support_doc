@@ -1,0 +1,19 @@
+https://www.cloudtechtiq.com/blog/check-apache-concurrent-connections-using-netstat-command
+
+
+### Session count
+
+
+
+netstat -ant | grep ESTABLISHED | grep :80 | wc -l
+
+
+
+### IP List 
+
+netstat -plan|grep :80|awk {'print $5'}|cut -d: -f 1|sort|uniq -c|sort -nk 1
+
+
+Loop###
+
+while sleep 1; do netstat -ant | grep ESTABLISHED | grep :80 | wc -l ; done 

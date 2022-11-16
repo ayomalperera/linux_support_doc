@@ -1,0 +1,29 @@
+
+#!/bin/bash
+scp -r /home/tomcat/new_versions/* root@192.168.28.101:/home/tomcat/new_versions/ && echo "new versions transfer SUCCESS" || echo "new versions transfer FAIL"
+
+ssh root@192.168.28.101 /opt/appserver/tomcat9/bin/shutdown.sh && echo "Tomcat shutdown SUCCESS"  || echo "Tomcat shutdown SUCCESS FAIL"
+ssh root@192.168.28.101 sleep 10
+ssh root@192.168.28.101 mkdir -p /home/tomcat/old_versions/version$(date +\%Y%m%d) && echo "Backup directory created" || echo "Backup directory created"
+ssh root@192.168.28.101 mv  /opt/appserver/tomcat9/webapps/* /home/tomcat/old_versions/version$(date +\%Y%m%d) && echo "Backup old version SUCCESS" || echo "Backup old version FAIL"
+ssh root@192.168.28.101 sleep 20
+ssh root@192.168.28.101 mv  /home/tomcat/new_versions/* /opt/appserver/tomcat9/webapps/ && echo "vesion upgrad SUCCESS" || echo "vesion upgrad FAIL"
+ssh root@192.168.28.101 /opt/appserver/tomcat9/bin/startup.sh && echo "Tomcat start SUCCESS"  || echo "Tomcat start FAIL"
+ssh root@192.168.28.101 tomcat_port=$(netstat -ntpl | grep "80") 
+if  tomcat_port=80; then  print OOOOk
+
+
+
+
+scp -r /home/tomcat/new_versions/* tomcat@192.168.28.10:/home/tomcat/new_versions/ && echo "New versions transfer SUCCESS" || echo "New versions transfer FAIL"
+ssh root@192.168.28.10 /opt/appserver/tomcat9/bin/shutdown.sh  && echo "Tomcat shutdown SUCCESS"  || echo "Tomcat shutdown SUCCESS FAIL"
+ssh root@192.168.28.10 sleep 10
+ssh root@192.168.28.10 mkdir -p /home/tomcat/old_versions/version$(date +\%Y%m%d) && echo "Backup directory created" || echo "Backup directory created"
+ssh root@192.168.28.10 mv  /opt/appserver/tomcat9/webapps/* /home/tomcat/old_versions/version$(date +\%Y%m%d) && echo "Backup old version SUCCESS" || echo "Backup old version FAIL"
+ssh root@192.168.28.10 sleep 20
+ssh root@192.168.28.10 mv  /home/tomcat/new_versions/* /opt/appserver/tomcat9/webapps/  && echo "vesion upgrad SUCCESS" || echo "vesion upgrad FAIL"
+ssh root@192.168.28.10 /opt/appserver/tomcat9/bin/startup.sh  && echo "Tomcat start SUCCESS"  || echo "Tomcat start FAIL"
+ssh root@192.168.28.10 sleep 10
+ssh root@192.168.28.10 netstat -ntpl | grep "80"
+
+

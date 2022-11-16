@@ -1,0 +1,11 @@
+ C:\Windows\System32\ffmpeg.exe -i The.Man.Who.Knew.Infinity.2015.1080p.BluRay.x264-[YTS.AG].mp4 -f srt -i The.Man.Who.Knew.Infinity.2015.1080p.BluRay.x264-[YTS.AG].srt -map 0:0 -map 0:1 -map 1:0 -c:v copy -c:a copy -c:s srt  output.mkv
+
+First convert the subtitles to .ass format:
+
+ffmpeg -i C:The.Man.Who.Knew.Infinity.2015.1080p.BluRay.x264-[YTS.AG].srt C:subtitles.ass
+
+
+ffmpeg -i input.mp4 -f srt -i input.srt \
+-map 0:0 -map 0:1 -map 1:0 -c:v copy -c:a copy \
+-c:s srt  output.mkv
+

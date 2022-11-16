@@ -1,0 +1,29 @@
+
+
+
+################Deploying epic switch################################################
+
+1 ) bin 
+2 ) conf -> dbIniti / wrapper.conf
+middle where -> rest log
+switch log -> ( check switch status )
+switch error log 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+

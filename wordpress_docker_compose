@@ -1,0 +1,118 @@
+
+
+Multiple wp container with single DB container
+
+
+
+
+
+
+
+######## DB container #################
+
+version: "2.1"
+# Creates MariaDB container and phpMyAdmin service to manage it
+services:
+  fusodb:
+    image: mariadb:latest
+    container_name: fusodb
+    hostname: fusodb
+    restart: always
+    networks:
+      - fuso-net
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      # Will use db volume and inside to path /var/lib/mysql
+      - fusodb:/var/lib/mysql
+
+  phpmyadmin:
+    # Depends on only works within same stack, but not between remote containers (even on user-defined network)
+    depends_on:
+      - fusodb
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    networks:
+      - fuso-net
+    container_name: phpmyadmin
+    hostname: phpmyadmin
+    ports:
+      # Exposes external port 7000 mapped to internal of 80
+      # Database required no external port of its own
+      - 7000:80
+    environment:
+      PMA_HOST: fusodb
+      MYSQL_ROOT_PASSWORD: root
+      # Variable to increase upload limit for importing sql db files
+      UPLOAD_LIMIT: 200000K
+
+volumes:
+  # Creates persistent storage volume for database
+  # Specify name so it does not append stack name in front
+  fusodb:
+    name: fusodb
+networks:
+  # This will create a user-defined network with name of mysql-net
+  # Specify name so that it does not append stack name and become db_mysql-net
+  fuso-net:
+    name: fuso-net
+
+
+####### wp container ###########
+
+version: "2.1"
+# Creates WordPress container and links to db container via user-defined network mysql-net
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: fuso-1
+    hostname: fuso-1
+    restart: always
+    # Connect to the database container's network
+    networks:
+      - fuso-net
+    ports:
+      # Exposes an external port 8080 to an internal container port 80
+      - 8081:80
+    environment:
+      # This variable points this container to the container called db for database
+      WORDPRESS_DB_HOST: fusodb
+      # Root user so we don't have to add a new user for each service to database
+      # (but you can name one with own password, just don't forget to create user in database before running the container)
+      WORDPRESS_DB_USER: root
+      # Database user's password (if not root user, then set for user)
+      WORDPRESS_DB_PASSWORD: root
+      # Just make sure you create an empty database in MariaDB with this name first before spinning up this stack
+      WORDPRESS_DB_NAME: fusodb
+    volumes:
+      # Sets a persistent volume called wordpress which maps inside the container as /var/www/html
+      - ./fuso_1_root:/var/www/html
+
+volumes:
+  # Create volume called wordpress for persistent storage
+  wordpress:
+    # Specify name so it does not append stack name and become wordpress_wordpress
+    name: fuso-wordpress
+networks:
+  fuso-net:
+    # Joins existing network of this name (it was created by db container)
+    external: true
+    # Specify name so that it does not append stack name
+    name: fuso-net
+    
+    
+    ########################################
+    
+    
+    docker-compose up
+    
+    
+    
+    
+    https://www.dropbox.com/s/37cabs66gkbr0dh/db.yml?dl=0
+    
+    
+    https://www.dropbox.com/s/dkb230apich0n77/wordpress.yml?dl=0
+    
+    
+    #############################################################

@@ -1,0 +1,20 @@
+mysql.exe -h mydemoserver.mysql.database.azure.com -u Username@mydemoserver -p --ssl-mode=REQUIRED --ssl-ca=c:\ssl\BaltimoreCyberTrustRoot.crt.pem
+
+
+
+
+
+
+
+
+
+--ssl-mode=VERIFY_CA
+
+
+
+
+
+ mysql -h fusoglobal.mysql.database.azure.com -u fusoglobaldbadm@fusoglobal -p --ssl-mode=REQUIRED --ssl-ca=BaltimoreCyberTrustRoot.crt.pem
+
+ mysql -h fusoglobal.mysql.database.azure.com -u fusoglobaldbadm@fusoglobal -p --ssl-mode=VERIFY_CA --ssl-ca=BaltimoreCyberTrustRoot.crt.pem
+

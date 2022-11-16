@@ -1,0 +1,1 @@
+find directory1 directory2 -type d -exec cp file.txt {} \;

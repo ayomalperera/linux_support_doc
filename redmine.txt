@@ -1,0 +1,34 @@
+74th/redmine-all-in-one
+
+
+
+
+version: '2'
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.3'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_redmine
+      - MARIADB_DATABASE=bitnami_redmine
+    ports:
+      - '55308:3306'
+    volumes:
+      - 'redmine_mariadb_data:/bitnami'
+  redmine:
+    image: 'bitnami/redmine:4'
+    environment:
+      - REDMINE_DB_USERNAME=bn_redmine
+      - REDMINE_DB_NAME=bitnami_redmine
+      - REDMINE_DB_PORT_NUMBER=55308
+    ports:
+      - '8002:3000'
+    volumes:
+      - 'redmine_data:/bitnami'
+    depends_on:
+      - mariadb
+volumes:
+  redmine_mariadb_data:
+    driver: local
+  redmine_data:
+    driver: local

@@ -1,0 +1,35 @@
+
+
+
+############################how to enable manager panel in tomcat#########################################################
+
+
+
+1./home/vladmin/apache-tomcat-8.5.38/webapps/manager/META-INF
+2.vim context.xml
+3.comment out below lines
+
+
+<!--
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+-->
+
+4./home/vladmin/apache-tomcat-8.5.38/conf
+vim server.xml
+ 
+in this file edit the "Connector port to http potocol"
+
+search command = /Connector port
+
+
+
+5./opt/apache-tomcat-8.5.38/conf
+tomcat-users.xml
+
+<role rolename="manager-gui"/>
+<role rolename="manager-script"/>
+<role rolename="manager-jmx"/>
+<role rolename="manager-status"/>
+<!--<user name="admin" password="admin" roles="manager-gui,manager-script,manager-jmx,manager-status" />-->
+<user username="admin" password="admin" roles="manager-gui,manager-script,manager-jmx,manager-status"/>

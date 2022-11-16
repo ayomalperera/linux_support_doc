@@ -1,0 +1,10 @@
+
+
+The Certification Authority may provide you with a PKCS#7 package (*.p7b) that contains the full chain of certificates required to authenticate your server (the CA-signed server certificate, intermediate certificates, and the CA root certificate). 
+This procedure uses Java keytool command to import the certificates from the p7b file into your Java keystore.
+
+
+
+
+https://www.attachmate.com/documentation/gateway-1-1/gateway-admin-guide/data/fxg_keytool_importcert.htm
+https://www.attachmate.com/documentation/gateway-1-1/gateway-admin-guide/data/fxg_keytool_importp7b.htm

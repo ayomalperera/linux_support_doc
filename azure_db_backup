@@ -1,0 +1,29 @@
+#!/bin/bash
+# (1) set up all the mysqldump variables
+
+
+DATE=`date +"%d_%b_%Y_%H%M"`
+SQLFILE=/opt/Database_backups/Db_fusoglobal-wp-59_fusowp59_${DATE}.sql
+HOST=fusoglobal-wp-59.mysql.database.azure.com
+DATABASE=fusowp59
+USER=global_dbadmin@fusoglobal-wp-59
+PASSWORD='Fe4r8DH&CK8i'
+ 
+# (2) in case you run this more than once a day,
+# remove the previous version of the file
+unalias rm     2> /dev/null
+rm ${SQLFILE}     2> /dev/null
+rm ${SQLFILE}.gz  2> /dev/null
+ 
+# (3) do the mysql database backup (dump)
+sudo mysqldump -h ${HOST} -u ${USER} -p${PASSWORD} ${DATABASE}|gzip > ${SQLFILE}.gz
+
+
+## Push to remort backup server
+##rsync -avz -e ssh  /opt/Database_backups/*.gz jude@54.178.140.3:/opt/database_dumps/fuso_ja
+
+
+
+
+#To delete files older than 15 days
+find /opt/Database_backups/* -mtime +15 -exec rm {} \;

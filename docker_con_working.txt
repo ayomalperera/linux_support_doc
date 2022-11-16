@@ -1,0 +1,3 @@
+docker run -d -p 82:80 --name nagios-xi mavenquist/nagios-xi
+
+docker run --name mysql5.7 -e MYSQL_ROOT_PASSWORD=Ep1klanka@321 -p 55306:3306 -d mysql:5.7

@@ -1,0 +1,80 @@
+jude,asiri,kaveen,gayan,pramodh,nalin,chinthaka,panduka
+
+define contact {
+
+    contact_name            pramodh            ; 
+    use                     generic-contact         ; 
+    alias                   pramodh          ; 
+    email                   pramodh_r@epiclanka.net; 
+}
+
+
+define contact {
+
+    contact_name            jude             ; 
+    use                     generic-contact         ; 
+    alias                   jude           ; 
+    email                   jude_p@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            asiri             ; 
+    use                     generic-contact         ; 
+    alias                   asiri            ; 
+    email                   asiri_s@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            kaveen             ; 
+    use                     generic-contact         ; 
+    alias                   kaveen            ; 
+    email                   kaveen_g@epiclanka.net ; 
+}
+
+
+define contact {
+
+    contact_name            gayan; 
+    use                     generic-contact         ; 
+    alias                   gayan; 
+    email                   gayan_d@epiclanka.net ; 
+}
+
+
+
+###################################################### SLPA #######################################################################################################
+define contact {
+
+    contact_name            nalin             ; 
+    use                     generic-contact         ; 
+    alias                   nalin            ; 
+    email                  ambepitiya@slpa.lk ; 
+}
+
+
+define contact {
+
+    contact_name            chinthaka; 
+    use                     generic-contact         ; 
+    alias                   chinthaka; 
+    email                   cshashendra@gmail.com ; 
+}
+
+define contact {
+
+    contact_name            maduwantha; 
+    use                     generic-contact         ; 
+    alias                   maduwantha; 
+    email                   dlgcmslt@gmail.com ; 
+}
+
+define contact {
+
+    contact_name            panduka; 
+    use                     generic-contact         ; 
+    alias                   panduka; 
+    email                   pandukadarshana@gmail.com; 
+}
+

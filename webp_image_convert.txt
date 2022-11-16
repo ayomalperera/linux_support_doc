@@ -1,0 +1,38 @@
+## convert jpg to webp
+
+#### Linux (ubuntu)
+
+### Installation
+
+# sudo apt-get update
+# sudo apt install webp
+ 
+##  Converting image to webp format
+
+
+
+#  cwebp -q 50 images/flower1.jpg -o images/flower1.webp
+
+#  cwebp -q 60 linux.png -o linux.webp
+
+
+
+## Converting webp image to png and jpeg format
+
+$ dwep image.webp -o image.png
+$ dwep image.webp -o image.jpeg
+
+
+
+
+
+referance:
+https://linuxways.net/ubuntu/how-to-convert-png-jpeg-to-webp-in-ubuntu-also-webp-to-png-and-jpeg/
+
+
+
+01 – Advanced Batch Image Converter | macOS | Windows | Linux
+	https://sourceforge.net/projects/abic/
+
+02 – XnConvert | macOS | Windows | Linux
+	https://www.xnview.com/en/xnconvert/

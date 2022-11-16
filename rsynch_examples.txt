@@ -1,0 +1,29 @@
+
+
+PULL:  rsync --progress --update -avzh -e ssh  root@10.30.152.12:/destination/  /source/ 
+
+
+PUSH:    rsync --progress --update -avzh -e ssh  /source/ root@10.30.152.12:/destination/ 
+
+
+
+
+
+sshpass -p 'Consular@789' rsync --progress --update -avzh -e ssh  /opt/webapp/DOXPRO/ root@10.30.152.12:/opt/webapp/DOXPRO
+
+
+
+
+rsync --remove-source-files -options /path/to/src/ /path/to/dest
+rsync --remove-source-files -options /path/to/src/ computerB:/path/to/dest
+rsync --remove-source-files -av /path/to/src/*.avi computerB:/path/to/dest
+
+
+
+====================================================================
+Find older than X dates and transfer
+===============================================================
+
+rsync --files-from=<(find . -type f  -mtime +X) <source>  <des>
+
+rsync --files-from=<(find . -type f \( -name "*.X" -o -name "*.x1" \) -mtime -30) . user@x.x.x.x:/where/to/put/files

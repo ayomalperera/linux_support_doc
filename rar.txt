@@ -1,0 +1,9 @@
+
+
+unrar e tecmint.rar
+
+
+ unrar e tecmint.rar /home/
+
+
+ unrar x tecmint.rar

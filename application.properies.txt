@@ -1,0 +1,1 @@
+nohup java -jar appname.jar --spring.config.location=application.properties &

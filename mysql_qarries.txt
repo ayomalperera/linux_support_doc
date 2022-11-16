@@ -1,0 +1,132 @@
+UPDATE <table>
+SET 
+<colom> = 'value';
+
+
+UPDATE user
+SET 
+password = '$2a$10$YcVvZj0sPECZspGj.T5WV.03e13Cbh2irU0Q.m.Dpz8tVJXR02lCK';
+
+
+
+show users:
+select * from mysql.user;
+
+
+
+SELECT * FROM wp_options WHERE option_name='siteurl';
+SELECT * FROM wp_options WHERE option_name='home';
+
+
+SELECT * FROM fd_options WHERE option_name = 'home';
+UPDATE fd_options SET option_value="http://192.168.28.123" WHERE option_name = "home";
+
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+UPDATE fd_options SET option_value="http://192.168.28.123" WHERE option_name = "siteurl";
+
+
+
+
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+UPDATE fd_options SET option_value="http://3.112.253.109:84" WHERE option_name = "home";
+UPDATE fd_options SET option_value="http://3.112.253.109:84" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+
+
+################## DB Optimize
+https://kinsta.com/knowledgebase/wp-options-autoloaded-data/
+
+OPTIMIZE TABLE fd_options;
+FLUSH QUERY CACHE;
+SELECT COUNT(*) FROM fd_options;
+SELECT option_name, LENGTH(option_id) + LENGTH(option_name) + LENGTH(option_value) + LENGTH(autoload) AS total_length FROM fd_options ORDER BY total_length DESC LIMIT 10;
+
+
+
+SELECT 'sum size in KiB', ROUND(SUM(length(option_value))/1024,0) FROM fd_options WHERE autoload='yes' AND option_name like "um_cache_userdata_%"
+
+
+
+################### check db size
+
+SELECT table_name AS "Table", ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)" FROM information_schema.TABLES WHERE table_schema = "83_july_1" ORDER BY (data_length + index_length) DESC;
+
+
+
+
+SELECT table_name AS "Table", ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)" FROM information_schema.TABLES WHERE table_schema = "optimized" ORDER BY (data_length + index_length) DESC;
+
+
+SELECT table_name AS "Table", ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)" FROM information_schema.TABLES WHERE table_schema = "optimized" ORDER BY (data_length + index_length) DESC;
+
+
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+UPDATE fd_options SET option_value="https://pscf-fdmp-hk.azurefd.net" WHERE option_name = "home";
+UPDATE fd_options SET option_value="https://pscf-fdmp-hk.azurefd.net" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+
+
+
+
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+UPDATE fd_options SET option_value="http://www.mitsubishi-fuso.com.hk" WHERE option_name = "home";
+UPDATE fd_options SET option_value="http://www.mitsubishi-fuso.com.hk" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl'
+
+
+UPDATE fd_options SET option_value="https://test.ultrasupernew.dev" WHERE option_name = "home";
+UPDATE fd_options SET option_value="https://test.ultrasupernew.dev" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+
+UPDATE fd_options SET option_value="https://test.ultrasupernew.dev" WHERE option_name = "home";
+UPDATE fd_options SET option_value="https://test.ultrasupernew.dev" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+
+####### NMS Colombo
+UPDATE fd_options SET option_value="http://54.178.140.3:83" WHERE option_name = "home";
+UPDATE fd_options SET option_value="http://54.178.140.3:83" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+
+
+UPDATE fd_options SET option_value="http://54.178.140.3:86" WHERE option_name = "home";
+UPDATE fd_options SET option_value="http://54.178.140.3:86" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+
+http://13.230.9.86/
+
+UPDATE fd_options SET option_value="http://20.243.153.24" WHERE option_name = "home";
+UPDATE fd_options SET option_value="http://20.243.153.24" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+
+http://fuso-cache-557751987.ap-northeast-1.elb.amazonaws.com/
+
+UPDATE fd_options SET option_value="http://fuso-cache-557751987.ap-northeast-1.elb.amazonaws.com" WHERE option_name = "home";
+UPDATE fd_options SET option_value="http://fuso-cache-557751987.ap-northeast-1.elb.amazonaws.com" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+
+
+http://20.243.153.24
+
+UPDATE fd_options SET option_value="http://pscfmje-fdmp-hk-pscfmje-fdmp-hk-hk-staging-slot-php8.azurewebsites.net" WHERE option_name = "home";
+UPDATE fd_options SET option_value="http://pscfmje-fdmp-hk-pscfmje-fdmp-hk-hk-staging-slot-php8.azurewebsites.net" WHERE option_name = "siteurl";
+SELECT * FROM fd_options WHERE option_name = 'home';
+SELECT * FROM fd_options WHERE option_name = 'siteurl';
+
+
+
+
+
+
+

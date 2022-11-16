@@ -1,0 +1,9 @@
+sc query type= service state= all|find "talend"
+
+tasklist
+
+C:\>tasklist
+
+C:\>Taskkill /IM firefox.exe /F
+
+C:\>Taskkill /PID 26356 /F

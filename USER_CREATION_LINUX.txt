@@ -1,0 +1,17 @@
+
+
+
+
+
+   
+   
+CREATING USER IN LINUX   
+useradd
+passwd username
+groupadd group_name
+###################useradd -g group_name user_name###############################################
+
+
+
+
+

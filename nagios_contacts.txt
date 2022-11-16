@@ -1,0 +1,103 @@
+define contact {
+
+    contact_name            pramodh            ; 
+    use                     generic-contact         ; 
+    alias                   pramodh          ; 
+    email                   pramodh_r@epiclanka.net; 
+}
+
+
+define contact {
+
+    contact_name            jude             ; 
+    use                     generic-contact         ; 
+    alias                   jude           ; 
+    email                   jude_p@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            asiri             ; 
+    use                     generic-contact         ; 
+    alias                   asiri            ; 
+    email                   asiri_s@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            kaveen             ; 
+    use                     generic-contact         ; 
+    alias                   kaveen            ; 
+    email                   kaveen_g@epiclanka.net ; 
+}
+
+#################################################################################################################################################################
+define contact {
+
+    contact_name            manos             ; 
+    use                     generic-contact         ; 
+    alias                   manos            ; 
+    email                   manos_t@epiclanka.net ; 
+}
+
+
+
+
+
+define contact {
+
+    contact_name            kasunn             ; 
+    use                     generic-contact         ; 
+    alias                   Kasun N          ; 
+    email                   kasun_n@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            anuradha             ; 
+    use                     generic-contact         ; 
+    alias                   anuradha            ; 
+    email                   anuradha_w@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            dumindu             ; 
+    use                     generic-contact         ; 
+    alias                   dumindu            ; 
+    email                   dumindu_a@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            binuka             ; 
+    use                     generic-contact         ; 
+    alias                   binuka            ; 
+    email                   binuka_b@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            hansani             ; 
+    use                     generic-contact         ; 
+    alias                   hansani            ; 
+    email                   hansani_b@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            anuradha             ; 
+    use                     generic-contact         ; 
+    alias                   anuradha            ; 
+    email                   anuradha_w@epiclanka.net ; 
+}
+
+define contact {
+
+    contact_name            pubudu             ; 
+    use                     generic-contact         ; 
+    alias                   pubudu            ; 
+    email                   pubudu_w@epiclanka.net ; 
+}
+
+

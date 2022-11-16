@@ -1,0 +1,75 @@
+
+ Convert PPK to PEM in Linux
+
+
+sudo apt-get install putty-tools 
+
+puttygen server1.ppk -O private-openssh -o server1.pem 
+
+chmod 400 server1.pem 
+ssh -i server1.pem ubuntu@remote.host 
+*******************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+Your identification has been saved in /home/username/.ssh/id_rsa.
+Your public key has been saved in /home/username/.ssh/id_rsa.pub.
+
+
+
+
+#mkdir -p ~/.ssh
+#
+#chmod 700 ~/.ssh
+#
+#ssh-keygen -t rsa
+#
+#ssh-copy-id user@hostname.example.com
+
+
+mkdir -p ~/.ssh;
+chmod 700 ~/.ssh;
+ssh-keygen -t rsa
+ssh-copy-id user@hostname.example.com
+#################################################################################
+
+
+mkdir /home/epicuser/.ssh;
+touch /home/epicuser/.ssh/authorized_keys
+chmod 700 /home/epicuser/.ssh;
+chmod 600 /home/epicuser/.ssh/authorized_keys;
+chown  epicuser:epicuser /home/epicuser/.ssh/authorized_keys;
+chown  epicuser:epicuser /home/epicuser/.ssh;
+cat  epicuser.ppk >> /home/epicuser/.ssh/authorized_keys
+
+###################################################################################
+
+ssh-keygen -t rsa
+
+
+
+#
+How to fix warning about ECDSA host key
+
+#ssh-keygen -R <Ip>
+#
+#
+pub_key >> ~.ssh/authorized_keys
+
+chmod 700 ~.ssh 
+chmod 600 ~.ssh/authorized_keys
+chown user:user .ssh/authorized_keys
+
+
+error
+
+ ssh-keygen -f "/root/.ssh/known_hosts" -R "54.178.140.3"

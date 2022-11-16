@@ -1,0 +1,19 @@
+### IP whois info
+
+trace -m
+
+ip-tracer -t  123.231.104.2
+
+git clone https://github.com/rajkumardusad/IP-Tracer.git
+cd IP-Tracer
+chmod +x install
+./install
+
+https://www.geeksforgeeks.org/how-to-trace-ip-in-kali-linux-using-ip-tracer-tool/
+
+
+
+Redirect 301 /wp-admin/post.php?post=17101&action=edit&lang=en /en/fusolife/2023-calendar/
+Redirect 301 /wp-admin/post.php?post=17102&action=edit&lang=ja /ja/fusolife/2023-calendar/
+
+

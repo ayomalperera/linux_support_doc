@@ -1,0 +1,61 @@
+
+Mysql root Password reset ==========================================================================================
+#systemctl stop mysqld
+#systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
+(to enable systemctl set-environment MYSQLD_OPTS="")
+
+#systemctl start mysqld
+#mysql -u root
+#mysql> use mysql; 
+#mysql> update user set authentication_string=password('Ep1klanka@321') where user='root';
+#mysql> flush privileges; 
+#
+# 
+itrda
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Epic158@Kaduwela_road';
+# SET PASSWORD FOR 'root'@'localhost' = PASSWORD('P@$$w0rd');
+
+#mysql> exit
+
+#systemctl restart mysqld
+
+
+CREATE DATABASE elottery; ====================================================
+# CREATE DATABASE elottery;
+
+CREATE USER & GRANT PERMISSION================================================
+
+#CREATE USER epicuser@localhost IDENTIFIED BY '158@Kaduwela_road'; 
+
+#GRANT SELECT ON elottery.* TO dlbuser@localhost; 
+
+
+
+Backup and restore ==============================================================================================================
+
+mysqldump -h localhost -u root -pP@$$w0rd elottery > elottery_backup_11_22
+mysql -u root -p [database] < backup.mdb 
+mysql -u root -p elottery < elottery_backup_11_22.mdb 
+
+===================================================================================================================
+
+
+
+mysql -u root -p elottery < elottery_backup_11_22.mdb 
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Epic158@Kaduwela_road';
+
+CREATE USER dlbuser@localhost IDENTIFIED BY '158@Kaduwela_road'; 
+
+
+
+
+maridb 
+
+
+Epic158@Kaduwela_road
+
+
+To activate  systemctl set-environment MYSQLD_OPTS=""
+systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
+

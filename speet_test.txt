@@ -1,0 +1,26 @@
+
+
+#sudo apt-get install python-pip
+
+Please note that pip is a utility that allows you to install and manage Python packages. 
+
+#pip install speedtest-cli
+
+speedtest-cli
+
+
+
+################ Test Website Loading Speed
+
+# curl -s -w 'Testing Website Response Time for :%{url_effective}\n\nLookup Time:\t\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nPre-transfer Time:\t%{time_pretransfer}\nStart-transfer Time:\t%{time_starttransfer}\n\nTotal Time:\t\t%{time_total}\n' -o /dev/null https://enmra.nmra.gov.lk/
+
+
+# curl -s -w 'Testing Website Response Time for :%{url_effective}\n\nLookup Time:\t\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nAppCon Time:\t\t%{time_appconnect}\nRedirect Time:\t\t%{time_redirect}\nPre-transfer Time:\t%{time_pretransfer}\nStart-transfer Time:\t%{time_starttransfer}\n\nTotal Time:\t\t%{time_total}\n' -o /dev/null https://www.google.com
+
+# curl -s -w %{time_total}\\n -o /dev/null http://www.linuxtechlab.com
+
+
+
+
+
+https://linuxstans.com/how-to-test-your-website-speed-on-linux/

@@ -1,0 +1,39 @@
+wp update 5.5 > 5.7 update
+plugins
+
+custom - chmindu
+
+
+
+usermod -s /sbin/nologin jude;
+usermod -s /sbin/nologin asiri
+usermod -s /sbin/nologin hnbuser;
+useradd secure;
+useradd hnbdc;
+useradd epic;
+cp -r /etc/sudoers /etc/sudoers.bak;
+cp -r /etc/passwd /etc/passwd.back;
+cat /etc/passwd | grep "bash"
+visudo
+
+secure ALL=(ALL) NOPASSWD:ALL
+
+
+
+passwd hnbdc     M4mprQL66bQsuF3q
+passwd secure	uaEJvBdN2DxjsPQh
+root: 	4bfLHg9m8SUUhVw9
+passwd epic 	J5Z78UZNcdKyak69
+
+
+
+database-1
+192.168.20.11- pass
+192.168.20.12- pass
+192.168.10.11- pass
+192.168.10.12-pass
+
+192.168.40.12- pass
+
+
+

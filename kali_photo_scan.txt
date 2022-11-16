@@ -1,0 +1,1 @@
+exiftool -SerialNumber IMG_1124.JPG

@@ -1,0 +1,9 @@
+sudo apt-get install libimage-exiftool-perl
+
+To read photo metadata:
+exiftool /tmp/my_photo.jpg
+
+To erase photo metadata:
+
+exiftool -all= /tmp/my_photo.jpg
+

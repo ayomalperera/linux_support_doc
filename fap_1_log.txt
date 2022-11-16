@@ -1,0 +1,106 @@
+Last login: Thu Aug  6 08:36:56 2020 from 192.168.80.3
+[root@FAP-APP-SRV-01 ~]# netstat -ntpl
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      1602/cupsd
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      1817/master
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      29827/sshd: root@pt
+tcp        0      0 0.0.0.0:7070            0.0.0.0:*               LISTEN      1634/anydesk
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      2231/dnsmasq
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1604/sshd
+tcp6       0      0 ::1:631                 :::*                    LISTEN      1602/cupsd
+tcp6       0      0 192.168.80.205:45272    :::*                    LISTEN      24661/java
+tcp6       0      0 ::1:25                  :::*                    LISTEN      1817/master
+tcp6       0      0 ::1:6010                :::*                    LISTEN      29827/sshd: root@pt
+tcp6       0      0 192.168.80.205:34938    :::*                    LISTEN      24661/java
+tcp6       0      0 :::7676                 :::*                    LISTEN      24661/java
+tcp6       0      0 :::8686                 :::*                    LISTEN      24661/java
+tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd
+tcp6       0      0 :::4848                 :::*                    LISTEN      24661/java
+tcp6       0      0 :::8080                 :::*                    LISTEN      24661/java
+tcp6       0      0 :::3700                 :::*                    LISTEN      24661/java
+tcp6       0      0 :::8181                 :::*                    LISTEN      24661/java
+tcp6       0      0 :::22                   :::*                    LISTEN      1604/sshd
+[root@FAP-APP-SRV-01 ~]# ls -ltrh /proc | grep 24661
+dr-xr-xr-x.  9 root           root              0 Aug  6 08:38 24661
+[root@FAP-APP-SRV-01 ~]#
+[root@FAP-APP-SRV-01 ~]#
+[root@FAP-APP-SRV-01 ~]#
+[root@FAP-APP-SRV-01 ~]# ll
+total 368692
+-rw-------. 1 root root      1687 Feb 18 15:25 anaconda-ks.cfg
+drwxr-xr-x. 2 root root         6 Feb 19 10:23 Desktop
+drwxr-xr-x. 2 root root         6 Feb 19 10:23 Documents
+drwxr-xr-x. 3 root root      4096 Mar 11 16:30 Downloads
+-rw-r--r--. 1 root root      2062 May 19 09:47 fapdb05192020.sql
+-rw-r--r--. 1 root root     16326 Mar 11 12:47 index.html?id=492421
+-rw-r--r--. 1 root root      1852 Feb 18 16:09 initial-setup-ks.cfg
+drwxr-xr-x. 2 root root         6 Feb 19 10:23 Music
+-rw-r--r--. 1 root root        60 Mar 11 13:18 mysqlcom_jude
+drwxr-xr-x. 2 root root         6 Feb 19 10:23 Pictures
+drwxr-xr-x. 2 root root         6 Feb 19 10:23 Public
+-rw-r--r--. 1 root root    163356 Mar 11 12:40 source-code
+drwxr-xr-x. 2 root root         6 Feb 19 10:23 Templates
+drwxr-xr-x. 3 root root        21 Mar  5 13:42 Videos
+-rw-r--r--. 1 root root 377339034 Feb 19 10:34 warapp.tar.gz
+[root@FAP-APP-SRV-01 ~]# cd /opt/scripts/
+[root@FAP-APP-SRV-01 scripts]#
+[root@FAP-APP-SRV-01 scripts]#
+[root@FAP-APP-SRV-01 scripts]# ll
+total 8
+-rwxr-xr-x. 1 root root 65 Aug  4 17:55 fap_start.sh
+-rwxr-xr-x. 1 root root 64 Aug  4 17:55 fap_stop.sh
+[root@FAP-APP-SRV-01 scripts]#
+[root@FAP-APP-SRV-01 scripts]#
+[root@FAP-APP-SRV-01 scripts]# ./fap_stop.sh
+Waiting for the domain to stop ...
+Command stop-domain executed successfully.
+[root@FAP-APP-SRV-01 scripts]# netstat -ntpl
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      1602/cupsd
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      1817/master
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      29827/sshd: root@pt
+tcp        0      0 0.0.0.0:7070            0.0.0.0:*               LISTEN      1634/anydesk
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      2231/dnsmasq
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1604/sshd
+tcp6       0      0 ::1:631                 :::*                    LISTEN      1602/cupsd
+tcp6       0      0 ::1:25                  :::*                    LISTEN      1817/master
+tcp6       0      0 ::1:6010                :::*                    LISTEN      29827/sshd: root@pt
+tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd
+tcp6       0      0 :::22                   :::*                    LISTEN      1604/sshd
+[root@FAP-APP-SRV-01 scripts]# ./fap_start.sh
+Waiting for domain1 to start ....................................................................
+Successfully started the domain : domain1
+domain  Location: /opt/glassfish4/glassfish/domains/domain1
+Log File: /opt/glassfish4/glassfish/domains/domain1/logs/server.log
+Admin Port: 4848
+Command start-domain executed successfully.
+[root@FAP-APP-SRV-01 scripts]# netstat -ntpl
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      1602/cupsd
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      1817/master
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      29827/sshd: root@pt
+tcp        0      0 0.0.0.0:7070            0.0.0.0:*               LISTEN      1634/anydesk
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      2231/dnsmasq
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1604/sshd
+tcp6       0      0 ::1:631                 :::*                    LISTEN      1602/cupsd
+tcp6       0      0 ::1:25                  :::*                    LISTEN      1817/master
+tcp6       0      0 ::1:6010                :::*                    LISTEN      29827/sshd: root@pt
+tcp6       0      0 :::7676                 :::*                    LISTEN      30095/java
+tcp6       0      0 :::8686                 :::*                    LISTEN      30095/java
+tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd
+tcp6       0      0 :::4848                 :::*                    LISTEN      30095/java
+tcp6       0      0 :::8080                 :::*                    LISTEN      30095/java
+tcp6       0      0 :::3700                 :::*                    LISTEN      30095/java
+tcp6       0      0 :::8181                 :::*                    LISTEN      30095/java
+tcp6       0      0 :::22                   :::*                    LISTEN      1604/sshd
+[root@FAP-APP-SRV-01 scripts]# ls -ltrh /proc | grep 30095
+dr-xr-xr-x.  9 root           root              0 Aug  6 13:57 30095
+[root@FAP-APP-SRV-01 scripts]#
+Network error: Software caused connection abort
+

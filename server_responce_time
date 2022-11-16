@@ -1,0 +1,27 @@
+check server responce time
+
+
+$	curl -o /dev/null -s -w %{time_total}\\n  https://www.mitsubishi-fuso.com/
+
+$	curl -s -w %{time_total}\\n -o /dev/null  https://www.mitsubishi-fuso.com/
+
+
+	Option 	Description
+	-s 	Quiet mode. Don’t show progress meter or error messages
+	-w 	Defines what to display on stdout after a completed and successful operation
+	-o 	Write output to ‘/dev/null’
+	time_total 	The total time, in seconds, that the full operation lasted
+	
+###### Detailed timing of a website response
+	
+
+ curl -s -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{time_connect}\nPreXfer time:\t%{time_pretransfer}\nStartXfer time:\t%{time_starttransfer}\n\nTotal time:\t%{time_total}\n' -o /dev/null https://www.mitsubishi-fuso.com
+ 
+ 
+ 
+ ###### More detailed timing of a website response
+ 
+ 
+ 
+ 
+ https://www.shellhacks.com/check-website-response-time-linux-command-line/

@@ -1,0 +1,212 @@
+sudo yum check-update
+curl -fsSL https://get.docker.com/ | sh
+sudo systemctl start docker
+sudo systemctl status docker
+sudo systemctl enable docker
+
+
+##############verify your Docker Host Operating System
+uname -a
+
+
+###Running your first container
+docker container run hello-world
+
+
+#Working with Docker Images
+#Pulling images (not running)
+docker image pull alpine
+docker image ls
+
+#Docker Container Run
+#just run the container instance
+docker container run alpine ls -l
+
+#Running the container instance with an interactive shell
+docker container run -it alpine /bin/sh
+
+#Get conitaner list
+docker container ls
+#Get active container list
+docker container ls -a
+
+
+
+#Container Isolation lab
+#run a container & create a file inside the instance
+docker container run -it alpine /bin/ash
+
+echo "hello world" > hello.txt
+
+ ls
+
+
+#Create a another container instance and check the isolation
+docker container run alpine ls
+
+docker container ls -a
+
+#Starting a container
+docker container start <container ID>
+
+#Executing command inside the container without interacting
+docker container exec <container ID> <command>
+Eg: - docker container exec <container ID> ls 
+
+
+
+
+
+
+##Run a container and install some package
+
+docker container run -it alpine sh
+
+{
+	apk update
+	apk add figlet
+	figlet "WELCOME TO WINIT"
+}
+exit
+
+##verify the difference
+docker container diff <contianer ID>
+
+
+
+##Create your own image
+docker container commit <container ID>
+docker image tag <IMAGE_ID> <Image TAG>
+
+OR
+docker container commit <container ID> <New_ImageTAG>
+
+docker container run <New_ImageTAG> figlet hello
+
+
+
+##View available networks
+docker network ls
+
+
+##Run a alpine in default bridge
+docker container run -itd --name=default_alpine alpine
+
+
+##Verify the running container 
+docker network inspect bridge
+
+
+##Verify the network interface settings of default_alpine
+docker container exec default_alpine ifconfig
+
+
+##Disconnect default_alpine from the network
+docker network disconnect bridge default_alpine
+
+
+##Verify the network interface settings of default_alpine
+docker container exec default_alpine ifconfig
+
+
+##Reconnect default_alpine to the network
+docker network connect bridge default_alpine
+
+
+
+##Create your own bridge network
+docker network create -d bridge my_bridge
+OR
+docker network create my_bridge
+
+
+
+##Verify the custom bridge network
+docker network ls
+docker network inspect my_bridge
+
+
+
+##Add containers to a my_bridge network
+docker container run -dit --network=my_bridge --name my_alpine_01 alpine
+
+
+
+##Add containers to a my_bridge network
+docker container run -dit --network=my_bridge --name my_alpine_02 alpine
+
+
+
+##Verify Two container are in your custom network
+docker network inspect my_bridge
+
+
+##Inspect the container IP
+docker container inspect --format='{{json .NetworkSettings.Networks}}' my_alpine_01
+OR
+docker container inspect <Container ID>
+
+
+
+##Get a shell to my_alpine_01 container 
+docker container exec -it my_alpine_01 ash
+
+
+
+##Test the connectivity for my_alpine_02
+ping my_alpine_02
+OR
+ping <Container ID>
+OR
+ping <IP>
+
+
+
+##Test the connectivity default_alpine from my_alpine_01
+ping default_alpine
+OR
+ping <Container ID>
+OR
+ping <IP>
+<NOTE :- Its fails>
+
+
+
+##Connect default_alpine to my_bridge
+docker network connect my_bridge default_alpine
+
+##Now test the connection
+docker container exec my_alpine_01 ping -c 5 default_alpine
+
+
+OR
+
+####Connect my_alpine_01 to default bridge
+docker network connect bridge my_alpine_01
+
+##Now test the connection
+docker container exec my_alpine_01 ping -c 5 172.17.0.2
+<NOTE : - There is no DNS resolvation for default bridge To Link container you have to use --link>
+
+
+!!!!!!!!!!!!!!!!!!!!IT WORKS!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+docker run  it --name mysql_88  -e MYSQL_ROOT_PASSWORD=redhat  mysql:8.0
+
+copy files ===============================================
+#docker cp bnrUpdated2.sql mysql-bnr:/bnrUpdated2.sql
+
+
+Z3600 
+HP Z3700

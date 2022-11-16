@@ -1,0 +1,16 @@
+
+bind-address=0.0.0.0
+
+
+CREATE USER 'qauser'@'%' IDENTIFIED BY 'Ep1klanka@321';
+
+
+GRANT ALL PRIVILEGES ON *.* TO 'eland_user'@'%' IDENTIFIED BY 'Ep1klanka@321';
+
+
+GRANT ALL ON eland_v1_26.* TO root@'*' IDENTIFIED BY 'Ep1klanka@321';
+
+GRANT ALL ON database_name.* TO user_name@'ip_address' IDENTIFIED BY 'user_password';
+
+GRANT ALL ON eland_v1_26.* TO root@'%' IDENTIFIED BY 'Ep1klanka@321';
+

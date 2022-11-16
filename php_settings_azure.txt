@@ -1,0 +1,3 @@
+PHP settins on Azure app service
+
+https://docs.microsoft.com/en-us/azure/app-service/configure-language-php?pivots=platform-linux

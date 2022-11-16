@@ -1,0 +1,7 @@
+echo "- - -" >> /sys/class/scsi_host/host_1/scan;
+echo "- - -" >> /sys/class/scsi_host/host_2/scan;
+echo "- - -" >> /sys/class/scsi_host/host_3/scan;
+echo "- - -" >> /sys/class/scsi_host/host_4/scan;
+
+
+for host in /sys/class/scsi_host/*; do echo "- - -" | sudo tee $host/scan; ls /dev/sd* ; done

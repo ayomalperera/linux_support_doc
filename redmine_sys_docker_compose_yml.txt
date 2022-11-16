@@ -1,0 +1,38 @@
+version: '2'
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.3'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_redmine
+      - MARIADB_DATABASE=bitnami_redmine
+    volumes:
+      - 'mariadb_data:/bitnami'
+  redmine:
+    image: 'bitnami/redmine:4'
+    environment:
+      - REDMINE_DB_USERNAME=bn_redmine
+      - REDMINE_DB_NAME=bitnami_redmine
+      - REDMINE_EMAIL=epicnagios@gmail.com
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=epicnagios@gmail.com
+      - SMTP_PASSWORD=fdwixtejasidhciz
+    ports:
+      - '58181:3000'
+    volumes:
+      - 'redmine_data:/bitnami'
+    depends_on:
+      - mariadb
+volumes:
+  mariadb_data:
+    driver: local
+  redmine_data:
+    driver: local
+
+
+####################################
+Available variables:
+
+REDMINE_USERNAME: Redmine application username. Default: user
+REDMINE_PASSWORD: Redmine application password. Default: bitnami1

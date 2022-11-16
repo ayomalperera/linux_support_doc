@@ -1,0 +1,5 @@
+ssh:
+#AllowTcpForwarding yes
+
+selinux
+#Permissive

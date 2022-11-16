@@ -1,0 +1,9 @@
+http://manpages.ubuntu.com/manpages/bionic/man1/mkvmerge.1.html#examples
+
+
+
+mkvmerge -o output.mkv input1.mkv +input2.mkv
+
+mkvmerge -o mymovie.mkv mymovie.avi mymovie.srt
+
+mkvmerge --list-languages

@@ -1,0 +1,12 @@
+
+
+IP:192.168.20.222
+
+U:root
+p:password
+
+
+
+glassfish
+U:admin
+P:adminadmin

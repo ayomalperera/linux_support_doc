@@ -1,0 +1,99 @@
+#!/bin/sh
+
+
+
+kill $(lsof -t -i:1000)
+sleep 2
+echo "Application 1000 stoped successfully"
+kill $(lsof -t -i:3000)
+sleep 2
+echo "Application 3000 stoped successfully"
+sleep 2
+kill $(lsof -t -i:5000)
+echo "Application 5000 stoped successfully"
+cd /root/Desktop/PSIV1.23-5000
+echo > nohup.out
+sleep 2
+
+kill $(lsof -t -i:7000)
+echo "Application 7000 stoped successfully"
+sleep 2
+
+cd /usr/local/glassfish3.1.2/bin/
+./asadmin stop-domain
+
+echo "Applications Restarting ......"
+sleep 2
+
+
+
+cd /usr/local/glassfish3.1.2/bin/
+./asadmin start-domain
+
+sleep 2
+
+cd /root/Desktop/PSIV1.22-1000/
+nohup java -Xms1g -Xmx3g -jar PSIV1.22.jar &
+
+####################################################
+cd /root/Desktop/PSIV1.22-3000
+nohup  java -Xms1g -Xmx3g -jar PSIV1.22.jar &
+
+####################################################
+cd /root/Desktop/PSIV1.23-5000
+
+nohup java -Xms1g -Xmx3g -jar PSIV1.23.jar &
+####################################################
+cd /root/Desktop/PSIV1.22-7000
+nohup java -Xms1g -Xmx2g -jar PSIV1.22.jar &
+
+###################################################################
+#
+#    varification running ports
+
+sleep 30
+
+lsof -i:4848
+lsof -i:1000
+lsof -i:3000
+lsof -i:5000
+lsof -i:7000
+lsof -i:8080
+
+###########################################################
+
+#!/bin/bash
+
+cd /usr/local/glassfish3.1.2/bin/
+./asadmin start-domain
+
+sleep 30
+
+cd /root/Desktop/PSIV1.22-1000/
+nohup java -Xms1g -Xmx3g -jar PSIV1.22.jar &
+
+####################################################
+cd /root/Desktop/PSIV1.22-3000
+nohup  java -Xms1g -Xmx3g -jar PSIV1.22.jar &
+
+####################################################
+cd /root/Desktop/PSIV1.23-5000
+
+nohup java -Xms1g -Xmx3g -jar PSIV1.23.jar &
+####################################################
+cd /root/Desktop/PSIV1.22-7000
+nohup java -Xms1g -Xmx2g -jar PSIV1.22.jar &
+
+###################################################################
+#
+#    varification running ports
+
+sleep 10
+
+#lsof -i:1000
+#lsof -i:3000
+lsof -i:5000
+#lsof -i:7000
+lsof -i:8080
+
+

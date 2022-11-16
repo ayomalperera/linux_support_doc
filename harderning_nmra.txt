@@ -1,0 +1,26 @@
+
+date;	
+echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bash_profile;
+source ~/.bash_profile;
+history;
+gpasswd -d epicuser wheel;
+id epicuser;
+cat /etc/passwd | grep "bash";
+usermod -s /sbin/nologin cloud-user;
+usermod -s /sbin/nologin tomcat;
+usermod -s /sbin/nologin epicadmin;
+usermod -s /sbin/nologin nagios;
+useradd epicuser; echo "171@Baththaramulla" | passwd --stdin "epicuser" 
+
+
+
+usermod -s /sbin/nologin asiri;
+usermod -s /sbin/nologin jude;
+usermod -s /sbin/nologin haproxy
+
+
+
+
+
+vi /etc/ssh/sshd_config
+systemctl restart sshd

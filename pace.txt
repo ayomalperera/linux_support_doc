@@ -1,0 +1,14 @@
+1.diasable iptables
+# iptables -L
+
+2.disable selinux
+# sestatus
+
+3.make repo
+4.make entry for etc/hosts file for both nodes
+5 installing
+
+yum install pcs pacemaker fence-agents lvm2-cluster resource-agents psmisc -----
+
+0114418418
+0112266266

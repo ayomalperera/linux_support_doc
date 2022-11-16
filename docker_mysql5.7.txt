@@ -1,0 +1,1 @@
+docker run --name mysql8 -e MYSQL_ROOT_PASSWORD=redhat -p 55306:3306 -d mysql:5.7

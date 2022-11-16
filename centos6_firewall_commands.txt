@@ -1,0 +1,16 @@
+
+##########centos 6################################
+iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+service iptables save
+
+
+###############centos 7###########################
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-ports
+
+
+iptables -S :show all open ports 
+
+
+export PATH=$PATH:/opt/java1.8/bin

@@ -1,0 +1,14 @@
+# sudo yum install epel-release
+# sudo yum install p7zip
+
+7za x file.7z
+
+7za x -o/tmp file.7z
+
+
+################RAR######################
+ wget https://forensics.cert.org/centos/cert/7/x86_64/unrar-5.4.0-1.el7.x86_64.rpm --no-check-certificate
+
+ yum localinstall unrar-5.4.0-1.el7.x86_64.rpm
+
+unrar e Dump20200723_2_new.rar

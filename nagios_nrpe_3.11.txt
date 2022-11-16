@@ -1,0 +1,24 @@
+https://support.nagios.com/kb/article.php?id=515
+NRPE docker(working)
+https://hub.docker.com/r/ndslabs/nagios-nrpe
+
+
+1068  cd /tmp
+ 1069  wget --no-check-certificate -O nrpe.tar.gz https://github.com/NagiosEnterprises/nrpe/archive/nrpe-3.2.1.tar.gz
+ 1070  tar xzf nrpe.tar.gz
+ 1071  ll
+ 1072  cd /tmp/nrpe-nrpe-3.2.1/
+ 1073  ./configure --enable-command-args
+ 1074  make all
+ 1075  make install-groups-users
+ 1076  make install
+ 1077  make install-config
+ 1078  echo >> /etc/services
+ 1079  echo '# Nagios services' >> /etc/services
+ 1080  echo 'nrpe    5666/tcp' >> /etc/services
+ 1081  make install-init
+ 1082  systemctl enable nrpe.service
+ 1083  vim  /usr/local/nagios/etc/nrpe.cfg
+ 1084  systemctl start nrpe.service
+ 1085  /usr/local/nagios/libexec/check_nrpe -H 127.0.0.1
+ 1086  history

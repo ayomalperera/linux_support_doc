@@ -1,0 +1,24 @@
+time stamps in bash history
+
+# echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bash_profile
+$ . ~/.bash_profile
+source ~/.bash_profile
+
+
+
+
+ echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bash_profile;
+
+source ~/.bash_profile
+
+
+
+################################
+
+# vi ~/.bashrc
+…………
+export HISTTIMEFORMAT="%F %T "
+…………
+
+
+source  /etc/profile

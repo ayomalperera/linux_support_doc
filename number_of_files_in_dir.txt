@@ -1,0 +1,4 @@
+following are extra examples to show total number of regular files in /var/log and /etc directories respectively:
+
+$ sudo find /var/log/ -type f -print | wc -l
+$ sudo find /etc/ -type f -print | wc -l

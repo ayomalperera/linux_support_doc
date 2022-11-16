@@ -1,0 +1,22 @@
+mysqldump -u root -p --all-databases > all_databases.sql
+
+mysqldump -u root -p --databases database_name_a database_name_b > databases_a_b.sql
+
+
+mysqldump  database_name > database_name-$(date +%Y%m%d).sql
+
+############ create and restore################
+mysql -u root -p -e "create database eland_v1_38";
+mysql -u root -p eland_training < database_name.sql
+
+
+legatus_db
+
+#############Restore a Single MySQL Database from a Full MySQL Dump 
+
+mysql --one-database database_name < all_databases.sql
+
+
+
+
+https://linuxize.com/post/how-to-back-up-and-restore-mysql-databases-with-mysqldump/

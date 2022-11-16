@@ -1,0 +1,39 @@
+API tocken
+
+UnrJeKDO3JiMg7LoDmhDAtA2ZfxNU57vcA33r1s0oxs
+
+
+https://github.com/wpscanteam/wpscan/wiki/WPScan-User-Documentation
+
+
+
+wpscan --url example.com -e vp --plugins-detection mixed --api-token YOUR_TOKEN
+
+
+
+wpscan --url  https://ultrasupernew.gallery  –enumerate vt
+
+https://www.mitsubishi-fuso.com
+
+
+wpscan --url www.mitsubishi-fuso.com -e vp --plugins-detection mixed --api-token UnrJeKDO3JiMg7LoDmhDAtA2ZfxNU57vcA33r1s0oxs
+
+
+
+ wpscan --url http://example.com --api-token TOKEN --detection-mode aggressive
+
+
+
+
+
+
+
+
+
+add token==========
+
+ ~/.wpscan/scan.yml
+
+
+cli_options:
+  api_token: 'YOUR_API_TOKEN'

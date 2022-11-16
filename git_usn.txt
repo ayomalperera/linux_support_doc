@@ -1,0 +1,10 @@
+ git config --global user.name "judepererausn";
+git config --global user.email "jude.perera@ultrasupernew.com";
+git config -l
+
+
+
+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
+
+git personal
+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

@@ -1,0 +1,41 @@
+
+
+HOW TO START WILDFLY SERVER
+ ./standalone.sh -b 192.168.20.222 -bmanagement 192.168.20.222
+ 
+ 
+
+
+HOW TO SHUTDOWN WILDFLY
+./jboss-cli.sh 
+
+start
+=====
+nohup ./standalone.sh &
+
+
+WILDFLY PATH TO BIN
+/root/wildfly-15.0.1.Final/wildfly-15.0.1.Final/bin
+
+
+Start
+Linux: $ ./standalone.sh &
+
+Stop
+Linux: $ ./jboss-cli.sh --connect command=:shutdown
+
+Restart
+Linux: $ ./jboss-cli.sh --connect command=:reload
+
+Start in domain mode
+Linux: $ ./domain.sh &
+
+#######deploy
+$ cp example.war /opt/wildfly-14.0.0.Final/standalone/deployments
+
+
+
+
+
+
+

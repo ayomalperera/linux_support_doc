@@ -1,0 +1,8 @@
+ #mysql -h mydemoserver.mysql.database.azure.com -u Username@mydemoserver -p --ssl-ca=/opt/ssl/BaltimoreCyberTrustRoot.crt.pem
+
+
+
+mysql -uglobal_dbadmin@fusoglobal-mysql20210212 -p -h fusoglobal-mysql20210212.mysql.database.azure.com
+
+
+#mysql -h fusoglobal-mysql20210212.mysql.database.azure.com -u global_dbadmin@fusoglobal-mysql20210212 -p --ssl-ca=/opt/ssl/BaltimoreCyberTrustRoot.crt.pem

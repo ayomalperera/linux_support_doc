@@ -1,0 +1,13 @@
+
+
+################	NEC EXPRESS CLUSTER COMMANDS #################################
+
+1.clpstat:CLUSTER STATUS
+2.clpstat -i :complete information
+3.clpstat -g
+4.clpstat -n
+5.clpstat -m
+
+##################################################################################
+
+

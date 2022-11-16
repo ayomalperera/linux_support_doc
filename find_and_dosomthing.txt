@@ -1,0 +1,36 @@
+$ find files in given dir older more than 28 days
+
+find <directory> -type f -mtime +28 
+find <directory> -type f -mtime +28 -delete
+
+find / -iname linux.odt
+find /home -name *.jpg
+Look for an empty file inside the current directory.
+#find . -type f -empty
+
+
+find . -type f -iname '*.pdf'
+
+
+#########print file size along with with file paths for files larger than 500MB use this command,
+
+find /usr -type f -size +500M -exec ls -lh {} \; | awk '{ print $9 "|| Size : " $5 }'
+
+
+
+########## How to use 'find' to search for files created on a specific date?
+find . -type f -newermt 2007-06-07 ! -newermt 2007-06-08
+
+
+########## Collect file size
+
+ find /tmp/ -type f -exec du -sh {} \;
+
+
+########## find and copy
+
+find . -type f -newermt 2021-12-19 ! -newermt 2021-12-20   -exec cp {} /home/jude/Sony_039_backup/DCIM/100ANDRO/lakshapana/ \;
+
+
+
+

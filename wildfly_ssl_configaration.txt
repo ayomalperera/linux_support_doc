@@ -1,0 +1,36 @@
+
+
+
+###############Deploy SSL Certificate in wildfly#####################################################
+
+
+1.Open cmd
+2.Type below command
+3.keytool -genkey -alias wildfly -keyalg RSA -keystore "C:\local.keystore"
+4.genarate key by answering questions asked 
+5.open wildfly/standalone/configuration/standalone.xml
+6.first minimize the standalone.xml file into tabs 
+7.open management tab 
+8.
+
+#####################################################################################################
+<security-realm name="SslRealm">
+<server-identities>
+<ssl>
+<keystore path="C:\local.keystore" alias="wildfly" keystore-password="password" />
+</ssl>
+</server-identities>
+</security-realm>
+#####################################################################################################
+
+Find the section where <ssl></ssl> locates.
+
+9.Edit the content above 
+10.Go to profile section and find the "https-listener" section 
+11.Select the https one
+12.Edit the /security-realm="SslRealm"/ section
+13.restat the server 
+
+
+
+

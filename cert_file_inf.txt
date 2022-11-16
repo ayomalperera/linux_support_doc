@@ -1,0 +1,6 @@
+dowload to windows
+ cmd
+certutil -dump mycert.pfx 
+certutil -dump sandbox.crt
+
+enter password

@@ -1,0 +1,164 @@
+global
+ log /dev/log local0
+ log /dev/log local1 notice
+ chroot /var/lib/haproxy
+ stats socket /run/haproxy/admin.sock mode 660 level admin
+ stats timeout 30s
+ maxconn 4000
+ user haproxy
+ group haproxy
+ daemon
+
+defaults
+ log global
+ mode tcp
+ option tcplog
+ option dontlognull
+ timeout connect 5000
+ timeout client 120000
+ timeout server 120000
+
+
+
+#---------------------------------------------------------------------
+# main frontend which proxys to the backends
+#---------------------------------------------------------------------
+#frontend  main *:5000
+#    acl url_static       path_beg       -i /static /images /javascript /stylesheets
+#    acl url_static       path_end       -i .jpg .gif .png .css .js
+#
+#    use_backend static          if url_static
+#    default_backend             app
+#
+#---------------------------------------------------------------------
+#########################################################################
+##frontend frontend_front
+ ##bind *:80
+
+  ##default_backend frontend_back
+
+##backend frontend_back
+
+##balance source
+##hash-type consistent
+
+#server webserver1 192.168.85.6:80 check
+ ##server webserver1 192.168.85.9:8080 check
+ #server webserver2 192.168.85.5:8080 check
+ #server webserver3 192.168.85.13:8080 check
+ #server webserver4 192.168.85.8:8080 check
+
+###############################################
+frontend frontend_8080_front
+ bind *:8080
+
+  default_backend frontend_8080_back
+
+backend frontend_8080_back
+
+balance source
+hash-type consistent
+
+
+ server webserver1 192.168.205.5:8080 check
+
+###################################################################################
+#########################################################################
+frontend frontend_8081_front
+ bind *:8081
+
+  default_backend frontend_8081_back
+
+backend frontend_8081_back
+
+balance source
+hash-type consistent
+
+server webserver1 192.168.205.5:8081 check
+##########################################################################
+frontend 8082_front
+ bind *:8082
+
+  default_backend 8082_back
+
+backend 8082_back
+balance source
+hash-type consistent
+
+server webserver1 192.168.205.5:8082 check
+
+
+##########################################################################
+frontend 8083_front
+ bind *:8083
+
+  default_backend 8083_back
+
+backend 8083_back
+balance source
+hash-type consistent
+
+server webserver1 192.168.205.5:8083 check
+
+###################################################################################
+frontend 8090_front
+ bind *:8090
+
+  default_backend 8090_back
+
+backend 8090_back
+balance source
+hash-type consistent
+
+server webserver1 192.168.205.5:8090 check
+##########################################################################
+###################################################################################
+frontend 8092_front
+ bind *:8092
+
+  default_backend 8092_back
+
+backend 8092_back
+balance source
+hash-type consistent
+
+server webserver1 192.168.205.5:8092 check
+##########################################################################
+
+frontend 9095_front
+ bind *:9095
+
+  default_backend 9095_back
+
+backend 9095_back
+balance source
+
+
+server webserver1 192.168.205.5:9095 check
+
+
+################################################
+
+frontend 9090_front
+ bind *:9090
+
+  default_backend 9090_back
+
+backend 9090_back
+balance source
+hash-type consistent
+
+server webserver1 192.168.205.5:9090 check
+###############################################################
+################################################
+##############################################################################
+ frontend db_front
+ bind *:49450
+ mode tcp
+  default_backend db_back
+
+backend db_back
+
+ mode tcp
+ server dbserver1 192.168.205.16:55306 check
+################### end #####################################

@@ -1,0 +1,36 @@
+######### working ##############
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Git') {
+            steps {
+                git branch: 'main', credentialsId: 'ayomal_git', url: 'https://github.com/ayomalperera/cicd-test.git'
+            }
+        }
+    }
+}
+
+
+####################################
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('git clone') {
+            steps {
+                git branch: 'main', credentialsId: 'ayomal_git', url: 'https://github.com/ayomalperera/cicd-test.git'
+            }
+            }    
+        stage('ftp into server')
+            steps {
+                ftpPublisher alwaysPublishFromMaster: false, continueOnError: false, failOnError: false, publishers: [[configName: 'jen-ftp2', transfers: [[asciiMode: false, cleanRemote: false, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '/fuso-pl-23/', sourceFiles: '*/*']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
+            }
+            }
+        }
+    }
+}

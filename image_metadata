@@ -1,0 +1,12 @@
+
+Read
+
+$ exiftool 6_21_canter.jpeg 
+
+copy meta data from another image
+
+$ exiftool -tagsfromfile 6_21_fighter.jpeg -exif 6_21_canter.jpeg
+
+
+
+

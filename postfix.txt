@@ -1,0 +1,76 @@
+http://rhel7centos7.blogspot.com/2017/04/configure-postfix-relay-through-gmail.html
+
+
+alert77333@gmail.com kwzlqirgajsgpvyc
+
+kgabeywardana@gmail.com  wfckzmwpykmqhjde
+
+epicnagios@gmail.com app pw: fdwixtejasidhciz
+
+epicsyssuport@gmail.com app pw: vubezsyhxwkkpmuc
+
+
+info@annupuriproperties.com:etwskikjgvbjopsp
+
+
+usedvehicales@gmail.com :fjehbkcjzuxepffe
+
+install============================================
+
+yum -y install postfix cyrus-sasl-plain mailx
+
+systemctl restart postfix
+
+systemctl enable postfix
+
+Configure Postfix
+vim /etc/postfix/main.cf and add the following lines to the end of the file.
+
+myhostname = hostname.example.com
+relayhost = [smtp.gmail.com]:587
+smtp_use_tls = yes
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_tls_CAfile = /etc/ssl/certs/ca-bundle.crt
+smtp_sasl_security_options = noanonymous
+smtp_sasl_tls_security_options = noanonymous
+
+
+Configure Postfix SASL Credentials
+The Gmail credentials must now be added for authentication. Create a /etc/postfix/sasl_passwd file and add following line:
+
+
+vim /etc/postfix/sasl_passwd 
+[smtp.gmail.com]:587 epicnagios@gmail.com:fdwixtejasidhciz
+
+postmap /etc/postfix/sasl_passwd
+
+systemctl reload postfix
+
+echo "This is a test." | mail -s "test message" jude.perera@ultrasupernew.com
+
+
+tail -f /var/log/maillog
+
+If there are not enough details in the maillog to determine the problem, then the debug level can be increased by adding the following lines to the /etc/postfix/main.cf.
+debug_peer_list=smtp.gmail.com
+debug_peer_level=3
+
+
+
+
+
+
+To check mail queue:
+
+mailq
+To remove all mail from the queue:
+
+postsuper -d ALL
+To remove all mails in the deferred queue:
+
+postsuper -d ALL deferred
+
+
+
+

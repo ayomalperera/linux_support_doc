@@ -1,0 +1,48 @@
+#### Ubuntu
+
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+        worker_connections 768;
+        # multi_accept on;
+}
+
+http {
+
+
+################################################################
+server {
+    listen 80;
+    server_name retro.ultrasupernew.com;
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_pass http://127.0.0.1:3000;
+        proxy_redirect off;
+    }
+}
+
+server {
+    listen 80;
+    server_name 35.73.165.123;
+
+
+
+
+
+    location / {
+
+        proxy_set_header Host $host;
+        proxy_pass http://127.0.0.1:3200;
+        proxy_redirect off;
+    }
+}
+
+###############################################################
+
+
+}
+

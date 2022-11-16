@@ -1,0 +1,70 @@
+3275 | 2019-Dec-16 Monday	
+
+    14162657G
+
+48566280
+
+
+mysql --user=root --password=P@$$w0r --database=elottery --execute=UPDATE `elottery`.`dlb_wb_result` SET `STATUS` = 27 WHERE DATE = DATE_FORMAT(NOW(),'%Y-%m-%d');
+
+
+ mysql_config_editor set --login-path=myhostalias --host=localhost --user=backupuser --password
+
+
+
+mysql_config_editor set --login-path=<login_path_name> --host=<hostname> --user=<username> --password
+mysql_config_editor set --login-path=myhostalias --host=localhost --user=root --password
+
+mysql_config_editor set --login-path=myhostalias --host=localhost --user=backupuser --password
+
+
+UPDATE `elottery`.`dlb_wb_result` SET `STATUS` = 27 WHERE DATE = DATE_FORMAT(NOW(),'%Y-%m-%d');
+
+
+ mysql -u root -p -e "UPDATE `elottery`.`DLB_WB_RESULT` SET `STATUS` = 27 WHERE DATE = DATE_FORMAT(NOW(),'%Y-%m-%d')";
+
+mysql -u root -p -D elottery -e "UPDATE `elottery`.`DLB_WB_RESULT` SET `STATUS` = 27 WHERE DATE = DATE_FORMAT(NOW(),'%Y-%m-%d')";"
+
+819 000 7922
+
+rsync -zarvh /data/elotterybackup epicadmin@157.245.56.89:/data/elotterybackup
+
+rsync -ah  -e 'ssh -p 22' --password-file=/opt/rsync_pass /data/elotterybackup epicadmin@157.245.56.89:/data/elotterybackup
+
+rsync -rltvvv --password-file=/opt/rsync_pass . user@host::dest
+
+RSYNC_PASSWORD="Ep1klanka@321"; rsync -rtv /data/elotterybackup epicadmin@157.245.56.89:/data/elotterybackup          user@remotehost::module/source/ destination/
+
+rsync -az -e  /data/elotterybackup  epicadmin@157.245.56.89:/data/elotterybackup
+
+rsync -e"ssh -i /home/epicadmin/.ssh/id_rsa.pub.
+/home/epicadmin/.ssh/id_rsa.pub.
+
+f=(find /data/elotterybackup/ -type f -mtime +2) -exec zip -r (date +%Y-%m-%d).zip {} \; -exec mv {} /data/backup_old \;
+
+for f in *.jpg
+do
+    mv -n "$f" "$(date -r "$f" +"%Y%m%d_%H%M%S").jpg"
+done
+
+
+#!/bin/bash -e
+filelist="$(mktemp)"
+find /data/elotterybackup/*sql -mtime +2 -print0 > "$filelist"
+tar -czvf "elotterybackup_$(date +%Y-%m-%d).tar.gz" --null -T "$filelist"
+xargs -0 rm < "$filelist"
+rm "$filelist"
+
+
+docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=abc123 -e MYSQL_DATABASE=medi_record -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -d mysql:5.6
+
+docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=abc123 -e MYSQL_DATABASE=medi_record -d mysql:5.6
+
+docker run --name mysql-test1 -e MYSQL_ROOT_PASSWORD=abc123 -e MYSQL_DATABASE=medi_record -d -v testvol:/var/lib/mysql  mysql:5.6
+
+
+
+
+
+
+

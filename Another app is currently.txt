@@ -1,0 +1,9 @@
+[root@server /]# rm -f /var/run/yum.pid 20360
+
+
+yum remove -y PackageKit*
+
+
+
+
+

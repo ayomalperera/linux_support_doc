@@ -1,0 +1,6 @@
+https://www.admin-magazine.com/HPC/Articles/Useful-NFS-Options-for-Tuning-and-Management#:~:text=The%20MTU%20is%20the%20maximum,server%20and%20the%20NFS%20clients.
+
+ideal MTU Size for NFS Storage
+9000 - 9000
+
+#  ifconfig eth0 mtu 9000 up

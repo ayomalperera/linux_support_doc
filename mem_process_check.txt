@@ -1,0 +1,9 @@
+=================top 10 applications regarding RAM usage#########
+# ps -A --sort -rss -o comm,pmem | head -n 11
+
+=================== usage of sub process 
+# ps auxf
+
+# cat /proc/meminfo
+
+ ps -A --sort -size -o comm,size |  ps -A --sort -vsize -o comm,vsize | head -n 11

@@ -1,0 +1,2 @@
+#!/bin/bash
+mysql --login-path=myhostalias elottery -e  'UPDATE `DLB_WB_RESULT` SET `STATUS`='27' WHERE `STATUS`='31';'

@@ -1,0 +1,9 @@
+docker network create -driver overlay hv-overlay-net
+
+○	docker login
+○	ejkpac
+○	52727a31-698b-4150-b737-95a43e03eb89
+
+
+	docker service create --name product_1 -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT"  --network hv-overlay-net --constraint node.hostname==app_service_1  docker service create --name product_1 -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT"  --network hv-overlay-net --constraint node.hostname==app_service_4  ejkpac/epic:helaviru-products-1.2.3
+	docker container run -d --name product_1 -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT"   --network hv-overlay-net  ejkpac/epic:helaviru-products-1.2.3

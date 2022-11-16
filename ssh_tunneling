@@ -1,0 +1,13 @@
+ssh -f user@ssh.example.com -L 3307:mysql1.example.com:3306 -N
+
+Then mysql -h 127.0.0.1 -P 3307 worked as intended. :
+
+
+
+https://web.archive.org/web/20160613004918/http://blog.webyog.com/2012/09/12/how-to-integrating-ssh-tunneling-inside-your-application/
+
+https://stackoverflow.com/questions/18373366/mysql-connection-over-ssh-tunnel-how-to-specify-other-mysql-server
+
+https://www.linode.com/docs/guides/create-an-ssh-tunnel-for-mysql-remote-access/
+
+fusoglobal-mysql20210212

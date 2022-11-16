@@ -1,0 +1,31 @@
+
+
+
+[Unit]
+Description=Tomcat 
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+User=root
+Group=root
+
+WorkingDirectory=/u01/tomcat/apache-tomcat-8.5.38
+
+Environment="JAVA_HOME=/u01/java/jdk1.8.0_201"
+#Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
+
+#Environment="CATALINA_PID=/u01/tomcat/apache-tomcat-8.5.38/%i/run/tomcat.pid"
+Environment="CATALINA_BASE=/u01/config/instance1"
+Environment="CATALINA_HOME=/u01/tomcat/apache-tomcat-8.5.38"
+#Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+ExecStart=/u01/tomcat/apache-tomcat-8.5.38/bin/startup.sh
+ExecStop=/u01/tomcat/apache-tomcat-8.5.38/bin/shutdown.sh
+
+#RestartSec=10
+#Restart=always
+
+[Install]
+WantedBy=multi-user.target

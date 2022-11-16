@@ -1,0 +1,76 @@
+Start =============================================
+/opt/glassfish4/bin/asadmin start-domain
+/opt/glassfish4/bin/asadmin stop-domain
+
+
+Deploy================
+
+# /opt/glassfish4/glassfish/bin
+
+as-install/bin/asadmin deploy sample-dir/hello.war
+
+List deployed applications
+as-install/bin/asadmin list-applications
+
+Undeploy===============
+as-install/bin/asadmin undeploy war-name
+
+test2:redhat:1012:1012:TEST2:home/test2:bin/bash
+
+clipgrab --get www.youtube.com/watch?v=blabla --outfile=blabla
+
+
+
+start ====================
+/opt/glassfish4/bin/asadmin start-domain
+
+
+
+##############HOW TO MAKE GLASSFISH AS SYSYEMD SERVICE#######################################
+
+1.vim /usr/lib/systemd/system/glassfish.service.
+
+################SCRIPT########################################################################
+
+[Unit]
+Description=GlassFish Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+ExecStart=/opt/glassfish/glassfish4/bin/asadmin start-domain domain1
+ExecStop=/opt/glassfish/glassfish4/bin/asadmin stop-domain domain1
+TimeoutSec=180
+
+[Install]
+WantedBy=multi-user.target
+
+###############################################################################################
+
+
+
+
+systemctl daemon-reload
+systemctl enable glassfish
+systemctl start glassfish
+
+
+################################################################################
+Password chenge
+stop doamain first 
+/opt/glassfish4/bin
+
+./asadmin change-admin-password
+
+gf default pw is nill
+
+ ./asadmin --host localhost --port 4848 enable-secure-admin
+
+asadmin --host domain1 --port 4848 enable-secure-admin
+
+
+Enable Secure Admin#########################################
+
+./asadmin --host localhost --port 4848 enable-secure-admin
+

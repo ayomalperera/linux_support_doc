@@ -1,0 +1,63 @@
+
+
+
+
+##################HOW TO CHANGE MYSQL INSTALLATION PATH#####################
+
+
+
+https://www.tecmint.com/change-default-mysql-mariadb-data-directory-in-linux/
+
+
+mkdir /mnt/mysql-data
+chown -R mysql:mysql /mnt/mysql-data
+
+
+#identify current mysql directory 
+mysql -u root -p -e "SELECT @@datadir;"
+
+#stop mysql service 
+systemctl stop mariadb
+systemctl is-active mariadb
+
+#copy data to new directory
+cp -R -p /var/lib/mysql/* /mnt/mysql-data
+
+
+#configure new mysql data directory
+vi /etc/my.conf
+OR
+vi /etc/mysql/my.conf
+
+#make the following changes in the file  
+
+Under [mysqld]:
+datadir=/mnt/mysql-data
+socket=/mnt/mysql-data/mysql.sock
+
+Under [client]:
+port=3306
+socket=/mnt/mysql-data/mysql.sock
+
+#set the SELinux security context to new data directory
+
+semanage fcontext -a -t mysqld_db_t "/mnt/mysql-data(/.*)?"
+restorecon -R /mnt/mysql-data
+
+#restart mysql service 
+systemctl stop mariadb
+systemctl is-active mariadb
+
+#verify the location of the data directory
+mysql -u root -p -e "SELECT @@datadir;"
+
+#create mysql database for virificatio perpuse
+mysql -u root -p -e "CREATE DATABASE tecmint;"
+cd /mnt/mysql-data
+ls -al | grep tecmint
+
+
+
+
+
+

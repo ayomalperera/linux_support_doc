@@ -1,0 +1,16 @@
+
+subscription-manager register --username Sajith93 --password Pass@#1123 --auto-attach
+
+##################register key#####################################
+subscription-manager register
+subscription-manager attach --auto
+
+################unregister key#####################################
+subscription-manager remove --all;
+subscription-manager unregister;
+subscription-manager clean
+
+
+
+
+

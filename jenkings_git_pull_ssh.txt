@@ -1,0 +1,15 @@
+git pull over ssh
+==========================================
+
+Source Code Management :git
+Build Triggers: github hook
+Build Environment:
+Execute shell script on remote host using ssh
+Post build script:
+git -C  /var/www/html/80-port pull
+
+** add webhook to git repo 
+
+Payload URL: http://54.178.140.3:8080/github-webhook/
+Just the push event.
+

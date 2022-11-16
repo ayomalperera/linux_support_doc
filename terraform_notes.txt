@@ -1,0 +1,17 @@
+# create local file#
+
+local.tf
+resource "local_file" "pet" {
+  filename= "/root/pets.txt"
+  content= "we love pets"
+}
+
+
+# create aws instance
+
+aws-ec2.tf
+
+resource "aws-instance" "webserver" {
+  ami = "ami-000f0heh0hethe"
+  instance_type = "t2.micro"
+}

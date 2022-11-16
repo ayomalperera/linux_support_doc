@@ -1,0 +1,12 @@
+#!/bin/sh
+cd /opt/glassfish4/glassfish/bin
+./asadmin stop-domain
+
+sleep 10
+
+
+./asadmin start-domain
+
+
+
+

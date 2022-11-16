@@ -1,0 +1,30 @@
+
+
+
+ssh root@192.168.119.21 /opt/appserver/tomcat9/bin/shutdown.sh  && echo "root shutdown SUCCESS"  || echo "root shutdown SUCCESS FAIL"
+
+ssh root@192.168.119.21 mkdir -p /home/root/old_versions/version$(date +\%Y%m%d) && echo "Backup directory created" || echo "Backup directory created"
+
+ssh root@192.168.119.21 mv  /opt/appserver/tomcat9/webapps/* /home/root/old_versions/version$(date +\%Y%m%d) && echo "Backup old version SUCCESS" || echo "Backup old version FAIL"
+
+scp -r /opt/appserver/tomcat9/webapps/* root@192.168.119.21:/opt/appserver/tomcat9/webapps/ && echo "New versions transfer SUCCESS" || echo "New versions transfer FAIL"
+
+sleep 20
+
+ssh root@192.168.119.21 /opt/appserver/tomcat9/bin/startup.sh  && echo "Tomcat start SUCCESS"  || echo "Tomcat start FAIL"
+
+ssh root@192.168.119.21 netstat -ntpl | grep "80"
+
+
+scp -r /home/root/new_versions/* root@192.168.119.21:/home/root/new_versions/ && echo "New versions transfer SUCCESS" || echo "New versions transfer FAIL"
+
+
+ssh root@192.168.119.21 /opt/apache-root9/bin/shutdown.sh  && echo "root shutdown SUCCESS"  || echo "root shutdown SUCCESS FAIL"
+ssh root@192.168.119.21 sleep 10
+ssh root@192.168.119.21 mkdir -p /home/root/old_versions/version$(date +\%Y%m%d) && echo "Backup directory created" || echo "Backup directory created"
+ssh root@192.168.119.21 mv  /opt/apache-root9/webapps/* /home/root/old_versions/version$(date +\%Y%m%d) && echo "Backup old version SUCCESS" || echo "Backup old version FAIL"
+ssh root@192.168.119.21 sleep 20
+ssh root@192.168.119.21 mv  /home/root/new_versions/* /opt/apache-root9/webapps/  && echo "vesion upgrad SUCCESS" || echo "vesion upgrad FAIL"
+ssh root@192.168.119.21 /opt/apache-root9/bin/startup.sh  && echo "root start SUCCESS"  || echo "root start FAIL"
+ssh root@192.168.119.21 sleep 10
+ssh root@192.168.119.21 netstat -ntpl | grep "8080"

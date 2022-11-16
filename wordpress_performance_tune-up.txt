@@ -1,0 +1,10 @@
+wordpress_performance_tune-up
+
+1.Server side cache
+2.photo size reduced and convert to webp
+3.Reduce DNS Lookups with Keep-Alive for Apache
+
+
+
+
+https://tools.pingdom.com/

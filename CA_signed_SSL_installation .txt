@@ -1,0 +1,47 @@
+
+
+
+
+################Install SSL CA signed certificates.#####################################
+
+
+First of all you need to create your own key store and genarate .csr file accordingly.
+
+1.Download below files.
+1.c351256508aa0fac.crt.
+2.gd_bundle-g2-g1.crt.
+
+2.Double click and open gd_bundle-g2-g1.crt files.
+3.Goto certification path.
+4.Select root certificates.
+5.Go view certificate.
+6.Save file as root.
+7.Select c351256508aa0fac.crt file.
+8.As discribed above save CA certificate.
+
+(copy CA,root and full (original) certificates to the production server)
+9.view details for created key store
+
+keytool -list -keystore dlbsweep.jks
+keytool -list -v -keystore dlbsweep.jks
+
+10.import above files to already created key store
+
+keytool -import -file root.cer -alias root -keystore dlbsweep.jks
+(note that alias is given as root for root certificate)
+
+keytool -import -file ca.cer -alias ca -keystore dlbsweep.jks
+(alias is ca)
+
+keytool -import -file c351256508aa0fac.crt -alias dlbsweep -keystore dlbsweep.jks
+(this original certificate need to install with given alias to key store)
+
+
+
+
+
+
+
+
+
+

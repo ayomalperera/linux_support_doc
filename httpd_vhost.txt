@@ -1,0 +1,160 @@
+
+############################working ####################################
+Listen 92
+<VirtualHost *:92>
+ServerAdmin webmaster@server1.example.com
+ServerName port.com
+DocumentRoot /var/www/port92
+CustomLog "logs/port92_access_log" combined
+ErrorLog "logs/port92_error_log"
+</VirtualHost>
+<Directory "/var/www/port92">
+Require all granted
+RewriteEngine On
+# If an existing asset or directory is requested go to it as it is
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+RewriteRule ^ - [L]
+
+# If the requested resource doesn't exist, use index.html
+RewriteRule ^ /index.html
+</Directory>
+
+################################################################
+
+##################### working log exporce
+
+Listen 81
+<VirtualHost *:81>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/wprd_all_logs_81/
+    ServerName port81.com
+#</VirtualHost>
+    <Directory /var/www/wprd_all_logs_81/>
+Options All Indexes FollowSymLinks
+
+Order allow,deny
+AllowOverride None
+Allow from all
+</Directory>
+</VirtualHost>
+
+
+
+################### working ubuntu##############################################3
+<VirtualHost *:80>
+  DocumentRoot /var/www/40market
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+  Options Includes
+  <Directory "/var/www/40market">
+  AllowOverride All
+  </Directory>
+</VirtualHost>
+
+#################################################################################
+
+
+IP based Vhost===============================================
+workinh
+
+<VirtualHost 204.10.161.154:58080>
+    ServerAdmin webmaster@www1.example.com
+    DocumentRoot "/var/www/repo"
+    ServerName repo.example.com
+    ErrorLog "/var/logs/repo/error_log"
+    CustomLog "/var/logs/repo/access_log" combined
+</VirtualHost>
+
+==========================================================================
+
+<VirtualHost 172.20.30.40:80>
+    ServerAdmin webmaster@www1.example.com
+    DocumentRoot "/www/vhosts/www1"
+    ServerName www1.example.com
+    ErrorLog "/www/logs/www1/error_log"
+    CustomLog "/www/logs/www1/access_log" combined
+</VirtualHost>
+
+<VirtualHost 172.20.30.50:80>
+    ServerAdmin webmaster@www2.example.org
+    DocumentRoot "/www/vhosts/www2"
+    ServerName www2.example.org
+    ErrorLog "/www/logs/www2/error_log"
+    CustomLog "/www/logs/www2/access_log" combined
+</VirtualHost>
+
+
+###################ubuntu digital ocen################
+<VirtualHost *:80>
+    ServerAdmin admin@example.com
+    ServerName example.com
+    ServerAlias www.example.com
+    DocumentRoot /var/www/40market
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+
+
+Listen 80
+<VirtualHost *:80>
+   	ServerAdmin webmaster@localhost
+	ServerName example.com
+	ServerAlias www.example.com
+   	DocumentRoot /var/www/40market
+ <Directory /var/www/40market/>
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+       
+Options All Indexes FollowSymLinks
+Order allow,deny
+AllowOverride None
+Allow from all
+</Directory>
+</VirtualHost>
+
+
+###########################################################
+
+
+
+
+
+
+
+
+
+rpm -Uvh --force http://mirror.centos.org/centos-7/7/os/x86_64/Packages/centos-release-7-3.1611.el7.centos.x86_64.rpm
+
+rpm -qlp http://mirror.centos.org/centos-7/7/os/x86_64/Packages/centos-release-7-3.1611.el7.centos.x86_64.rpm 2>/dev/null | grep repo
+
+
+
+A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 8001 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 8002 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 7070 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 9292 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 55306 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 8009 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 3000 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 81 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 11000 -j ACCEPT
+
+
+iptables -A INPUT -p tcp --dport 8001 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 8002 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 8080 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 7070 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 9292 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 55306 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 8009 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 3000 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 81 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 11000 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+

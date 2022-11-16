@@ -1,0 +1,14 @@
+Take memory dump====================
+
+Step 1: Find docker container's ID. Mine is 388588d04d56.
+
+Step 2: Create memory profile
+    docker exec 388588d04d56 jcmd 1 GC.heap_dump /tmp/heapdump.hprof
+Output should look like:
+    1:
+    Heap dump file created
+
+Step 3: Use java's jhat to analyse memory profile
+
+
+http://poor-developer.blogspot.com/2019/11/java-heapdump-analysis-in-docker.html

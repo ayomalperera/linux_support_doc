@@ -1,0 +1,61 @@
+##################################################################################################
+
+vim /etc/profile
+
+source /etc/profile
+
+ env | grep -i java
+
+
+
+
+echo 'export JAVA_HOME="/opt/jdk1.8.0_201/"' >> /etc/profile;
+echo "export PATH=$PATH:/opt/jdk1.8.0_201/bin" >> /etc/profile;
+source /etc/profile;
+env | grep -i java
+
+
+
+
+
+
+
+
+########################################################################################################
+vim /etc/profile
+
+export JAVA_HOME="/opt/jdk1.8.0_201/"
+
+export PATH=$PATH:/opt/apache-maven-3.6.3/bin
+
+
+source /etc/profile
+
+ env | grep -i java
+
+
+
+
+
+#########################################################
+export PATH=/opt/jdk1.8.0_211/bin:$PATH
+
+ vim /root/.bashrc
+
+export JAVA_HOME="/opt/jdk1.8.0_201/"
+
+export PATH=$PATH:/opt/jdk1.8.0_201/bin
+
+
+
+
+source .bashrc
+
+
+source /root/.bashrc
+
+ env | grep -i java
+
+find path
+
+$(dirname $(dirname $(readlink -f $(which javac))))

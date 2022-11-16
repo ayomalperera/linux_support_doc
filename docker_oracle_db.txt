@@ -1,0 +1,3 @@
+https://hub.docker.com/r/epiclabs/docker-oracle-xe-11g/ 
+
+docker run -d -p 49162:1521 -e ORACLE_ALLOW_REMOTE=true epiclabs/docker-oracle-xe-11g

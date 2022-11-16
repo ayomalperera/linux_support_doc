@@ -1,0 +1,12 @@
+https://github.com/dooblem/bsync
+
+#!/bin/bash
+yes | /opt/scripts/bsync test1/  jude@3.112.253.109:/opt/test2
+sleep 1
+
+
+
+
+
+another twoway sync
+https://github.com/lsyncd/lsyncd

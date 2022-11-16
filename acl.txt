@@ -1,0 +1,22 @@
+setfacl -m u:tecmint1:rw /tecmint1/example
+setfacl -R -d -m u:cent:r /home/testdir
+
+
+sudo setfacl -Rdm g:groupnamehere:rwx /base/path/members/
+sudo setfacl -Rm g:groupnamehere:rwx /base/path/members/
+
+R is recursive, which means everything under that directory will have the rule applied to it.
+d is default, which means for all future items created under that directory, have these rules apply by default.
+m is needed to add/modify rules.
+
+setfacl -m u:nipun:rx /opt/epic_dlb
+
+setfacl -m u:epicuser:rx /opt/epic_deployments/LIVE_V3_00
+
+
+
+For removing ACL from any file/directory, we use x and b options as shown below.
+
+# setfacl -x ACL file/directory  	# remove only specified ACL from file/directory.
+
+# setfacl -b  file/directory   		#removing all ACL from file/direcoty

@@ -1,0 +1,62 @@
+
+
+
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+	worker_connections 768;
+	# multi_accept on;
+}
+
+http {
+#
+
+
+  upstream myproject {
+    server 127.0.0.1:8081;
+    server 127.0.0.1:8082;
+  }
+
+  server {
+    listen 80;
+    server_name www.domain.com;
+    location / {
+      proxy_pass http://myproject;
+    }
+  }
+}
+
+######################################################
+
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+        worker_connections 768;
+        # multi_accept on;
+}
+
+http {
+#
+
+#http {
+  upstream 13.230.230.97{
+    server 127.0.0.1:8081;
+    server 127.0.0.1:8082;
+  }
+
+  server {
+    listen 80;
+    server_name 13.230.230.97;
+    location / {
+      proxy_pass http://13.230.230.97;
+    }
+  }
+}
+
+

@@ -1,0 +1,29 @@
+
+step 1===============================
+server IP : 41.216.184.150 
+User name: epicuser
+password: use attached key
+
+
+step 2==========================================
+
+#su [your user name]
+# [your password]     ($user@epiclanka)
+
+eg: jude@epiclanka
+
+server ask change the password
+
+current password #
+new password #
+retype new password#
+
+
+step 3======================================================
+
+if you want to root privilages
+
+use "sudo" command  
+
+
+

@@ -1,0 +1,10 @@
+
+Check SMPP connection
+
+# cat DEBUG.DMP  | grep SMPP
+2020/03/04 07:32:01.686 | 00000000000000000000000000000000:INIT    :SMPP connection is disconnected/dropped with 10.48.213.171 and port 2775
+[root@elotteryprimary logs]#
+
+
+
+

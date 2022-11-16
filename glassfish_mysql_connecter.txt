@@ -1,0 +1,3 @@
+Once GlassFish is installed, make sure it can access MySQL Connector/J. To do this, copy the MySQL Connector/J jar file to the 
+domain-dir/lib directory. For example, copy mysql-connector-java-5.1.30-bin.jar to 
+C:\glassfish-install-path\domains\domain-name\lib. 

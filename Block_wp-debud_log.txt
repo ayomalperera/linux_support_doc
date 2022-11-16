@@ -1,0 +1,25 @@
+Test apache configuration
+apachectl -t
+
+Reload Apache configuration (graceful i.e. without interrupting existing connections)
+service apache2 reload# 
+
+
+####  protect access to log and sql files.
+
+
+<FilesMatch "\.(log|sql)(\.(t?gz|tar|gz|tar\.gz|7z|rar|bz2))?$">
+	<IfModule mod_authz_core.c>
+		Require all denied
+	</IfModule>
+	<IfModule !mod_authz_core.c>
+		Order deny,allow
+		Deny from all
+	</IfModule>
+</FilesMatch>
+
+
+
+
+https://medium.com/@qsandbox/how-to-block-access-to-wordpress-debug-log-68f97839ad21
+https://www.youtube.com/watch?v=6v5n77d17Ho

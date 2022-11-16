@@ -1,0 +1,25 @@
+##### Home page only, others not working
+
+
+https://www.codegrepper.com/code-examples/php/how+to+install+php+7.4+modules+on+ubuntu
+
+https://tecadmin.net/install-php-ubuntu-20-04/
+sudo apt-cache search php7*
+sudo apt install php7.4-mysql php7.4-curl php7.4-json php7.4-cgi php7.4-xs
+
+
+
+
+#### FTP logi ask
+To perform the requested action, WordPress needs to access your web server. Please enter your FTP credentials to proceed. If you do not remember your credentials, you should contact your web host.
+
+
+  add below to wp-config.php
+
+define( 'FS_METHOD', 'direct' );
+
+
+
+#####  white page
+
+add .htaccess file

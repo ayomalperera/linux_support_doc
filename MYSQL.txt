@@ -1,0 +1,207 @@
+
+1.CONNECTING TO LOCAL MY SQL:
+mysql -uroot -p
+
+2.SHOW DATABASES:
+show databases;
+
+3.SHOW TABLES:
+use doxprodb;
+show tables;
+
+4.CONNECTING TO REMOTE DATABASE:
+
+mysql -uroot -p --port=3306 --host=192.168.20.222 dbname<backupdbname.sql
+
+mysqldump  -P 3306 -h 192.168.21.7 -u root -p ssbdb > testbackup.sql
+
+
+after 5.7 
+sudo launchctl load -F /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist
+sudo launchctl unload -F /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist
+
+6.#################### DBBACKUP ###################################################################
+
+mysqldump -uroot -p --port=3306 --host=192.168.20.222 dbname>backupdbname.sql
+
+ mysqldump -uroot -p eland_t3 > eland_t3_20200228.sql
+
+mysqldump -u root -p eland_t3 > "eland_t3_$(date +\%m%d%H%M).sql"
+
+
+ #############Restore MySQL Dump ##################
+
+	mysql -u [user] -p [database_name] < [filename].sql
+
+mysql -u root -p eland_t3 < [filename].sql
+
+
+############################ 	ENABLE MYSQL SERVICE ##################################################
+
+sudo yum install mysql-community-server mysql-community-client
+
+
+
+
+createrepo /repo/
+
+############################start mysql service#####################################
+sudo service mysqld start
+systemctl enable mysqld.service
+
+
+############obtain default password#################################################
+grep 'temporary password' /var/log/mysqld.log
+grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log |tail -1
+
+###############after logging into system u can change the password#################################################
+ALTER USER 'dfar_user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Dfar@Ep1k';
+
+
+set password for 'dfar_user'@'localhost' = PASSWORD('Dfar@Ep1k');
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'mypass';
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'bnr@Ep1klanka@bnr';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'Ep1klanka@321';
+GRANT ALL PRIVILEGES ON *.* TO 'test'@'%' IDENTIFIED BY 'P@$$w0rd';
+FLUSH PRIVILEGES;
+#############################################################################
+FOR MYSQL 8
+#############################################################################
+CREATE USER 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+
+
+
+GRANT ALL PRIVILEGES ON fusophp8.* TO 'fusoglobal_bdadmin_2@fusoglobal-wp-59'@'%' WITH GRANT OPTION;
+
+grant all privileges on *.* to 'eland_user'@'localhost' identified by 'Ep1klanka@321';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON eland_t3.* TO 'root'@'localhost';
+
+GRANT ALL PRIVILEGES ON eland_training.* TO 'eland_user'@'localhost' IDENTIFIED BY 'Ep1klanka@321';
+GRANT ALL PRIVILEGES ON eland_live_test.* TO 'eland_user'@'%' IDENTIFIED BY 'Ep1klanka@321';
+	
+
+GRANT ALL PRIVILEGES ON *.* TO 'doxprouser'@'%' IDENTIFIED BY 'Ep1klanka@321';
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Ep1klanka@321';
+
+GRANT ALL PRIVILEGES ON *.* TO 'test'@'%' IDENTIFIED BY 'P@$$w0rd';
+
+
+
+
+mysql_config_editor set --login-path=myhostalias --host=localhost  --user=root --password
+
+
+
+###################################################################################################################
+GRANT ALL PRIVILEGES to user for specify db
+#################################################################################################################
+GRANT ALL PRIVILEGES ON dbTest.* To 'user'@'hostname' IDENTIFIED BY 'password';
+
+CREATE USER 'orims_user'@'%' IDENTIFIED BY 'orims@101';
+
+GRANT ALL PRIVILEGES ON *.* TO 'ssb_user'@'%' IDENTIFIED BY 'Ep1klanka@321';
+
+GRANT ALL PRIVILEGES ON eland_v1_27.* To 'eland_user'@'localhost' IDENTIFIED BY 'Ep1klanka@321';
+
+GRANT ALL PRIVILEGES ON dfardbv1_19_1_test.* To 'dfar_user'@'%' IDENTIFIED BY 'Ep1klanka@321';
+
+
+GRANT ALL PRIVILEGES ON slpa_test.* To 'root'@'localhost' IDENTIFIED BY 'Ep1klanka@321';
+============== customized quarriies===============================================================================
+CREATE USER 'hashan'@'%' IDENTIFIED BY 'Ep1klanka@!%*#';
+CREATE USER 'asiri'@'%' IDENTIFIED BY 'Ep1klanka@!%*#';
+GRANT ALL PRIVILEGES ON elottery.* To 'asiri'@'%' IDENTIFIED BY 'Ep1klanka@!%*#';
+GRANT ALL PRIVILEGES ON sid_new2.* To 'siduser'@'%' IDENTIFIED BY 'sid@Ep1klanka'
+GRANT ALL PRIVILEGES ON eland_icta_v2.* TO 'eland_user'@'%' IDENTIFIED BY 'Ep1klanka@321'
+GRANT ALL PRIVILEGES ON eland_training_3.* TO 'qanana'@'%' IDENTIFIED BY 'Ep1klanka@!%*#'
+GRANT ALL PRIVILEGES ON eland_training_3.* TO 'eland_user'@'%' IDENTIFIED BY 'Ep1klanka@321'
+
+
+CREATE USER 'wprdauser'@'%' IDENTIFIED BY 'Ep1klanka@!%*#';
+
+b!n@r!@Ep1klanka
+**************************** only read prilages**************************************************
+
+
+
+GRANT SELECT, SHOW VIEW ON elottery.* TO anuradha@'%' IDENTIFIED BY 'anuradha@Ep1k';
+
+GRANT ALL PRIVILEGES ON world_bank_live.* To 'worldbank_user'@'%' IDENTIFIED BY 'worldbank@Ep1klanka';
+
+
+CREATE USER 'hashan'@'%' IDENTIFIED BY 'hashan@Ep1klanka!%*';
+GRANT SELECT, SHOW VIEW ON elottery.* TO hashan@'%' IDENTIFIED BY 'hashan@Ep1klanka!%*';
+
+CREATE USER 'eland_dev'@'%' IDENTIFIED BY 'eland_dev@Ep1klanka!%*';
+GRANT SELECT, SHOW VIEW ON eland_live.* TO land_dev@'%' IDENTIFIED BY 'eland_dev@Ep1klanka!%*';
+
+CREATE USER 'dmslive'@'%' IDENTIFIED BY 'thimira@Ep1klanka';
+GRANT SELECT, SHOW VIEW ON dmslive.* TO thimira@'%' IDENTIFIED BY 'thimira@Ep1klanka';
+
+
+CREATE USER 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+CREATE USER 'eland_dev1'@'%' IDENTIFIED BY 'eland_dev@Ep1klanka!%*';
+
+CREATE USER 'itrd_user'@'%' IDENTIFIED BY 'itrd@Ep1klanka';
+GRANT ALL PRIVILEGES ON dmslive.* To 'thimira'@'localhost' IDENTIFIED BY 'thimira@Ep1klanka';
+
+
+140.238.51.10
+CREATE USER 'ro_user'@'%' IDENTIFIED BY 'Ep1klanka@321!%*';
+GRANT SELECT, SHOW VIEW ON helaviru_sms.* TO ro_user@'%'; 
+IDENTIFIED BY 'Ep1klanka@321!%*';
+
+CREATE USER 'wpvd_user'@'%' IDENTIFIED BY 'wpvd@Ep1klanka';
+GRANT ALL PRIVILEGES ON wpvd_test.* To 'wpvd_user'@'%' IDENTIFIED BY 'wpvd@Ep1klanka';
+
+
+########### DLB ##############
+CREATE USER 'app_user'@'%' IDENTIFIED BY 'EnpzB5UB]Z84,`-+';
+GRANT ALL PRIVILEGES ON elottery.* To 'app_user'@'%' IDENTIFIED BY 'EnpzB5UB]Z84,`-+';
+REVOKE ALL ON example_database FROM 'example_user'@'%';
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM kasunc;
+GRANT SELECT, SHOW VIEW ON elottery.* To 'ksunc'@'%' IDENTIFIED BY 'Kasunc@Ep1klanka'; 
+GRANT ALL PRIVILEGES ON elottery.* To 'ksunc'@'%' IDENTIFIED BY 'Kasunc@Ep1klanka';
+GRANT ALL PRIVILEGES ON elottery.* To 'ksunc'@'%' IDENTIFIED BY 'EnpzB5UB]Z84,`-+';
+
+CREATE USER 'jude'@'%' IDENTIFIED BY 'Subash@135';
+GRANT ALL PRIVILEGES ON *.* To 'jude'@'%' IDENTIFIED BY 'Subash@135';
+GRANT ALL PRIVILEGES ON elottery.* To 'app_user'@'%' IDENTIFIED BY 'EnpzB5UB]Z84,`-+';
+
+
+#################### WPVD###########
+
+wpvd_07212021_d_v1_1_9_6
+
+GRANT ALL PRIVILEGES ON wpvd_07212021_d_v1_1_9_6.* To 'wpvd_user'@'%'; IDENTIFIED BY 'wpvd@Ep1klanka@321';
+
+CREATE USER 'vd_devteam'@'%' IDENTIFIED BY 'Devbyiterminal@1';
+GRANT ALL PRIVILEGES ON vd_td_1_9_6.* To 'vd_devteam'@'%'; 
+
+
+######  Eland ##################
+CREATE USER 'chinthaka'@'%' IDENTIFIED BY '!430@Mathugama';
+GRANT ALL PRIVILEGES ON eland_live.* To 'chinthaka'@'%' IDENTIFIED BY '!430@Mathugama';
+
+############## DIE###################################
+192.168.71.200
+CREATE USER '200_backup_user'@'%' IDENTIFIED BY '!200@die';
+GRANT ALL PRIVILEGES ON *.* To '200_backup_user'@'%' IDENTIFIED BY '!200@die';
+pwd@die
+
+################ ITRDA #####################################
+GRANT ALL PRIVILEGES ON itrddbv4.* To 'itrd_user'@'localhost'; 
+
+
+
+FLUSH PRIVILEGES;
+
+CREATE USER 'orims_user'@'%' IDENTIFIED BY 'Orims@101';
+GRANT ALL PRIVILEGES ON orims_dev.* To 'orims_user'@'%';
+
+

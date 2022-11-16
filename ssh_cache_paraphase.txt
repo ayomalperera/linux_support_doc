@@ -1,0 +1,8 @@
+eval $(ssh-agent)
+
+Agent PID 2323
+ps -ef | gerp 2323
+
+ssh-add 
+
+enter paraphase

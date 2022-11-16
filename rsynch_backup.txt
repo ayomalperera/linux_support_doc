@@ -1,0 +1,59 @@
+# /opt/scripts/remote-backup-1.sh
+
+#!/bin/bash
+
+#Remote Server IP
+rserver=204.10.161.154
+
+user=root
+
+#Local backup location
+lbackuploc=/db_backups/*.sql
+
+#Remote backup location
+rbackuploc=/data/db_backups/nmra/
+
+#rsync command with standard port
+rsync -avz -e ssh $lbackuploc $rserver:$rbackuploc
+
+
+#############################################################
+#To delete files older than 30 days
+###find $rbackuploc/* -mtime +30 -exec rm {} \;
+
+
+
+=================================================================
+Each file separately gziped
+Code:
+find /opt/abc/ -type f -mtime +2 \! -name '*.gz' -exec gzip {} \;
+
+
+====================================================================
+
+ 
+files=($(find /tmp/mallik3/ -mtime +"$days"))
+ for files in ${files[*]}
+ do
+         echo $files
+         zip $files-$(date --date="- "$days"days" +%F)_.zip $files
+          #       tar cvfz $(files)_$(date --date='-6months' +%F).tar.gz $files
+ #       rm $files
+ done
+
+=====================================================================
+
+LOG_DIR="/aaa/bbb/ccc"
+loglist="${dummy}/log.list"
+# Clean up old  files
+for clean in `awk '! /#/ && ! /^$/ {print $1}' ${loglist}`
+do
+find ${LOG_DIR} -name "${clean}" -mtime +60 -exec rm -f {} \;
+done
+
+========================================================================================
+##create gz file for the older files, but it creates only one gz file for all older file
+find /tmp/log/ -mtime +180 | xargs tar -czvPf /tmp/older_log_$(date +%F).tar.gz
+
+
+

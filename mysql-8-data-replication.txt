@@ -1,0 +1,62 @@
+//Server-1 and Server-2 /////////////////////
+
+default_authentication_plugin=mysql_native_password
+server-id=1
+log-bin="mysql-bin"
+binlog_do_db=epictlev5
+binlog-ignore-db=test
+binlog-ignore-db=information_schema
+replicate-ignore-db=test
+replicate-ignore-db=information_schema
+relay-log="mysql-relay-log"
+auto-increment-increment = 2
+auto-increment-offset = 1
+
+
+//Server 3 (DR) ///////////////////// 
+
+server-id=2
+default_authentication_plugin=mysql_native_password
+log-bin="mysql-bin"
+binlog_do_db=epictlev5
+binlog-ignore-db=test
+binlog-ignore-db=information_schema
+replicate-ignore-db=test
+replicate-ignore-db=information_schema
+relay-log="mysql-relay-log"
+auto-increment-increment = 2
+auto-increment-offset = 2
+
+
+// Server-1 and Server-3 (DR) only ////////////////////
+
+CREATE USER 'replicator'@'%' IDENTIFIED BY 'Epic@123';
+GRANT REPLICATION SLAVE ON *.* TO 'replicator'@'%';
+flush privileges;
+
+//Server-1 /////////////////
+
+SHOW MASTER STATUS;
+
+//Server-3 //////////////////
+
+STOP SLAVE;
+CHANGE MASTER TO MASTER_HOST = '172.21.50.45', MASTER_USER = 'replicator', MASTER_PASSWORD = 'Epic@123', MASTER_LOG_FILE = 'mysql-bin.000010', MASTER_LOG_POS = 15175; 
+START SLAVE;
+
+//Server -3 //////////////// 
+
+SHOW MASTER STATUS;
+
+//Server-1 //////////////////
+STOP SLAVE;
+CHANGE MASTER TO MASTER_HOST = '172.20.50.45', MASTER_USER = 'replicator', MASTER_PASSWORD = 'Epic@123', MASTER_LOG_FILE = 'mysql-bin.000004', MASTER_LOG_POS = 174667; 
+START SLAVE;
+
+
+//Help
+show grants for replicator
+show slave status\G
+netstat -natp | egrep -i established.*mysql
+https://www.ryadel.com/en/mysql-master-master-replication-setup-in-5-easy-steps/
+https://www.tecmint.com/how-to-setup-mysql-master-slave-replication-in-rhel-centos-fedora/

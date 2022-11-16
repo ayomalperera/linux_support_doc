@@ -1,0 +1,8 @@
+Enable HTTPS in HTTP-Listener-2
+To enable HTTPS in GlassFish’s HTTP-Listener, follow the outlined steps:
+
+First, go to the GlassFish admin console.
+Now go to Configurations -> Server Config -> http-listener-2.
+Go to the General tab and change the port to 443.
+In the SSL tab, change the Certificate NickName from s1as to the alias of your main certificate file.
+Save the changes you made.

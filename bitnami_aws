@@ -1,0 +1,17 @@
+Bitnami
+
+The Default PHP Configuration
+Modify The PHP File Upload Limit
+ ; Maximum size of POST data that PHP will accept.
+  post_max_size = 16M
+
+  ; Maximum allowed size for uploaded files.
+  upload_max_filesize = 16M
+  
+  sudo /opt/bitnami/ctlscript.sh restart
+  
+  
+  Bitnami. The document root is /opt/bitnami/apps/wordpress/htdocs.
+  
+ #############SSL
+ https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-enabling-https-on-wordpress

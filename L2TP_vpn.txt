@@ -1,0 +1,5 @@
+sudo apt-get update
+sudo apt-get install network-manager-l2tp
+sudo apt-get install network-manager-l2tp-gnome
+
+https://support.zyxel.eu/hc/en-us/articles/360004131900-L2TP-on-Linux-Ubuntu-setup

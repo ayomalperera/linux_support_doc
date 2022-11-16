@@ -1,0 +1,19 @@
+ssh-host-config
+
+>> deamaon: ntsec tty
+
+# net start cygsshd
+
+#  ssh-key-gen
+
+cygdrive/c/mydoc.....
+
+
+# cron-config
+
+
+
+rsync -arv /cygdrive/c/Users/jude_p/Documents/linux_support_doc  jude@192.168.8.197:/cygdrive/c/
+
+
+5 * * * * rync -arv /cygdrive/c/Users/jude_p/Documents/linux_support_doc jude@192.168.8.197:/cygdrive/c/

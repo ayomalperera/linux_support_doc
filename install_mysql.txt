@@ -1,0 +1,148 @@
+-- On CentOS and RHEL 7 -- 
+#yum localinstall https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+
+-- On CentOS and RHEL 6 -- 
+#yum localinstall https://dev.mysql.com/get/mysql57-community-release-el6-9.noarch.rpm
+
+-- On Fedora 27 -- 
+#dnf install https://dev.mysql.com/get/mysql57-community-release-fc27-9.noarch.rpm
+
+-- On Fedora 26 -- 
+#dnf install https://dev.mysql.com/get/mysql57-community-release-fc26-9.noarch.rpm
+
+-- On Fedora 25 -- 
+#dnf install https://dev.mysql.com/get/mysql57-community-release-fc25-9.noarch.rpm
+
+Step 2 – Install MySQL 5.7 Server
+As you have successfully enabled MySQL yum repository on your system. Now, install MySQL 5.7 community server using following commands as per your operating system version.
+
+On CentOS and RHEL 7/6
+
+#yum install mysql-community-server
+On Fedora 27/26/25:
+
+# dnf install mysql-community-server
+The above command will install MySQL community server will other dependencies on your system. During the installation process of packages, a temporary password is created and logs to MySQL log files. Use the following command to find your temporary MySQL password.
+
+
+
+Get Temporary root Password:
+
+# grep 'A temporary password' /var/log/mysqld.log |tail -1
+# grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log |tail -1
+Sample output:
+
+2017-03-30T02:57:10.981502Z 1 [Note] A temporary password is generated for root@localhost: Nm(!pKkkjo68e
+#3. Start MySQL Service
+After installing rpms use following command to start MySQL Service.
+
+service mysqld start
+#4. Initial MySQL Configuration
+
+Execute mysql_secure_installation script and follow the wizard. It will prompt for root password. Use the temporary root password got in above step.
+
+/usr/bin/mysql_secure_installation
+This wizzard will prompt you for inputs. Input new strong password for MySQL root account. For remaining options read option and provide input as required. We recommend to pree ‘y’ to all for better security.
+
+Securing the MySQL server deployment.
+
+Enter password for user root: **********
+
+The 'validate_password' plugin is installed on the server.
+The subsequent steps will run with the existing configuration
+of the plugin.
+Using existing password for root.
+
+Estimated strength of the password: 100
+Change the password for root ? ((Press y|Y for Yes, any other key for No) : y
+
+New password: ******************
+
+Re-enter new password: ******************
+
+Estimated strength of the password: 100
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+ - Dropping test database...
+Success.
+
+ - Removing privileges on test database...
+Success.
+
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+All done!
+Step – Login to MySQL
+Congratulations! You have successfully installed MySQL 5.7. Let login to MySQL using root access and try to create a dummy database. Use the password you have assigned to Step #4.
+
+mysql -h localhost -u root -p 
+After login to MySQL server create a test database using following command.
+
+/* CREATE NEW DATABASE */
+mysql> CREATE DATABASE mydb;
+
+/* CREATE MYSQL USER FOR DATABASE */
+mysql> CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'password';
+
+/* GRANT Permission to User on Database */
+mysql> GRANT ALL ON mydb.* TO 'db_user'@'localhost';
+
+/* RELOAD PRIVILEGES */
+mysql> FLUSH PRIVILEGES;
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+/* CREATE NEW DATABASE */
+mysql> CREATE DATABASE mydb;
+ 
+/* CREATE MYSQL USER FOR DATABASE */
+mysql> CREATE USER 'db_user'@'localhost' IDENTIFIED BY 'password';
+ 
+/* GRANT Permission to User on Database */
+mysql> GRANT ALL ON mydb.* TO 'db_user'@'localhost';
+ 
+/* RELOAD PRIVILEGES */
+mysql> FLUSH PRIVILEGES;
+
+Step 6 – Check MySQL Version
+Verify your MySQL version installed on your system. The following command will display installed MySQL version.
+
+ mysql -V
+
+mysql  Ver 14.14 Distrib 5.7.17, for Linux (x86_64) using  EditLine wrapper

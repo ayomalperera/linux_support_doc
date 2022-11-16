@@ -1,0 +1,2 @@
+tar -czvf filename.tar.gz Originalfilename
+

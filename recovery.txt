@@ -1,0 +1,23 @@
+Manos Thilakarathna
+14:39
+CamScanner_04_29_2021_13_20
+Hansani Bandara
+15:21
+https://www.r-studio.com/Data_Recovery_Technician.shtml
+Kasun Madushanka
+15:27
+https://www.securedatarecovery.com/services
+Hansani Bandara
+15:30
+https://www.ubuntupit.com/best-linux-data-recovery-tools/
+Hansani Bandara
+15:35
+https://www.veeam.com/backup-physical-server-trial.html
+Manos Thilakarathna
+18:19
+https://linuxconfig.org/how-to-recover-deleted-files-with-foremost-on-linux
+https://linuxtechlab.com/restore-deleted-files-linux-with-foremost/
+https://www.geeksforgeeks.org/how-to-recover-deleted-files-using-foremost-in-linux/
+
+sudo yum install https://forensics.cert.org/centos/cert/7/x86_64//foremost-1.5.7-13.1.el7.x86_64.rpm –y
+https://linuxtechlab.com/restore-deleted-files-linux-with-foremost/

@@ -1,0 +1,23 @@
+unauthorized access linux
+
+# netstat -la | grep “LISTEN” “ESTABLISHED”
+
+
+History clear
+
+# grep "Failed password" /var/log/secure
+
+
+# cat .bash_history
+
+# rm -rf ~/cat .bash_history
+
+# history -c
+
+# cat /dev/null > ~/.bash_history
+
+Articles###############
+https://www.xplg.com/linux-security-investigate-suspected-break-in/
+
+
+	

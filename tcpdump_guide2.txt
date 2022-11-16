@@ -1,0 +1,64 @@
+to see which interfaces are available for capture
+$ sudo tcpdump -D
+1.eth0
+2.virbr0
+3.eth1
+4.any (Pseudo-device that captures on all interfaces)
+5.lo [Loopback]
+
+$sudo tcpdump -i any
+
+To limit the number of packets captured and stop tcpdump, use the -c option:
+
+$sudo tcpdump -i any -c 5
+
+$ sudo tcpdump -i any -c5 icmp
+
+$ sudo tcpdump -i any -c5 -nn host 54.204.39.132
+
+$ sudo tcpdump -i any -c5 -nn port 80
+
+Source IP/hostname
+based on the source or destination IP Address or hostname.
+
+$ sudo tcpdump -i any -c5 -nn src 192.168.122.98
+
+dst filter to filter by destination IP/hostname:
+
+$ sudo tcpdump -i any -c5 -nn dst 192.168.122.98
+
+$ sudo tcpdump -i any -c5 -nn src 192.168.122.98 and port 80
+
+$ sudo tcpdump -i any -c5 -nn "port 80 and (src 192.168.122.98 or src 54.204.39.132)"
+
+6. Saving captures to a file
+To save packets to a file instead of displaying them on screen, use the option -w:
+
+$ sudo tcpdump -i any -c10 -nn -w webserver.pcap port 80
+
+To read the contents of the file, execute tcpdump with the -r option:
+
+$ tcpdump -nn -r webserver.pcap
+
+Flag
+
+Description
+
+-i <interface>   Listen on <interface>, .e.g. “-i igb0”
+
+-n  Do not perform reverse DNS resolution on IP addresses
+
+-w <filename>  Save capture in pcap format to <filename>, e.g. “-w /tmp/wan.pcap”
+
+-s  Snap length: Amount of data to be captured from each frame
+
+-c <packets> Exit after receiving a specific number of packets
+
+-p Do not put the interface in promiscuous mode
+
+-v Verbose output
+
+-e Print link-layer header on each line
+
+
+

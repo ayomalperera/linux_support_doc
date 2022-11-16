@@ -1,0 +1,59 @@
+
+date
+ls -l /etc/localtime
+timedatectl
+timedatectl | grep -i 'time zone'
+date
+
+To find list of all available time zones, run:
+# timedatectl list-timezones
+##*** Grep possible Asian timezones ***##
+# timedatectl list-timezones | grep Asia
+
+In this example, set timezone to Asia/Colombo
+# timedatectl set-timezone Asia/Colombo
+
+timedatectl set-timezone Asia/Tokyo
+
+
+# date
+# ls -l /etc/localtime
+
+Set Time only in Linux================================
+# timedatectl set-time 15:58:30
+
+Set Date in Linux=====================================
+#timedatectl set-time 20151120
+To set both date and time:===============================
+# timedatectl set-time '2015-11-20 16:14:50'
+
+
+
+
+
+#####################Set time-zone================================================
+timedatectl set-timezone Asia/Colombo
+
+timedatectl set-timezone Asia/Colombo
+
+sync time #############################################
+
+NTP enable/ disable==============
+timedatectl set-ntp 1 or 0
+
+$ sudo timedatectl set-ntp true 
+$ timedatectl status
+
+
+
+####################install NTP =======================================
+yum install ntp
+chkconfig ntpd on
+ntpdate pool.ntp.org
+service ntpd start
+
+#ntpdate 1.ro.pool.ntp.org
+
+
+	#sudo timedatectl set-ntp true
+ 1008  timedatectl status

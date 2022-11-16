@@ -1,0 +1,7 @@
+top -h
+
+dstat -c --top-cpu -dn --top-mem
+
+netstat -s
+
+dropwatch -l kas

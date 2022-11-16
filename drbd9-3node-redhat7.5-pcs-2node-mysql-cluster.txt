@@ -1,0 +1,412 @@
+ON ALL 3
+========
+
+Install each OS by leaving free space / partition at the end of the disk drive (For DRBD)
+
+nano /etc/selinux/config
+
+disabled
+
+systemctl disable firewalld.service
+
+On ALL
+------
+nano /etc/hosts
+
+192.168.0.211 db1
+192.168.0.212 db2
+192.168.0.213 dr
+192.168.0.235 vip
+
+reboot
+
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm 
+
+====================================================================================
+RHEL 7.5 DVD in the drive....
+
+mount /dev/sr0  /mnt
+cp /mnt/media.repo /etc/yum.repos.d/rhel7dvd.repo
+chmod 644 /etc/yum.repos.d/rhel7dvd.repo
+
+nano /etc/yum.repos.d/rhel7dvd.repo
+
+[rhel-dvd]
+gpgcheck=1
+enabled=1
+baseurl=file:///mnt/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+yum clean all
+subscription-manager clean
+====================================================================================
+
+yum install createrepo.noarch
+
+mount /dev/sr0  /mnt
+cp -r /mnt/addons/ /root/
+cd /root/addons/HighAvailability
+createrepo /root/addons/HighAvailability
+chmod -R o-w+r /root/addons/HighAvailability
+
+nano /etc/yum.repos.d/myrepo.repo
+
+[local]
+name=My Awesome Repo
+baseurl=file:///root/addons/HighAvailability
+enabled=1
+gpgcheck=0
+
+createrepo /root/addons/ResilientStorage
+chmod -R o-w+r /root/addons/ResilientStorage
+nano /etc/yum.repos.d/myrepo2.repo
+
+[local2]
+name=My Awesome Repo2
+baseurl=file:///root/addons/ResilientStorage
+enabled=1
+gpgcheck=0
+
+yum install pacemaker corosync pcs fence-agents resource-agents psmisc policycoreutils-python gfs2-utils lvm2-cluster nano wget gcc gcc-c++ make automake autoconf help2man libxslt libxslt-devel flex rpm-build kernel-devel pygobject2-devel.x86_64 pygobject2.x86_64 pygtk2-devel.x86_64 pygtk2.x86_64
+
+wget http://mirror.centos.org/centos/7/os/x86_64/Packages/help2man-1.41.1-3.el7.noarch.rpm
+rpm -ivh help2man-1.41.1-3.el7.noarch.rpm
+
+
+###################### THIS PART IS REQUIRED ONLY IF DRBD IS COMPILED FROM SOURCES - OTHERWISE USE THE SUPPLIED RPMS ############################################### 
+
+##  cd
+##  mkdir -p rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+
+##  wget www.linbit.com/downloads/drbd/9.0/drbd-9.0.15-1.tar.gz \
+##  www.linbit.com/downloads/drbdmanage/drbdmanage-0.99.18.tar.gz \
+##  www.linbit.com/downloads/drbd/utils/drbd-utils-9.5.0.tar.gz
+
+##  wget https://www.linbit.com/downloads/drbd/utils/archive/drbd-utils-9.5.0.tar.gz
+ 
+##   tar zxvf drbd-9.0.15-1.tar.gz 
+##   cd drbd-9.0.15-1 
+##   make kmp-rpm 
+##   cd
+##   tar zxvf drbdmanage-0.99.18.tar.gz 
+##   cd drbdmanage-0.99.18 
+##   make rpm 
+##   cd
+##   tar zxvf drbd-utils-9.5.0.tar.gz 
+##   cd drbd-utils-9.5.0 
+##   nano drbd.spec.in
+ 
+##   # line 34: add
+##  %bcond_without sbinsymlinks
+##  %undefine with_sbinsymlinks
+
+##  ./configure
+##  make rpm 
+
+##  cd /root/rpmbuild/RPMS/x86_64
+
+##  rpm -Uvh drbd-utils-9.5.0-1.el7.x86_64.rpm drbd-udev-9.5.0-1.el7.x86_64.rpm drbd-bash-completion-9.5.0-1.el7.x86_64.rpm kmod-drbd-9.0.15_3.10.0_957-1.x86_64.rpm drbd-9.5.0-1.el7.x86_64.rpm drbd-heartbeat-9.5.0-1.el7.x86_64.rpm drbd-pacemaker-9.5.0-1.el7.x86_64.rpm drbd-xen-9.5.0-1.el7.x86_64.rpm drbd-debuginfo-9.5.0-1.el7.x86_64.rpm drbd-kernel-debuginfo-9.0.15-1.x86_64.rpm drbd-man-ja-9.5.0-1.el7.x86_64.rpm
+
+##  rpm -Uvh /root/drbdmanage-0.99.18/dist/drbdmanage-0.99.18-1.noarch.rpm
+
+####################################################################################################################################################################
+
+=================================================
+
+Install the Supplied RPMS
+
+unzip 7.5.zip
+cd 7.5
+cd rpmbuild/RPMS/x86_64
+
+rpm -Uvh drbd-utils-9.5.0-1.el7.x86_64.rpm drbd-udev-9.5.0-1.el7.x86_64.rpm drbd-bash-completion-9.5.0-1.el7.x86_64.rpm kmod-drbd-9.0.15_3.10.0_862-1.x86_64.rpm drbd-9.5.0-1.el7.x86_64.rpm drbd-heartbeat-9.5.0-1.el7.x86_64.rpm drbd-pacemaker-9.5.0-1.el7.x86_64.rpm drbd-xen-9.5.0-1.el7.x86_64.rpm drbd-debuginfo-9.5.0-1.el7.x86_64.rpm drbd-kernel-debuginfo-9.0.15-1.x86_64.rpm drbd-man-ja-9.5.0-1.el7.x86_64.rpm
+
+=================================================
+
+
+nano /etc/drbd.d/global_common.conf (add auto-promote yes; inside options)
+
+common {
+  options {
+    auto-promote yes;
+    ...
+  }
+}
+
+
+
+nano /var/lib/drbd.d/drbdmanage_global_common.conf
+
+common {
+        options {
+                # cpu-mask on-no-data-accessible
+auto-promote yes;
+                # RECOMMENDED for three or more storage nodes with DRBD 9:
+                # quorum majority;
+                # on-no-quorum suspend-io | io-error;
+        }
+}
+
+
+ 
+nano /etc/modules-load.d/drbd.conf
+drbd
+ 
+modprobe drbd
+
+On a new partition - /dev/sda4 (OF EACH MACHINE)
+
+fdisk create lvm type partition on all nodes
+
+then reboot all 3 nodes
+ 
+pvcreate /dev/sda4
+vgcreate drbdpool /dev/sda4
+
+===========================================================================
+
+ON ALL NODES
+=========================================================
+lvcreate -L 2000 -n drbdlv1 drbdpool
+
+
+ON DB1
+=========================================================
+nano /etc/drbd.d/r1.res
+
+resource r1 {
+  net {    
+	protocol A;    
+	allow-two-primaries no;
+  }
+  
+  device    /dev/drbd1;
+  disk      /dev/drbdpool/drbdlv1;
+  meta-disk internal;
+  on db1 {
+	address   192.168.0.211:7000;
+	node-id   0;
+  }
+  on db2 {
+	address   192.168.0.212:7001;
+	node-id   1;
+  }
+  on dr {
+	address   192.168.0.213:7002;
+	node-id   2;
+  }
+  connection-mesh
+  {
+	hosts db1 db2 dr;
+        net {
+        use-rle no;
+        }
+  }
+}
+
+
+scp /etc/drbd.d/r1.res db2:/etc/drbd.d/r1.res
+scp /etc/drbd.d/r1.res dr:/etc/drbd.d/r1.res
+
+ON ALL
+======================================================
+drbdadm create-md r1
+drbdadm up r1
+
+ON DB1
+======================================================
+drbdadm primary --force r1
+
+ON ALL
+======================================================
+drbdadm status
+
+
+##########################################FOR TROUBLESHOOTING ONLY##################################################
+
+AFTER REBOOTING..... ON ALL
+======================================================
+drbdadm up r1
+
+
+ON ERROR NODES
+======================================================
+drbdadm down r1
+
+drbdadm up r1
+
+#### If REQUIRED ####
+# drbdadm adjust r1
+
+##########################################FOR TROUBLESHOOTING ONLY##################################################
+
+IF drbdadm status IS OK ALL NODES..........
+
+mkfs.xfs /dev/drbd1
+mkdir /drbd_disk
+mount /dev/drbd1 /drbd_disk
+df -hT
+echo 'test file' > /drbd_disk/test.txt
+umount /drbd_disk 
+drbdadm secondary r1
+
+on db2
+
+drbdadm primary r1
+mkdir /drbd_disk
+mount /dev/drbd1 /drbd_disk
+df -hT
+ll /drbd_disk
+cat /drbd_disk/test.txt
+umount /drbd_disk 
+drbdadm secondary r1
+
+on dr
+
+drbdadm primary r1
+mkdir /drbd_disk
+mount /dev/drbd1 /drbd_disk
+df -hT
+ll /drbd_disk
+cat /drbd_disk/test.txt
+umount /drbd_disk 
+drbdadm secondary r1
+
+===========================================
+
+on db1, db2 and dr
+
+wget https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+rpm -ivh mysql80-community-release-el7-1.noarch.rpm
+yum -y install mysql-community-server.x86_64
+
+systemctl disable mysqld.service
+
+nano /etc/my.cnf
+
+[mysqld]
+symbolic-links=0
+bind_address            = 0.0.0.0
+
+=========================================
+
+on db1
+
+systemctl start mysqld.service
+
+get the root password from /var/log/mysqld.log
+
+Jg:tD5#p-QpF
+
+mysql_secure_installation
+
+set password as P@55w0rd2018
+
+
+mysql -pP@55w0rd2018
+
+CREATE USER 'root'@'%' IDENTIFIED BY 'P@55w0rd2018';
+GRANT ALL PRIVILEGES ON * . * TO 'root'@'%';
+flush privileges;
+
+
+mount /dev/drbd1 /drbd_disk
+
+rm -f /drbd_disk/test.txt
+
+systemctl stop mysqld.service
+
+cp -rp /var/lib/mysql/* /drbd_disk/
+
+chown mysql:mysql /drbd_disk/
+
+umount /drbd_disk
+
+
+
+======================================= CLUSTER =====================================
+
+on db1 and db2 --------------------------------
+
+echo "cey10n@LINUX" | passwd hacluster --stdin
+
+systemctl start pcsd.service
+
+systemctl enable pcsd.service
+
+
+on db1 ----------------------------------------
+
+pcs cluster auth db1 db2 -u hacluster -p cey10n@LINUX
+
+pcs cluster setup --name mysql_cluster db1 db2
+
+pcs cluster start --all
+
+
+
+pcs cluster cib clust_cfg
+pcs -f clust_cfg property set stonith-enabled=false
+pcs -f clust_cfg property set no-quorum-policy=ignore
+pcs -f clust_cfg resource defaults resource-stickiness=200
+
+pcs -f clust_cfg resource create mysql_data01 ocf:linbit:drbd \
+  drbd_resource="r1" \
+  op monitor interval=30s
+  
+pcs -f clust_cfg resource master MySQLClone01 mysql_data01 \
+  master-max=1 master-node-max=1 \
+  clone-max=2 clone-node-max=1 \
+  notify=true
+  
+
+pcs -f clust_cfg resource create mysql_fs01 Filesystem \
+  device="/dev/drbd1" \
+  directory="/var/lib/mysql" \
+  fstype="xfs"
+  
+pcs -f clust_cfg constraint colocation add mysql_fs01 with MySQLClone01 \
+  INFINITY with-rsc-role=Master
+  
+pcs -f clust_cfg constraint order promote MySQLClone01 then start mysql_fs01
+
+pcs -f clust_cfg resource create mysql_service01 ocf:heartbeat:mysql \
+  binary="/usr/sbin/mysqld" \
+  config="/etc/my.cnf" \
+  datadir="/var/lib/mysql" \
+  pid="/var/lib/mysql/mysql.pid" \
+  socket="/var/lib/mysql/mysql.sock" \
+  additional_parameters="--bind-address=0.0.0.0" \
+  op start timeout=60s \
+  op stop timeout=60s \
+  op monitor interval=20s timeout=30s
+
+pcs -f clust_cfg constraint colocation add mysql_service01 with mysql_fs01 INFINITY
+
+pcs -f clust_cfg constraint order mysql_fs01 then mysql_service01
+
+pcs -f clust_cfg resource create mysql_VIP01 ocf:heartbeat:IPaddr2 \
+ ip=192.168.0.235 cidr_netmask=32 \
+ op monitor interval=30s
+ 
+pcs -f clust_cfg constraint colocation add mysql_VIP01 with mysql_service01 INFINITY
+
+pcs -f clust_cfg constraint order mysql_service01 then mysql_VIP01
+
+pcs -f clust_cfg constraint
+
+pcs -f clust_cfg resource show
+
+pcs cluster cib-push clust_cfg
+
+pcs status
+
+======================================
+
+To test individually ----------------
+
+pcs cluster stop db1
+pcs cluster start db1
+			  
+

@@ -1,0 +1,59 @@
+php 8 install
+
+sudo add-apt-repository ppa:ondrej/php 
+
+
+sudo apt update 
+
+
+sudo apt install php8.0 
+
+
+sudo apt install php8.0-gd php8.0-xml php8.0-soap php8.0-mbstring php8.0-mysql 
+
+
+sudo apt install -y php php-{common,mysql,xml,xmlrpc,curl,gd,imagick,cli,dev,imap,mbstring,opcache,soap,zip,intl}
+
+
+sudo apt install php8.0-fpm libapache2-mod-fcgid
+
+
+
+ 
+   35  sudo apt update
+   36  sudo apt install apache2
+   37  sudo ufw app list
+   38  sudo ufw allow 'Apache'
+   39  sudo ufw status
+   40  sudo systemctl status apache2
+   41  apt-get install mysql-client
+  
+###### PHP 8.0 install#######
+
+   46  sudo apt install software-properties-common
+   47  sudo add-apt-repository ppa:ondrej/php
+   48  sudo apt install php8.0-fpm libapache2-mod-fcgid
+   49  sudo a2enmod proxy_fcgi setenvif
+   50  sudo a2enconf php8.0-fpm
+   51  sudo systemctl enable php8.0-fpm
+   52  sudo apt install php8.0-{bcmath,cli,common,curl,dev,gd,imap,imagick,intl,mbstring,mcrypt,mysql,opcache,soap,xml,zip} -y
+   53  vim /etc/php/8.0/fpm/php.ini
+   
+
+   55  sudo systemctl restart apache2
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://linuxize.com/post/how-to-install-php-8-on-ubuntu-20-04/

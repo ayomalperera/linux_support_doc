@@ -1,0 +1,19 @@
+o	ejkpac  | o	 	
+
+Eureka (rg)Server (8761)
+
+	docker service create --name email --network helaviru_net -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT"  --constraint node.role==worker ejkpac/epic:helaviru-email-1.2.2
+
+
+docker run -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" -P -d --volume=/home/opc/UPLOADS:/home/comex/UPLOADS:z --network helaviru_net --name files ejkpac/epic:comex-files-1.2.0
+
+
+docker service create --name files -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --network helaviru_net --mount type=volume,source=comex_UPLOADS,target=/home/comex/UPLOADS --constraint node.hostname==file_service  ejkpac/epic:comex-files-1.2.0
+
+
+
+
+
+○	docker login
+○	ejkpac
+○	52727a31-698b-4150-b737-95a43e03eb89

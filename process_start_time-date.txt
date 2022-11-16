@@ -1,0 +1,5 @@
+
+# ps -eo pid,lstart,etime | grep 14394
+
+# pwdx    # process location
+

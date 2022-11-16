@@ -1,0 +1,31 @@
+
+
+
+##############HOW TO MAKE GLASSFISH AS SYSYEMD SERVICE#######################################
+
+1.vim /usr/lib/systemd/system/glassfish.service.
+
+################SCRIPT########################################################################
+
+[Unit]
+Description=GlassFish Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+ExecStart=/opt/glassfish/glassfish4/bin/asadmin start-domain domain1
+ExecStop=/opt/glassfish/glassfish4/bin/asadmin stop-domain domain1
+TimeoutSec=180
+
+[Install]
+WantedBy=multi-user.target
+
+###############################################################################################
+
+
+
+
+systemctl daemon-reload
+systemctl enable glassfish
+systemctl start glassfish

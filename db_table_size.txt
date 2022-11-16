@@ -1,0 +1,16 @@
+SELECT table_name AS "Table",
+ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)"
+FROM information_schema.TABLES
+WHERE table_schema = "fuso_global"
+ORDER BY (data_length + index_length) DESC;
+
+
+DELETE FROM fd_options WHERE option_name LIKE '_transient_%';
+
+SELECT SUM(LENGTH(option_value)) as autoload_size FROM fd_options WHERE autoload='yes';
+
+
+OPTIMIZE TABLE fd_options;
+FLUSH QUERY CACHE;
+SELECT COUNT(*) FROM fd_options;
+SELECT option_name, LENGTH(option_id) + LENGTH(option_name) + LENGTH(option_value) + LENGTH(autoload) AS total_length FROM fd_options ORDER BY total_length DESC LIMIT 10;

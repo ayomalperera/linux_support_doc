@@ -1,0 +1,20 @@
+Dowload
+
+https://dev.mysql.com/downloads/repo/yum/
+
+wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+
+sudo rpm -ivh mysql57-community-release-el7-9.noarch.rpm
+
+
+sudo yum install mysql-server
+
+During the installation process, a temporary password is generated for the MySQL root user. Locate it in the mysqld.log with this command:
+
+systemctl start mysqld
+
+sudo grep 'temporary password' /var/log/mysqld.log
+
+sudo mysql_secure_installation
+
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7

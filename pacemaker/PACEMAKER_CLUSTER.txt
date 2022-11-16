@@ -1,0 +1,153 @@
+
+INSTALLING CLUSTER SOFTWARE
+
+
+1.installig cluster software:
+yum install pcs pacemaker fence-agents-all
+yum install -y pacemaker pcs psmisc policycoreutils-python
+
+2.check weather firewalld is installed:
+systemctl status firewalld
+
+
+3.check status of firewalld:
+systemctl status firewalld
+
+4.make avalable ports for cluster software:
+firewall-cmd --permanent --add-service=high-availability
+firewall-cmd --add-service=high-availability
+
+5.setting password to cluster administration user:
+passwd hacluster
+Changing password for user hacluster.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+6.to start the cluster on boot process:
+systemctl start pcsd.service
+systemctl enable pcsd.service
+
+7.authenticate the user:
+pcs cluster auth z1.example.com z2.example.com
+Username: hacluster
+Password:
+z1.example.com: Authorized
+z2.example.com: Authorized
+
+
+CLUSTER CREATION 
+
+1.to create the cluster run the following command in node one
+
+pcs cluster setup --start --name my_cluster \
+z1.example.com z2.example.com
+z1.example.com: Succeeded
+z1.example.com: Starting Cluster...
+z2.example.com: Succeeded
+z2.example.com: Starting Cluster...
+
+2. enable the cluster service in each node after reboot the node
+pcs cluster enable --all
+systemctl enable corosync.service
+systemctl enable pacemaker.service
+
+3.check cluter status:
+pcs cluster status
+Cluster Status:
+ Last updated: Thu Jul 25 13:01:26 2013
+ Last change: Thu Jul 25 13:04:45 2013 via crmd on z2.example.com
+ Stack: corosync
+ Current DC: z2.example.com (2) - partition with quorum
+ Version: 1.1.10-5.el7-9abe687
+ 2 Nodes configured
+ 0 Resources configured
+ 
+ FENCING CONFIGURATION 
+ 
+1.
+
+COMMAN COMMANDS:
+pcs cluster status
+pcs cluster start --all
+pcs cluster stop --all
+pcs resource delete resorce_name
+CLUSTER MANAGER:
+https://pm-node1:2224
+
+
+CREATING CLUSTERING RESOURCES 
+
+pcs resource create VirtualIP IPaddr2 ip=192.168.122.52 cidr_netmask=24 --group apachegroup
+pcs resource create Website apache configfile="/etc/httpd/conf/httpd.conf" statusurl="http://127.0.0.1/server-status" --group apachegroup
+
+
+DISABLE UNWANTED SERVICES FOR TWO NODE CLUSTER
+pcs property set stonith-enabled=false
+pcs property set no-quorum-policy=ignore
+
+
+CREATING VIRTUAL IP:
+sudo pcs resource create Cluster_VIP ocf:heartbeat:IPaddr2 ip=192.168.56.5 cidr_netmask=24 op monitor interval=20s
+sudo pcs resource create WebServer ocf:heartbeat:apache configfile=/opt/tomcat/apache-tomcat-8.5.37/conf/server.xml statusurl="http://192.168.56.3/server-status" op monitor interval=20s
+
+readlink -f $(which java)
+/opt/tomcat/apache-tomcat-8.5.37
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64/jre
+ pcs resource disable WebServer
+
+
+pcs resource create tomcat ocf:heartbeat:tomcat params java_home="/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.102-4.b14.el7.x86_64/jre" catalina_home="/opt/tomcat/apache-tomcat-8.5.37" tomcat_user="root" op monitor interval="15s"
+
+
+sudo pcs resource create WebServer2 ocf:heartbeat:apache configfile=/opt/tomcat/apache-tomcat-8.5.37/conf/server.xml statusurl="http://192.168.56.3/server-status" port=8080 op monitor interval=20s
+
+pcs resource create tomcat systemd:tomcat target_role=started resource_failure_stickiness=-INFINITY op monitor interval=30s op start timeout=180s op stop timeout=180s op status timeout=15 
+
+sudo pcs constraint colocation add WebServer Cluster_VIP INFINITY
+
+
+REPO PATH:
+/etc/yum.repos.d/
+LOCAL REPO:
+
+[repo-update]
+gpgcheck=0
+enabled=1
+baseurl=file:///repo
+name=repo-update
+
+[repo-ha]
+gpgcheck=0
+enabled=1
+baseurl=file:///repo/addons/HighAvailability
+name=repo-ha
+
+[repo-storage]
+gpgcheck=0
+enabled=1
+baseurl=file:///repo/addons/ResilientStorage
+name=repo-storage
+
+
+
+
+CURRENT TOMCAT PATH:
+/U01/tomcat
+
+tail -100f /opt/epic_dlb/logs/DEBUG.DMP
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

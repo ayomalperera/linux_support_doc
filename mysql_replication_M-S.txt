@@ -1,0 +1,126 @@
+			########## master##########
+vim /etc/my.cfg
+
+  bind-address            = [master IP]
+  server-id               = 1
+  log_bin                 = mysql-bin
+
+# systemctl restart mysqld
+
+# mysql -u root -p
+>  GRANT REPLICATION SLAVE ON *.* TO 'replicauser'@'%' IDENTIFIED BY 'Ep1klanka@321';
+>  GRANT REPLICATION SLAVE ON *.* TO 'replicauser'@'172.16.16.1' IDENTIFIED BY 'Ep1klanka@321';
+
+>  FLUSH PRIVILEGES;
+>  SHOW MASTER STATUS;
+
+
+mysql> SHOW MASTER STATUS;
++------------------+----------+--------------+------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++------------------+----------+--------------+------------------+-------------------+
+| mysql-bin.000001 |      596 |              |                  |                   |
++------------------+----------+--------------+------------------+-------------------+
+
+
+
+========================  example master ======================================================
+
+
+[mysqld]
+
+port=55306
+max_connections = 250
+
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+bind-address = 192.168.119.10
+server-id = 1
+log-bin = mysql-bin.log
+binlog-do-db= eland_live
+
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+========================================================================================================
+
+
+
+
+
+
+##########################################  slave configuration #######################################
+
+ # slave:/etc/my.cnf
+
+ 	bind-address           = [slave IP]
+	server-id              = 2
+	log_bin                = mysql-bin
+
+#  sudo systemctl restart mysqld
+
+#  mysql -uroot -p
+
+>  STOP SLAVE;
+
+
+
+> CHANGE MASTER TO MASTER_HOST='[master IP ]',MASTER_USER='replicauser', MASTER_PASSWORD='Ep1klanka@321', MASTER_LOG_FILE='mysql-bin.000009', MASTER_LOG_POS=  758;
+>  CHANGE MASTER TO MASTER_HOST='172.16.16.1',MASTER_USER='replicauser', MASTER_PASSWORD='Ep1klanka@321', MASTER_LOG_FILE='mysql-bin.000002', MASTER_LOG_POS=  154;
+
+>  START SLAVE;
+
+>  SHOW SLAVE STATUS\G;
+
+
+
+============ example slave=====================
+[mysqld]
+port=55306
+
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+#
+bind-address = 192.168.119.6
+server-id = 2
+
+relay-log = mysql-relay-bin
+
+log-bin = mysql-bin
+
+replicate-do-db=eland_live
+
+
+###
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+
+
+==============================================
+
+
+https://www.globo.tech/learning-center/setup-mysql-replication-centos-7/
+
+################################################################################################################
+
+CREATE USER 'replicauser'@'172.16.16.2' IDENTIFIED BY 'Ep1klanka@321';
+
+
+GRANT REPLICATION SLAVE ON *.* TO 'replicauser'@'172.16.16.1' IDENTIFIED BY 'Ep1klanka@321';
+
+
+
+CHANGE MASTER TO MASTER_HOST='12.34.56.789',MASTER_USER='slave_user', MASTER_PASSWORD='password', MASTER_LOG_FILE='mysql-bin.000009', MASTER_LOG_POS=  758;
+
+
+GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';

@@ -1,0 +1,115 @@
+######## exam
+
+kubectl run naginx --image=nginx
+
+kubectl create deployment --image=nginx nginx-dev --replicas=7
+
+kubectl expose deployment nginx --port 80
+
+
+#########  SERVICE
+
+kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml 
+
+####
+Create a Service named nginx of type NodePort to expose pod nginx's port 80 on port 30080 on the nodes:
+
+
+kubectl expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml
+
+Or
+
+
+kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=client -o yaml
+
+
+#### Deployments
+
+	kubectl create -f deployment-definition.yml
+	
+	kubectl get deployments
+
+	kubectl apply -f dep-definition.yml
+
+	kubectl set image deployment/myapp-deployment nginx=nginx:1.9.1
+
+	kubectl rollout status deployment/myapp-deployment
+
+	kubectl rollout history deployment/myapp-deployment
+	
+	kubectl rollout undo deployment/myapp-deploymet
+
+
+### Secret
+
+
+	kubectl create secret generic db-secret --from-literal=DB_Host=db01 --from-literal=DB_User=root --from-literal=DB_Password=password
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####### create nginx pod
+
+	kubectl run nginx --image=nginx
+
+#### Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)
+
+
+	kubectl run nginx --image=nginx --dry-run=client -o yml
+
+
+### create deployment
+
+
+	kubectl create deployment --image=nginx nginx
+
+
+#### Generate Deployment YAML file
+
+	kubectl create deployment --image=nginx nginx --dry-run=client -o yml >>
+
+
+
+
+
+
+###### 
+
+	kubectl set image deployment nginx nginx:nginx:1.18
+
+
+
+
+
+
+######
+######## Scale
+ 	kubectl scale --replicas=6 replicaset-definiton.yml
+	
+	kubectl scale --replicas=6 replicaset <type> myapp-replicaset <name>
+ 	
+	kubectl replace -f replicaset-definiton.yml
+
+
+	kubectl scale rs <name> --replicas=6

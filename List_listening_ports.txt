@@ -1,0 +1,4 @@
+
+
+################obatain listening ports#####################
+1.netstat -ntlp

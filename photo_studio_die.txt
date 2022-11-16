@@ -1,0 +1,66 @@
+
+root/Ep1k772220989
+
+sudo iptables -A INPUT -p tcp --dport 1000 -j ACCEPT;
+sudo iptables -A INPUT -p tcp --dport 3000-j ACCEPT;
+sudo iptables -A INPUT -p tcp --dport 5000-j ACCEPT;
+sudo iptables -A INPUT -p tcp --dport 7000-j ACCEPT;
+sudo iptables -A INPUT -p tcp --dport 8080-j ACCEPT;
+
+
+
+=========== glassfish====================
+# cd /usr/local/glassfish3.1.2/bin/
+# ./asadmin start-domain
+
+# ./asadmin stop-domain
+
+
+=================psiv1.22-1000==============
+# cd /root/Desktop/PSIV1.22-1000
+# java -Xms1g -Xmx3g -jar PSIV1.22.jar
+
+adminpsi/a
+
+=================psiv1.22-3000==============
+# cd /root/Desktop/PSIV1.22-3000
+# java -Xms1g -Xmx3g -jar PSIV1.22.jar
+
+adminpsi/a
+
+=================PSIV1.23-5000=============
+
+# cd /root/Desktop/PSIV1.23-5000
+# java -Xms1g -Xmx3g -jar PSIV1.23.jar
+
+no gui
+=================PSIV1.22-7000=============
+
+# cd /root/Desktop/PSIV1.22-7000
+# java -Xms1g -Xmx2g -jar PSIV1.22.jar
+
+
+#############################################################################################################################
+close all terminals
+restart glassfish
+virtual folder
+# virtual_new enter
+ 
+sysconfig enter
+copy id + -01
+pwd a
+
+
+image validation 
+shift+ open in terminal
+run command in iqa_notepade
+sujeewa/a
+
+data purge 
+star
+
+
+
+
+
+

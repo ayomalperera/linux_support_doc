@@ -1,0 +1,81 @@
+global
+        daemon
+        maxconn 256
+
+    defaults
+        mode http
+        timeout connect 5000ms
+        timeout client 50000ms
+        timeout server 50000ms
+
+listen stats
+ bind *:9999
+ stats enable
+ stats hide-version
+ stats uri /stats
+ stats auth admin:admin@123
+
+         frontend public_1-http
+                bind *:8080
+                default_backend public_1
+
+        backend public_1
+                stick-table type ip size 1m expire 1h
+		stick on src
+	
+		 #cookie SERVERID insert indirect nocache
+                server  s1 172.16.16.8:8080 check cookie s1
+                server  s2 172.16.16.6:8080 check cookie s2
+
+
+        frontend public_2-http
+                bind *:8085
+                default_backend public_2
+
+
+        backend public_2
+		stick-table type ip size 1m expire 1h
+		stick on src
+	
+		 #cookie SERVERID insert indirect nocache
+                server  s3 172.16.16.8:8085 check cookie s3
+                server  s4 172.16.16.6:8085 check cookie s4
+
+
+        frontend admin_1-http
+                bind *:4848
+                default_backend admin_1
+
+        backend admin_1
+		stick-table type ip size 1m expire 1h
+		stick on src
+	
+		 #cookie SERVERID insert indirect nocache
+                server  s5 172.16.16.8:4848 check cookie s5
+
+
+
+        frontend admin_2-http
+                bind *:5858
+                default_backend admin_2
+
+
+
+        backend admin_2
+		stick-table type ip size 1m expire 1h
+		stick on src
+	
+		 #cookie SERVERID insert indirect nocache
+                server  s6 172.16.16.6:4848 check cookie s6
+
+
+
+        frontend db_front
+                bind *:49450
+                mode tcp
+                default_backend db_back
+
+
+        backend db_back
+                mode tcp
+                server db_1 172.16.16.2:3306 check

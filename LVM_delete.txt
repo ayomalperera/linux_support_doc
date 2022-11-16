@@ -1,0 +1,37 @@
+If the non-root LVM volume, Volume Group, and Physical Volume used for the LV are no longer required on the system, then it could be removed/deleted using following steps. If the LVM volume is containing any required data, then please make sure to take a backup of that data before proceeding with following steps:
+
+In this example, we will be deleting “testlv” from the volume group “datavg”. The LV is mounted on the mount point /data01.
+
+# df -hP | grep -i data01
+/dev/mapper/datavg-testlv  976M  2.6M  907M   1% /data01
+# lvs
+  LV     VG     Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root   centos -wi-ao---- 17.47g
+  swap   centos -wi-ao----  2.00g
+  testlv datavg -wi-ao----  1.00g
+1. Delete the entry of the mount point from the /etc/fstab :
+
+
+ 
+# cat /etc/fstab
+...
+/dev/mapper/datavg-testlv            /data01              ext4    defaults        0 0
+...
+2. Unmount the mount point :
+
+# umount /data01
+3. Disable lvm :
+
+# lvchange -an /dev/datavg/testlv
+4. Delete lvm volume :
+
+# lvremove /dev/datavg/testlv
+5. Disable volume group :
+
+# vgchange -an datavg
+6. Delete volume group :
+
+# vgremove datavg
+7. Delete physical Volumes being used for the volume group “datavg” :
+
+# pvremove /dev/sdb  /dev/sdc

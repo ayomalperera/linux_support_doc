@@ -1,0 +1,56 @@
+docker network create -driver overlay hv-overlay-net
+
+○	docker login
+○	ejkpac
+○	52727a31-698b-4150-b737-95a43e03eb89
+
+
+	    docker container run --name public --network hv-overlay-net   -p 4200:80 ejkpac/epic:shopex-public-2.0.0-beta
+Nginx_proxy		
+		sudo docker run --net=host -d --restart unless-stopped ejkpac/epic:helaviru-public-4.3.76.01-live-slt
+		sudo docker run --net=host -d --restart unless-stopped ejkpac/epic:helaviru-public-4.3.76.01-live-beta-test1
+			
+Registry_VM
+	    docker container run --name cloud -d -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" -p 8761:8761  --restart unless-stopped --network hv-overlay-net  ejkpac/epic:comex-cloud-1.1.0
+
+    	docker container run --name proxy -d -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --restart unless-stopped -p 8759:8759  --network hv-overlay-net  ejkpac/epic:comex-proxy-1.1.0
+
+App_1
+
+ 	docker container run -d --name core -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT"  --restart unless-stopped --network hv-overlay-net  ejkpac/epic:comex-core-1.2.0
+
+  	docker container run -d --name agri -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --restart unless-stopped  --network hv-overlay-net  ejkpac/epic:comex-boarding-1.0.0
+ 
+  	docker container run -d --name auth -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --restart unless-stopped  --network hv-overlay-net  ejkpac/epic:comex-auth-1.0.0
+	
+    docker container run -d --name tenants -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --restart unless-stopped --network hv-overlay-net  ejkpac/epic:comex-tenant-1.0.0
+
+
+
+    docker container run -d --name sms -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --restart unless-stopped --network hv-overlay-net  ejkpac/epic:helaviru-sms-1.0.2
+	
+App_4_VM	
+    docker container run -d --name product_1 -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT"  --restart unless-stopped  --network hv-overlay-net  ejkpac/epic:helaviru-products-1.2.3
+
+	
+ 	docker container run -d --name delivery -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --restart unless-stopped   --network hv-overlay-net  ejkpac/epic:comex-delivery-1.0.1
+
+
+    docker container run -d --name email -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --restart unless-stopped --network hv-overlay-net  ejkpac/epic:helaviru-email-1.2.2
+
+   	docker container run -d --name payment_1 -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --restart unless-stopped  --network hv-overlay-net  ejkpac/epic:comex-payment-1.2.0
+
+
+file_VM
+
+    docker container run --name report -d --restart unless-stopped -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU"  --network hv-overlay-net  ejkpac/epic:helaviru-report-1.0.0
+	
+	
+    docker container run --name files -d -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT"   --restart unless-stopped  --volume=/home/opc/UPLOADS:/home/comex/UPLOADS:z --network hv-overlay-net  ejkpac/epic:comex-files-1.2.0
+
+
+--restart unless-stopped
+
+
+
+

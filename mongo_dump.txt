@@ -1,0 +1,5 @@
+mongodump --out=/data/backup/
+
+
+mongorestore --port=<port number> <path to the backup>
+mongorestore dump-2013-10-25/

@@ -1,0 +1,54 @@
+List all mysql users############
+mariadb> SELECT User,Host FROM mysql.user;
+
+List grants for a mysql user
+
+mariadb> SHOW GRANTS FOR 'bloguser'@'localhost';
+
+
+Step 4 – Revoke all grants for a mysql user
+
+mariadb> REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'bloguser'@'localhost';
+
+Step 5 – Remove/Delete the user from the user table
+
+mariadb> DROP USER 'bloguser'@'localhost';
+
+Step 6 – Delete the database
+mariadb> DROP DATABASE mywpblog;
+
+
+
+
+
+##### create remort user############
+
+CREATE USER 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+
+GRANT ALL PRIVILEGES ON eland_live_test.* TO 'eland_user'@'%' IDENTIFIED BY 'Ep1klanka@321';
+
+
+
+
+
+dfardb             |
+| dfardb_test        |
+| dfardb_test_backup |
+| dfardb_test_m      |
+| dfardb_test_v1_15  |
+| dfardbv1_19      
+
+
+
+
+GRANT ALL PRIVILEGES ON dfardb_test.* TO 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+GRANT ALL PRIVILEGES ON dfardb.* TO 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+GRANT ALL PRIVILEGES ON dfardb_test_backup.* TO 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+GRANT ALL PRIVILEGES ON dfardb_test_m.* TO 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+GRANT ALL PRIVILEGES ON dfardb_test_v1_15.* TO 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+GRANT ALL PRIVILEGES ON dfardbv1_19.* TO 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+
+
+
+
+

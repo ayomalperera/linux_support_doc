@@ -1,0 +1,25 @@
+Create a Swap file on
+
+Now we need to create the swap file – I’m going to create a 4GB file, but you can adjust the values to your needs:
+
+# touch /swap
+
+#  sudo dd if=/dev/zero of=/swap count=14096 bs=1MiB
+
+Now set the permissions:
+
+# sudo chmod 600 /swap
+
+and format the swap file:
+
+# sudo mkswap /swap
+
+To enable the swap file just use:
+
+#  sudo swapon /swap
+
+To make the swap be automatically mounted after reboot, the following command will add it to your fstab config:
+
+#  sudo echo "/swap swap swap sw 0 0" >> /etc/fstab
+
+

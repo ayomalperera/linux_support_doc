@@ -1,0 +1,10 @@
+PATH=$PATH:/usr/lib/jvm/jdk-8u211-linux-x64/jdk1.8.0_211/bin:/usr/local/sbin:/usr/sbin:/home/epicadmin/.local/bin:/home/epicadmin/bin:/usr/local/bin
+
+export PATH=/usr/local/jdk/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/cpanel/composer/bin:/usr/local/easy/bin:/usr/local/bin:/usr/X11R6/bin:/root/bin
+
+
+sudo ln -s PATH=/usr/local/bin:/usr/bin:bin
+
+
+
+PATH=/usr/local/bin:/usr/bin:bin

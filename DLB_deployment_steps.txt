@@ -1,0 +1,74 @@
+Switch configuratiioon
+
+logs
+/opt/epic_dlb/logs
+
+
+===============================================================================
+/opt/epic_dlb/lib
+replace "eswitch.jar" with new file 
+
+/opt/epic_dlb/conf/
+
+ vim dbInit.int
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Database configuration
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+DB_USERNAME=root  #############
+DB_PASSWORD=P@$$w0rd # password ##############
+DB_DRIVER=com.mysql.cj.jdbc.Driver
+DB_URL=jdbc:mysql://192.168.20.11:3306/elottery  ### 
+MIN_POOL=3
+MAX_POOL=10
+MAX_CON=20
+DB_CONNECTION_TIMEOUT=10000
+DB_CON_EXPIR_TIMEOUT=0
+DB_SCHEMA=CLACA_SCHEMA
+SWITCH_NODE=2
+INSTITUTE_ID=6012
+
+====================================================================================================================
+/opt/epic_dlb/conf/wconf
+vim wrapper.conf
+
+set java path
+wrapper.java.command=/opt/java1.8/bin/java
+
+==============================================================================
+
+  /opt/epic_dlb/bin/eonline start
+  /opt/epic_dlb/bin/eonline stop
+  /opt/epic_dlb/bin/eonline status
+	
+./eonline start
+./eonline stop
+./eonline status
+
+ cat   /opt/epic_dlb/logs/DEBUG.DMP | grep SMPP
+
+
+#########################wildfly configuration########################################
+
+
+/opt/wildfly-16.0.0.Final/standalone/deployments
+
+rw-r--r--. 1 root root  9718524 Nov 20 11:30 dlb_img.war ########## set IP
+
+-rw-r--r--. 1 root root  9718524 Nov 20 11:31 dlb_txn.war ########## set IP
+
+
+-rw-r--r--. 1 root root 51246811 Nov 20 11:33 ELOTTERYADMINV1.17.war ########## set IP
+
+nohup ./standalone.sh &
+
+
+
+-
+
+
+
+
+
+
+

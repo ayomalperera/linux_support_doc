@@ -1,0 +1,18 @@
+#########################Logical Volume Extending
+
+Extending Volume Group
+
+#pvcreate /dev/sda1
+
+#vgextend vg_test /dev/sda1
+
+
+
+# vgs
+# pvscan
+# vgdisplay
+There are 4607 free PE available = 18GB Free space available. So we can expand our logical volume up-to 18GB more. Let us use the PE size to extend.
+# lvextend -l +4607 /dev/vg_test/LogVol01
+# resize2fs /dev/vg_test/LogVol01
+
+or  xfs_growfs  /dev/vg_test/LogVol01

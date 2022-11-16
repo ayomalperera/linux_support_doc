@@ -1,0 +1,2 @@
+rsync --progress --update -avzh -e ssh /opt/webapp/DOXPRO/ root@10.30.152.12:/opt/webapp/DOXPRO/
+sshpass -p 'Consular@789' rsync --progress --update -avzh -e ssh  /opt/webapp/DOXPRO/ root@10.30.152.12:/opt/webapp/DOXPRO/ 

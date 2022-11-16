@@ -1,0 +1,32 @@
+dowload
+copy to /opt
+set java home in root/.bashrc
+
+# .bashrc
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+
+
+
+export JAVA_HOME="/opt/jdk1.8.0_201/"
+
+export PATH=$PATH:/opt/jdk1.8.0_201/bin
+
+
+~
+
+# source ./bashrc
+
+check home
+#env
+

@@ -1,0 +1,19 @@
+alias ll="ls -al"
+
+
+
+vi ~/.bash_aliases
+# or #
+nano ~/.bashrc
+source ~/.bash_aliases
+
+
+
+################## if not not working , append ########
+
+if [ -f ~/.bash_aliases ]; then
+. ~/.bash_aliases
+fi
+
+
+####################

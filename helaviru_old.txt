@@ -1,0 +1,60 @@
+user:DB_replicator
+Password:Epic@123
+
+user:helaviru_read
+password:EnpzB5UB]Z84,`-+
+
+
+user:helaviru_rw
+password:EnpzB5UB]Z84,`-+
+
+user:tenant_r
+password:Ep1klanka321Ep1klanka321
+
+
+user:root
+password:Covid19StayStrongStayHome
+
+
+1.App-Service-1
+Private IP:10.0.0.5
+
+2.App-Service-2
+Private IP:10.0.0.6
+
+3.Proxy-Registry
+Private IP:10.0.0.7
+
+4.Nginx-server
+Private IP:10.0.0.8
+Public IP:158.101.142.233
+
+5.File-server
+Public IP:158.101.157.17
+Private IP:10.0.0.9
+
+6.Mysql-DB-Master
+Temporary assigned Public IP:140.238.51.10
+Private IP:10.0.0.3
+
+7.Mysql-DB-slave
+Temporary assigned Public IP:158.101.152.213
+Private IP:10.0.0.4
+
+
+
+Covid19StayStrongStayHome
+
+| mysqldump -uroot -p comex_delivery_prod_retail > comex_delivery_prod_retail_7_301.sql   
+| mysqldump -uroot -p comex_delivery_prod_wholesale > comex_delivery_prod_wholesale_7_301.sql 
+| mysqldump -uroot -p comex_email_prod_retail > comex_email_prod_retail_7_30.sql        
+| mysqldump -uroot -p comex_email_prod_wholesale > comex_email_prod_wholesale_7_30.sql 
+| mysqldump -uroot -p comex_files_prod_retail > comex_files_prod_retail_7_30.sql 
+
+| mysqldump -uroot -p comex_files_prod_wholesale > comex_files_prod_wholesale_7_30.sql 
+| mysqldump -uroot -p comex_payment_prod_retail >  comex_payment_prod_retail_7_30.sql
+| mysqldump -uroot -p comex_payment_prod_wholesale > comex_payment_prod_wholesale_7_30.sql 
+| mysqldump -uroot -p comex_prod_retail > comex_prod_retail_7_30.sql    
+| mysqldump -uroot -p comex_prod_wholesale  > comex_prod_wholesale_7_30.sql       
+| mysqldump -uroot -p tenant_config  > tenant_config_7_30.sql              |
+| mysqldump -uroot -p test > test7_30.sql            

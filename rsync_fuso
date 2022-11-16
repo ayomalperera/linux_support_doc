@@ -1,0 +1,45 @@
+
+
+sudo apt-get update
+sudo apt-get install inotify-tools
+
+
+
+#!/bin/sh
+while inotifywait -r -e modify,create,delete /var/www/global/wp-content/uploads
+do
+/opt/Scripts/rsync_upload.sh
+done
+
+
+
+
+#!/bin/bash
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2019/  rsyncuser@10.0.135.134:/var/www/global/wp-content/uploads/2019/
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2020/  rsyncuser@10.0.135.134:/var/www/global/wp-content/uploads/2020/
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2021/  rsyncuser@10.0.135.134:/var/www/global/wp-content/uploads/2021/
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2022/  rsyncuser@10.0.135.134:/var/www/global/wp-content/uploads/2022/
+
+
+
+
+#!/bin/bash
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2019/  rsyncuser@10.0.135.136:/var/www/global/wp-content/uploads/2019/
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2020/  rsyncuser@10.0.135.136:/var/www/global/wp-content/uploads/2020/
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2021/  rsyncuser@10.0.135.136:/var/www/global/wp-content/uploads/2021/
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2022/  rsyncuser@10.0.135.136:/var/www/global/wp-content/uploads/2022/
+
+
+
+
+
+
+#!/bin/bash
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2019/  rsyncuser@172.30.8.208:/var/www/html/83_fuso_optimized/wp-content/uploads/
+
+
+
+#!/bin/bash
+rsync -avz --omit-dir-times --no-o --no-g -e ssh /var/www/global/wp-content/uploads/2019/  rsyncuser@172.30.8.215:/var/www/global2/fuso-global/wp-content/uploads/
+
+

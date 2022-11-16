@@ -1,0 +1,19 @@
+https://linuxize.com/post/how-to-install-node-js-on-centos-7/
+============================================================================================
+
+1. Add NodeSource yum repository #
+The current LTS version of Node.js is version 10.x. If you want to install version 8 just change setup_10.x with setup_8.x in the command below.
+
+Run the following curl command to add the NodeSource yum repository to your system:
+
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+2. Install Node.js and npm
+Once the NodeSource repository is enabled, install Node.js and npm by typing:
+
+sudo yum install nodejs
+
+
+node -v
+
+show versions
+v10.20.1

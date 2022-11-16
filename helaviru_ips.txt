@@ -1,0 +1,31 @@
+proxy:172.20.204.3
+proxy-registry:172.20.204.4
+App-Service-1:172.20.204.5
+App-Service-2:172.20.204.6
+DB1:172.20.204.7
+DB2:172.20.204.8
+file-service:172.20.204.9
+
+Public IP:124.43.130.149
+
+
+
+
+Replication User:
+
+user:DB_replicator
+Password:[Epic@123]
+
+user:helaviru_read
+password:EnpzB5UB]Z84,`-+
+
+
+user:helaviru_rw
+password:EnpzB5UB]Z84,`-+
+
+user:tenant_r
+password:EnpzB5UB]Z84,`-+
+
+
+user:root
+password:Covid19StayStrongStay@Home

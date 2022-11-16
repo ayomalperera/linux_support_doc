@@ -1,0 +1,25 @@
+https://theme.co/docs/font-awesome-icon-issues
+
+
+https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
+
+
+apche config
+
+ <Directory /var/www/html>
+   ...
+   Header set Access-Control-Allow-Origin "*"
+   ...
+</Directory>
+
+htacess
+
+ ...
+   Header add Access-Control-Allow-Origin "*"
+   ...
+
+
+
+ sudo a2enmod headers
+
+

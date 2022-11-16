@@ -1,0 +1,10 @@
+ yum install yum-plugin-versionlock
+
+yum versionlock gcc-*
+
+
+yum versionlock list
+
+ yum versionlock clear
+
+

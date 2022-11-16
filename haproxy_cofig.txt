@@ -1,0 +1,128 @@
+
+
+1	yum install httpd
+2	yum install haproxy
+
+	firewall-cmd --permanent --add-port=80/tcp
+   	firewall-cmd --permanent --add-service=httpd
+   	firewall-cmd --permanent --add-service=http
+   	firewall-cmd --reload
+
+mv /etc/haproxy/haproxy.cfg  /etc/haproxy/haproxy.cfg_2
+
+
+vim /etc/haproxy/haproxy.cfg
+  
+
+
+
+
+
+
+
+
+
+#HA Proxy Config no stats===============================
+
+global
+        daemon
+        maxconn 256
+
+defaults
+        mode http
+        timeout connect 5000ms
+        timeout client 50000ms
+        timeout server 50000ms
+
+    
+frontend http-in
+        bind *:80
+        default_backend servers
+
+    
+backend servers
+        server 01 192.168.242.100:80 maxconn 32
+        server 03 192.168.242.110:80 maxconn 32
+
+
+#HA Proxy Config with stats==========================================================================
+
+global
+        daemon
+        maxconn 256
+
+    defaults
+        mode http
+        timeout connect 5000ms
+        timeout client 50000ms
+        timeout server 50000ms
+
+listen stats
+ bind *:9999
+ stats enable
+ stats hide-version
+ stats uri /stats
+ stats auth admin:admin@123
+
+    frontend http-in
+        bind *:80
+        default_backend servers
+
+    backend servers
+        balance roundrobin
+        server 01 192.168.242.100:80 maxconn 32
+        server 03 192.168.242.110:80 maxconn 32
+
+
+====================================================================
+setsebool -P haproxy_connect_any=1
+#setsebool -P haproxy_connect_any=1
+
+systemctl start haproxy.service
+systemctl enable haproxy.service
+systemctl status haproxy.service
+
+
+coastel working ##############################################
+global
+
+ maxconn 4000
+ daemon
+
+defaults
+        mode http
+        timeout connect 5000
+        timeout client 120000
+        timeout server 120000
+
+frontend http_front
+        bind *:80
+
+        default_backend http_back
+        acl url_public path_beg /INSTITUTION
+        use_backend public_back if url_public
+
+backend http_back
+        balance roundrobin
+        server webserver1 192.168.21.11:80 check
+
+backend public_back
+        server publicserver1 192.168.21.10:80 check
+
+frontend db_front
+        bind *:49450
+        mode tcp
+        default_backend db_back
+
+backend db_back
+        mode tcp
+        server dbserver 192.168.21.7:3306 check
+
+
+
+
+
+
+
+
+

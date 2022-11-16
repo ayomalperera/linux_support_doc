@@ -1,0 +1,15 @@
+
+
+
+
+
+
+
+go to /root
+vim .bashrc
+
+
+
+
+
+export PATH=$PATH:/opt/jdk1.8.0_201/bin

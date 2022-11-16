@@ -1,0 +1,20 @@
+Deployment by command line
+As Tomcat is set to autodeploy by default, any war file appearing in it's webapps directory will be automatically deployed.
+
+# cp /var/projects/webapp01/dist/webapp01.war /usr/share/tomcat/webapps/
+
+# chown tomcat:tomcat /usr/share/tomcat/webapps/webapp01.war
+
+
+Build tc-native requires three components to be installed:
+
+APR library
+OpenSSL libraries
+Java SE Development Kit (JDK)
+In Debian based Linux those dependencies could be installed by something like:
+
+apt-get install libapr1-dev libssl-dev
+In rpm based Linux those dependencies could be installed by something like:
+
+yum install apr-devel openssl-devel
+

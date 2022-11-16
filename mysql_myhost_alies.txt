@@ -1,0 +1,85 @@
+define myhostalias for secure login=========================================
+
+
+# mysql_config_editor set --login-path=myhostalias --host=localhost.localdomain --user=root --password
+
+# mysql_config_editor set --login-path=usnadmin --host=tabasco-new.cwlnqoi0m24n.ap-northeast-1.rds.amazonaws.com --user=root --password
+
+# mysql_config_editor set --login-path=usnadmin --host=usn-db1.cwlnqoi0m24n.ap-northeast-1.rds.amazonaws.com --user=root --password
+
+
+
+# enter password ?
+
+
+################ working (eland)####################
+
+
+2
+
+You can use login-paths via mysql_config_editor command:
+
+$> mysql_config_editor set --login-path=local --host=localhost --user=myuser --password
+Enter password: <Password is prompted to be inserted in a more secure way>
+Then login from your scripts as:
+
+mysql --login-path=local --database=mydb
+
+
+################################################################
+
+
+
+
+mysql --login-path=myhostalias -P 55306 "-e show databases;"
+
+mysql --login-path=myhostalias -P 55306 "-e show processlist;"
+
+mysql --login-path=myhostalias -P 55306 "-e show status like 'Conn%';"
+
+
+
+kill all MySQL sleeping queries?
+for i in `mysql --login-path=myhostalias -P 55306 -e "show processlist" | awk '/Sleep/ {print $1}'` ; do mysql --login-path=myhostalias -P 55306 -e "KILL $i;"; done
+
+
+Backing up MariaDB (MySQL) via CRON
+
+sudo nano ~/.my.cnf
+
+[mysqldump]
+host = 127.0.0.1
+port = 3306
+user = <USER>
+password = <PASS>
+
+mysqldump CleanHome > "CleanHome-$(date '+%F').sql"
+
+00 22 * * * mysqldump --databases CleanHome > "/home/niemandr/CleanHome-$(date '+\%F').sql"
+
+
+############ remove
+
+mysql_config_editor remove --login-path=mypath --user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+############ referance ################
+https://blog.koehntopp.info/2020/09/23/mylogin-cnf.html
+http://manpages.ubuntu.com/manpages/trusty/man1/mysql_config_editor.1.html
+https://www.virtual-dba.com/blog/how-to-use-mysql-config-editor/
+

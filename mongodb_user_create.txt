@@ -1,0 +1,17 @@
+Mongodb 
+
+
+
+################# create user#######################################
+
+db.createUser( { user: "doxpro",
+                  pwd: passwordPrompt(),
+                  roles: [ { role: "clusterAdmin", db: "admin" },
+                           { role: "readAnyDatabase", db: "admin" },
+                           "readWrite"] },
+                { w: "majority" , wtimeout: 5000 } )
+################# password change ##################################
+
+db.changeUserPassword("doxpro", passwordPrompt())
+
+

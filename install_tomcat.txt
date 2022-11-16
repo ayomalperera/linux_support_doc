@@ -1,0 +1,28 @@
+
+
+
+
+#################HOW TO INSTALL TOMCAT##############################
+
+
+1.	(Copy and extract the java tar file to /opt ) tar -xvf file_name
+2.	(Do the same for tomcat)
+3.	cd /root
+4.	vim .bashrc
+5.	(copy below to file)
+
+###################################################################
+export JAVA_HOME="/u01/java/jdk1.8.0_201"
+export CATALINA_HOME="/u01/tomcat/apache-tomcat-8.5.38"
+export CATALINA_BASE="/u01/config/instance1"
+###################################################################
+
+
+6.	source .bashrc
+
+
+
+
+
+
+export DISPLAY="192.168.20.52:0.0"

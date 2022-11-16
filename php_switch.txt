@@ -1,0 +1,30 @@
+sudo update-alternatives --config php
+
+
+sudo update-alternatives --config php
+
+
+
+
+http://13.230.9.86/phpinfo.php
+
+
+vim  phpinfo.php
+
+
+<?php
+  phpinfo();
+?>
+
+
+
+sudo a2dismod php7.2
+sudo a2enmod php7.1
+
+sudo a2dismod php7.1
+sudo a2enmod php5.6
+
+
+
+
+

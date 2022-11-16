@@ -1,0 +1,67 @@
+Ubuntu sudo apt-get install putty-tools
+Debian-like apt-get install putty-tools
+RPM based yum install putty
+
+
+
+
+
+### ppk to pem
+
+puttygen yourkey.ppk -O private-openssh -o yourkey.pem
+
+
+
+
+
+
+
+
+
+
+
+
+$ puttygen id_rsa.ppk -O private-openssh -o id_rsa
+
+
+$ puttygen id_rsa.ppk -O public-openssh -o id_rsa.pub
+
+
+#######   convert a .ppk file to a .pem file:
+
+$ sudo puttygen ppkkey.ppk -O private-openssh -o pemkey.pem
+
+
+######   - convert a .pem file to a .ppk file
+
+$ puttygen pemKey.pem -o ppkKey.ppk -O private
+
+
+##############   Convert pem key to ssh-rsa format
+
+
+
+
+#############  convert id_rsa to pem
+
+openssl rsa -in ~/.ssh/id_rsa -outform pem > id_rsa.pem
+chmod 600 id_rsa.pem
+
+
+#### AWS pem for  Ansbru
+
+openssl rsa -in usn-prod.pem -outform pem > id_rsa.pem
+
+
+
+
+
+
+
+
+
+
+
+
+
+

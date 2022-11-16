@@ -1,0 +1,2 @@
+#!/bin/sh
+for i in `mysql --login-path=myhostalias -P 55306 -e "show processlist" | awk '/Sleep/ {print $1}'` ; do mysql --login-path=myhostalias -P 55306 -e "KILL $i;"; done

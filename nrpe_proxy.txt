@@ -1,0 +1,15 @@
+frontend front_1 {{proxy public address}}::51000
+    mode tcp
+    default_backend back_1
+
+backend back_1
+    balance first
+    server server_1 {{db 1 private address}}:5666
+
+frontend front_2 {{proxy public address}}:51001
+    mode tcp
+    default_backend back_2
+
+backend back_2
+    balance first
+    server server_2 {{db 2 private address}}:5666

@@ -1,0 +1,4 @@
+https://stackoverflow.com/questions/39601176/how-to-add-to-php-ini-on-azure-web-services
+
+
+

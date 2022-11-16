@@ -1,0 +1,7 @@
+
+
+
+Bitnami conf
+
+
+vim /opt/bitnami/apache2/conf/vhosts/wordpress-vhost.conf

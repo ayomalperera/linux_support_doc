@@ -1,0 +1,126 @@
+########create docker swarm manager
+
+# docker swarm init --advertise-addr [own ip]192.168.28.100
+
+
+#########To add a worker to this swarm, run the following command:
+
+docker swarm join --token SWMTKN-1-5p0xw71r7gl2lcjbzi3xoclkxacysbiadfedjh1xifq07oikqc-50pldbtaqqrmyeh385y7zxz4d 192.168.28.100:2377
+
+get torken
+
+# docker swarm join-token worker
+
+###### remove worker 
+
+
+# docker swarm leave --force
+
+
+# docker node rm [node id]
+
+######## creating a service
+
+docker service create --name test_service --replicas [no of replicas] -p [port mapping] [image name]
+
+eg: # docker service create --name test_service --replicas 3 -p 80:80 nginx:latest
+
+docker service ls
+
+#### which node runing service 
+docker service ps [service ID]
+
+docker service inspect --pretty [service ID]
+
+########### create multiple service with YML file
+
+version: '3.3'
+services:
+  sample1:
+    image: 'nginx:latest'
+    ports:
+      - "8000:8000"
+  sample2:
+    image: 'ubuntu'
+    ports:
+      - "8001:8001"
+
+#######################################################
+docker stack deploy -c [yml file name] stack name
+
+eg # docker stack deploy -c test_stack.yml test_stack
+ 
+
+	
+
+##### scale up
+
+# docker service scale [service id]=[replicas]
+
+# eg: docker service scale t3h7lg95dtto27wqol67k4j3s=8
+
+
+###### updates
+
+# docker service update --[image] [name of service]
+
+
+####### Availibility change 
+
+# docker node update --availability drain worker1 ID
+# docker node update --availability active worker1 ID
+
+
+
+############ connecting to network
+
+# docker network create --driver overlay my-network
+
+
+# docker create service --name my_service --network my_network --replicas  3 -p 90:80 nginx:latest
+
+
+######## add an exixting network
+
+# docker service update --network-add my_network my_service 
+
+
+######## remove the network
+
+# docker service update --network-rm my_network my_service
+
+
+######### add volume 
+
+
+# eg: docker service create --mount type=volume,source=new-vol,target=/home/comex/UPLOADS --name my_service5 nginx:latest
+
+** Bind mount
+# docker service create --mount type=bind,src=new-vol,dst=/apps --name my_service nginx:latest
+
+
+######### constrain flag
+
+# docker node update --label-add ID=1.1 [name of node o7egf7r4lzekyjwlco5e1wlka]
+
+# docker service create --name my_service --replicas 6 --constraint node.labels.ID=1.1  nginx:latest
+
+# docker service create  --name nginx-workers-only --constraint node.role==worker   nginx
+
+
+docker service create --name files -e"SPRING_PROFILES_ACTIVE=multiTenantHELAVIRU_PRODUCTION_SLT" --network helaviru_net --mount type=volume,source=comex_UPLOADS,target=/home/comex/UPLOADS --constraint node.hostname==file_service  ejkpac/epic:comex-files-1.2.0
+
+
+
+
+        constraints: 
+            - node.hostname == server1  
+            - node.hostname == server2
+
+
+
+===========================================================================================================
+docker service  create   --with-registry-auth --name my_service   ejkpac/epic:shopex-admin-2.0.0-beta
+
+
+

@@ -1,0 +1,31 @@
+Gzip node.js
+
+https://medium.com/@victor.valencia.rico/gzip-compression-with-node-js-cc3ed74196f9
+
+
+Example with Gzip Compression
+
+To start using compression in your Node.js application, you can use compression middleware in the main file of your Node.js application. This will enable GZIP, which supports different compression schemes. This will make your HTTP responses smaller.
+
+Now we install the compression package:
+
+$ npm i compression --save
+
+Then, we can use the module in the application after initializing its server, as in the following example we modify our code:
+
+// server.js
+const compression = require('compression');
+const express = require('express');
+const app = express();// Compress all HTTP responses
+app.use(compression());app.get('/', (req, res) => {
+  const animal = 'elephant';
+  // It will repeatedly send the word 'elephant' in a 
+  // 'text/html' format file
+  res.send(animal.repeat(1000));
+});app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
+
+We run our app:
+
+$ node server.js

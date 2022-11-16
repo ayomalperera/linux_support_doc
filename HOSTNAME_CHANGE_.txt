@@ -1,0 +1,6 @@
+
+
+hostname
+hostnamectl status
+hostnamectl set-hostname client.itzgeek.com
+hostnamectl status

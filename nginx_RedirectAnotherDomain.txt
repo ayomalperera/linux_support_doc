@@ -1,0 +1,23 @@
+
+Redirect Location to Another Domain
+
+
+server{
+...
+    location /product {
+        rewrite ^/product(.*)$ https://www.newsite.com/$1 redirect;
+    }
+...
+}
+
+
+
+
+
+
+
+
+
+
+
+https://ubiq.co/tech-blog/how-to-redirect-location-to-another-domain-in-nginx/

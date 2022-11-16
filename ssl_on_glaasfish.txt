@@ -1,0 +1,52 @@
+SSL instalation
+
+Generate Private Key
+#keytool -keysize 2048 -genkey -alias s1as -keyalg RSA -dname "CN=*.mydomain.com,O=Myorganization,L=city,S=state,C=country" -keypass changeit -storepass changeit -keystore keystore.jks
+
+#######################################################################################################################
+You’ll need to replace the bold parts of the above syntax with your details. Here’s what the details represent:
+
+CN: www.yourdomaninname.com or yourdomainname.com
+
+O: Write the full name of your organization without any special characters. If you want to issue an OV or an EV SSL certificate, you must type in the legal name of your organization.
+
+L: Write the full name of your or your organization’s city.
+
+S: Write the full name of your or your organization’s state.
+
+C: Your 2-digit country code
+#######################################################################################################################
+
+Generate CSR
+Run the below command to generate a CSR:
+
+#> keytool -certreq -alias youralias -file yourcsrname.csr -keystore yourkeystorename.jks
+
+Download Certificate Files
+Your certificate authority (CA) would’ve sent you the certificate files. Ideally, it will be sent in a zip file and it’d have three files.
+
+ 
+
+Import Certificate Files
+Once you’ve downloaded your certificate files, you’d need to import them into the keystore. Enter the below commands for different files.
+
+#keytool -import -trustcacerts -alias root -file (ROOT CERTIFICATE FILE NAME) -keystore domain.key
+
+#keytool -import -trustcacerts -alias intermed -file (INTERMEDIATE CA FILE NAME) -keystore domain.key
+#keytool -import -alias mydomain.com -keystore keystore.jks -trustcacerts -file mydomain.com.crt
+
+Import Files into the default keystore
+It helps in developing scalable and portable applications. To import files from the original keystore to the default keystore, you’d need to run the following command:
+
+#> keytool -importkeystore -srckeystore yourkeystorename.jks -destkeystore keystore.jks
+
+Enable HTTPS in HTTP-Listener-2
+To enable HTTPS in GlassFish’s HTTP-Listener, follow the outlined steps:
+
+First, go to the GlassFish admin console.
+Now go to Configurations -> Server Config -> http-listener-2.
+Go to the General tab and change the port to 443.
+In the SSL tab, change the Certificate NickName from s1as to the alias of your main certificate file.
+Save the changes you made.
+All done? Well, congratulations! You just installed an SSL certificate on Oracle GlassFish.
+

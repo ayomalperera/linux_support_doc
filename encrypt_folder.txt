@@ -1,0 +1,13 @@
+https://kifarunix.com/encrypt-files-and-directories-with-ecryptfs-on-ubuntu-20-04/
+
+
+
+08  sudo mount -t ecryptfs /home/jude/Sony_039_backup/Pictures/Secfolder /home/jude/Sony_039_backup/Pictures/Secfolder
+  809  sudo mount | grep Secfolder
+  810  df -h
+  811  cd Secfolder/
+  812  ll
+  813  umount /home/jude/Sony_039_backup/Pictures/Secfolder
+  814  cd ..
+  815  umount /home/jude/Sony_039_backup/Pictures/Secfolder
+

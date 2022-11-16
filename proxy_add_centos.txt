@@ -1,0 +1,33 @@
+sudo vi /etc/profile
+
+# set proxy config via profie.d - should apply for all users
+# 
+PROXY_URL="http://10.100.0.226:8080"
+
+export http_proxy="$PROXY_URL"
+export https_proxy="$PROXY_URL"
+export ftp_proxy="$PROXY_URL"
+export no_proxy="127.0.0.1,localhost"
+
+# For curl
+export HTTP_PROXY="$PROXY_URL"
+export HTTPS_PROXY="$PROXY_URL"
+export FTP_PROXY="$PROXY_URL"
+export NO_PROXY="127.0.0.1,localhost"
+
+
+$ source /etc/profile
+
+$ env | grep -i proxy
+
+
+
+# user name for authenticating to an http proxy, if needed
+proxy_user =
+
+# password for basic http proxy auth, if needed
+proxy_password =
+
+
+
+heyles proxy 10.111.0.222

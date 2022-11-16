@@ -1,0 +1,52 @@
+
+
+
+
+
+
+####################installing docker for redhat####################################################################
+subscription-manager repos --enable=rhel-7-server-extras-rpms
+
+sudo yum install docker-ce docker-ce-cli containerd.io docker-compose
+#sudo yum -y install docker-ce 
+sudo systemctl daemon-reload
+sudo systemctl start docker
+
+
+
+
+################creting bridge network and connecting container to that################################################
+docker network create --driver=bridge --subnet=192.168.20.0/24 --ip-range=192.168.20.0/24 --gateway=192.168.20.51 br0
+docker network create --driver=bridge --subnet=192.168.20.0/24 br0
+docker network rm network_name
+docker network inspect network_name
+docker pull nginx
+docker run -d -p 80:80 nginx
+docker ps -a
+docker network connect br0 4d2d3b3bfed0
+
+
+
+######################pulling out images and run ubuntu container ########################################
+docker pull ubuntu:14.04
+docker images
+docker exec -i -t ubuntu:14.04 /bin/bash
+docker run -ti ubuntu:14.04 /bin/bash
+
+
+#########################list all the container even though they are not running #########################
+docker ps -a 
+
+
+docker run --name ubuntu -d ubuntu:14.04 /bin/bash
+
+##################when allocating ports firt port belongs to local server and second port will belongs to container #############################
+
+###########mapping volumes#####################################################################################
+
+-v /Users/Desktop/my_server_location:/var/jenkings_home 
+
+
+
+
+

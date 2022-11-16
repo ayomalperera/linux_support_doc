@@ -1,0 +1,3 @@
+sudo lsof +L1
+
+https://serverfault.com/questions/315181/df-says-disk-is-full-but-it-is-not

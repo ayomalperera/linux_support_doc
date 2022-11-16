@@ -1,0 +1,21 @@
+https://gist.github.com/bradtraversy/cd90d1ed3c462fe3bddd11bf8953a896
+
+
+
+Add SSL with LetsEncrypt
+
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install python-certbot-nginx
+
+sudo apt-get install python3-certbot-nginx
+
+
+sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
+
+# Only valid for 90 days, test the renewal process with
+certbot renew --dry-run
+
+
+
+https://aws.amazon.com/premiumsupport/knowledge-center/lightsail-bitnami-renew-ssl-certificate/

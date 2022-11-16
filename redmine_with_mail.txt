@@ -1,0 +1,35 @@
+redmin gmail pw :rzzxkjlzxpzpyffi    BITNAMI_IMAGE_VERSION=4.1.1-debian-10-r15
+
+version: '2'
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.3'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_redmine
+      - MARIADB_DATABASE=bitnami_redmine
+    ports:
+      - '55308:3306'
+    volumes:
+      - 'redmine3_mariadb_data:/bitnami'
+  redmine:
+    image: 'bitnami/redmine:4'
+    environment:
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=epiclt.redmine@gmail.com
+      - SMTP_PASSWORD=rzzxkjlzxpzpyffi
+      - REDMINE_DB_USERNAME=bn_redmine
+      - REDMINE_DB_NAME=bitnami_redmine
+      - REDMINE_DB_PORT_NUMBER=55308
+    ports:
+      - '8003:3000'
+    volumes:
+      - 'redmine3_data:/bitnami'
+    depends_on:
+      - mariadb
+volumes:
+  redmine3_mariadb_data:
+    driver: local
+  redmine_data:
+    driver: local

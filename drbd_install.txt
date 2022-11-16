@@ -1,0 +1,86 @@
+
+Step 1: Installing DRBD Packages
+
+# rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm;
+
+# yum install -y kmod-drbd84 drbd84-utils;
+
+
+   50  modprobe drbd
+**** ensure kernal modul loaded or not 
+if not locate module location and install manually 
+find / -name drbd,
+insmod ...................
+   51  lsmod | grep -i drbd
+   52  modprobe drbd
+    echo drbd > /etc/modules-load.d/drbd.conf
+
+
+
+semanage permissive -a drbd_t
+
+# firewall-cmd --permanent --add-rich-rule='rule family="ipv4"  source address="192.168.23.140" port port="7789" protocol="tcp" accept'
+# firewall-cmd --reload
+
+
+# firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="192.168.23.139" port port="7789" protocol="tcp" accept'
+# firewall-cmd --reload
+
+Step 2: Preparing Lower-level Storage
+Step 3: Configuring DRBD
+
+# mv /etc/drbd.d/global_common.conf /etc/drbd.d/global_common.conf.orig
+# vim /etc/drbd.d/global_common.conf 
+
+global {
+ usage-count  yes;
+}
+common {
+ net {
+  protocol C;
+ }
+}
+
+Step 4: Adding a Resource
+
+#vim /etc/drbd.d/test.res.
+
+resource drbd0 {
+	disk /dev/sdb1;
+	device /dev/drbd0;
+	meta-disk internal;
+	on server {
+		address 192.168.23.139:7789;
+	}
+	on desktop {
+		address 192.168.23.140:7789;
+	}
+}
+
+
+Step 5: Initializing and Enabling Resource
+
+ #drbdadm create-md drbd0 
+
+
+:~# systemctl start drbd
+:~# systemctl enable drbd
+
+Set Primary===================================
+drbdadm -- --overwrite-data-of-peer primary all
+
+# watch -n1 cat /proc/drbd
+:~# drbdadm down drbd1
+:~# drbdadm up drbd1
+
+
+https://help.ubuntu.com/lts/serverguide/drbd.html
+
+
+
+
+
+===============================================================
+/etc/hostname add host to host file
+

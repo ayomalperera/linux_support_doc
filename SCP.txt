@@ -1,0 +1,23 @@
+
+
+
+
+
+HOW TO SCP TO ANOTHER SERVER:
+
+SCP TEXT3.txt root@192.168.56.2:/home 
+telnet 192.168.56.2 8080
+ssh root@192.168.56.2
+
+
+
+HOW TO UNZIP TAR FILE:
+tar -xvf
+
+HOW TO MOUNT A FILE:
+
+mount -o loop path/image.iso /mnt/ISO
+
+
+rpm -ivh:install
+rpm -uvh:uninstall

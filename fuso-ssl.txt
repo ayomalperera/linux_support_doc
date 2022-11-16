@@ -1,0 +1,35 @@
+	mv digicert  intermediate.crt.pem
+ mv www_mitsubishi-fuso_com.crt www_mitsubishi-fuso_com.crt.pem
+ mitsubishi-fuso.com_2021.key server.key
+
+
+
+
+
+
+         SSLCertificateFile /etc/apache2/pem2021_2/www_mitsubishi-fuso_com.crt.pem
+        SSLCertificateKeyFile /etc/apache2/pem2021_2/server.key
+        SSLCertificateChainFile /etc/apache2/pem2021_2/intermediate.crt.pem
+
+
+Below is a very simple example of a virtual host configured for SSL. The parts listed in blue are the parts you must add to configure the SSL configuration; they may be spread throughout the file.
+
+<VirtualHost 192.168.0.1:443>
+DocumentRoot /var/www/
+SSLEngine on
+SSLCertificateFile /path/to/your_domain_name.crt
+SSLCertificateKeyFile /path/to/your_private.key
+SSLCertificateChainFile /path/to/DigiCertCA.crt
+</VirtualHost>
+Make sure to adjust the file names to match your certificate files.
+
+SSLCertificateFile is your DigiCert certificate file (e.g., your_domain_name.crt).
+
+SSLCertificateKeyFile is the .key file generated when you created the CSR (e.g., your_private.key).
+
+SSLCertificateChainFile is the DigiCert intermediate certificate file (e.g., DigiCertCA.crt)
+
+Note: If the SSLCertificateChainFile directive doesn't work, try using the SSLCACertificateFile directive instead.
+
+
+

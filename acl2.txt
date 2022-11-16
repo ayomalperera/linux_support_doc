@@ -1,0 +1,4 @@
+sudo setfacl -Rdm u:a_peraraj:rwx /var/www/global/wp-content/uploads
+sudo setfacl -Rm u:a_peraraj:rwx /var/www/global/wp-content/uploads
+
+--omit-dir-times

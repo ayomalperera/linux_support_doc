@@ -1,0 +1,84 @@
+1.On each node in the cluster, install the Red Hat High Availability Add-On software
+# yum install pcs pacemaker fence-agents-all
+2.If you are running the firewalld daemon, execute the following commands to enable the ports that are required by the Red Hat High Availability Add-On.
+#rpm -q firewalld
+#firewall-cmd --state
+
+# firewall-cmd --permanent --add-service=high-availability
+# firewall-cmd --add-service=high-availability
+
+3.In order to use pcs to configure the cluster and communicate among the nodes, 
+you must set a password on each node for the user ID hacluster, which is the pcs administration account. 
+It is recommended that the password for user hacluster be the same on each node.
+# passwd hacluster
+Changing password for user hacluster.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+4.Before the cluster can be configured, the pcsd daemon must be started and enabled to boot on startup on each node. 
+This daemon works with the pcs command to manage configuration across the nodes in the cluster.
+On each node in the cluster, execute the following commands to start the pcsd service and to enable pcsd at system start.
+
+# systemctl start pcsd.service
+# systemctl enable pcsd.service
+
+5.Authenticate the pcs user hacluster for each node in the cluster on the node from which you will be running pcs.
+The following command authenticates user hacluster on z1.example.com for both of the nodes in the example two-node cluster, z1.example.com and z2.example.com.
+[root@z1 ~]# pcs cluster auth z1.example.com z2.example.com
+Username: hacluster
+Password:
+z1.example.com: Authorized
+z2.example.com: Authorized
+
+1.2. CLUSTER CREATION===============================
+This procedure creates a Red Hat High Availability Add-On cluster that consists of the nodes z1.example.com and z2.example.com.
+
+1.Execute the following command from z1.example.com to create the two-node cluster my_cluster that consists of nodes z1.example.com and z2.example.com. This will propagate the cluster configuration files to both nodes in the cluster. This command includes the --start option, which will start the cluster services on both nodes in the cluster.
+
+[root@z1 ~]# pcs cluster setup --start --name my_cluster \
+z1.example.com z2.example.com
+z1.example.com: Succeeded
+z1.example.com: Starting Cluster...
+z2.example.com: Succeeded
+z2.example.com: Starting Cluster...
+
+2.Enable the cluster services to run on each node in the cluster when the node is booted.
+Note
+
+For your particular environment, you may choose to leave the cluster services disabled by skipping this step. 
+This allows you to ensure that if a node goes down, any issues with your cluster or your resources are resolved before the node rejoins the cluster. 
+If you leave the cluster services disabled, you will need to manually start the services when you reboot a node by executing the pcs cluster start command on that node.
+
+[root@z1 ~]# pcs cluster enable --all
+
+You can display the current status of the cluster with the pcs cluster status command. 
+Because there may be a slight delay before the cluster is up and running when you start the cluster services with the --start option of the pcs cluster setup command,
+ you should ensure that the cluster is up and running before performing any subsequent actions on the cluster and its configuration.
+
+[root@z1 ~]# pcs cluster status
+Cluster Status:
+ Last updated: Thu Jul 25 13:01:26 2013
+ Last change: Thu Jul 25 13:04:45 2013 via crmd on z2.example.com
+ Stack: corosync
+ Current DC: z2.example.com (2) - partition with quorum
+ Version: 1.1.10-5.el7-9abe687
+ 2 Nodes configured
+ 0 Resources configured
+
+1.3. FENCING CONFIGURATION
+
+You must configure a fencing device for each node in the cluster. 
+For information about the fence configuration commands and options, 
+see the Red Hat Enterprise Linux 7 High Availability Add-On Reference. 
+For general information on fencing and its importance in a Red Hat High Availability cluster, 
+see Fencing in a Red Hat High Availability Cluster.
+
+Note
+
+When configuring a fencing device, attention should be given to whether that device shares power with any nodes or devices in the cluster.
+ If a node and its fence device do share power, then the cluster may be at risk of being unable to fence that node if the power to it and its fence device should be lost. 
+Such a cluster should either have redundant power supplies for fence devices and nodes, or redundant fence devices that do not share power.
+ Alternative methods of fencing such as SBD or storage fencing may also bring redundancy in the event of isolated power losses.
+
+

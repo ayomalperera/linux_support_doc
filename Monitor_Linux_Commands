@@ -1,0 +1,9 @@
+https://www.tecmint.com/monitor-linux-commands-executed-by-system-users-in-real-time/
+
+
+How to Monitor Linux Commands Executed by System Users in Real-time
+
+
+ sysdig -c spy_users
+ 
+ 

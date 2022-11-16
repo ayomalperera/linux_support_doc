@@ -1,0 +1,10 @@
+chmod 644
+
+
+
+
+<VirtualHost *:80>
+    <Directory /home/tonyflor/domains/tonyteaches.tech/public_html/>
+        Options Indexes
+    </Directory>
+</VirtualHost

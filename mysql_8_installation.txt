@@ -1,0 +1,94 @@
+## https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04 ##
+
+##################
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+
+
+
+Home / Getting Started with MySQL / Install MySQL CentOS
+Install MySQL CentOS
+
+?
+Summary: in this tutorial, you will learn step by step how to install MySQL 8 on CentOS 7.
+
+To install MySQL 8 on CentOS 7, you follow these steps:
+
+Step 1. Setup Yum repository
+Execute the following command to enable MySQL yum repository on CentOS:
+
+rpm -Uvh https://repo.mysql.com/mysql80-community-release-el7-3.noarch.rpm
+Step 2. Install MySQL 8 Community Server
+Since the MySQL yum repository has multiple repositories configuration for multiple MySQL versions, you need to disable all repositories in mysql repo file:
+
+sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/mysql-community.repo
+And execute the following command to install MySQL 8:
+
+yum --enablerepo=mysql80-community install mysql-community-server
+Step 3. Start MySQL Service
+Use this command to start mysql service:
+
+service mysqld start
+Step 4. Show the default password for root user
+When you install MySQL 8.0, the root user account is granted a temporary password. To show the password of the root user account, you use this command:
+
+grep "A temporary password" /var/log/mysqld.log
+Here is the output:
+
+[Note] A temporary password is generated for root@localhost: hjkygMukj5+t783
+Note that your temporary password will be different. You will need this password for changing the password of the root user account.
+
+Step 5. MySQL Secure Installation
+Execute the command mysql_secure_installation to secure MySQL server:
+
+mysql_secure_installation
+It will prompt you for the current password of the root account:
+
+Enter password for user root:
+Enter the temporary password above and press Enter. The following message will show:
+
+The existing password for the user account root has expired. Please set a new password.
+
+New password:
+Re-enter new password:
+You will need to enter the new password for the root‘s account twice. It will prompt for some questions, it is recommended to type yes (y):
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+Step 6. Restart and enable the MySQL service
+Use the following command to restart the mysql service:
+
+service mysqld restart
+and autostart mysql service on system’s startup:
+
+chkconfig mysqld on
+Step 7. Connect to MySQL
+Use this command to connect to MySQL server:
+
+mysql -u root -p
+It will prompt you for the password of the root user. You type the password and press Enter:
+
+Enter password:
+It will show the mysql command:
+
+mysql>
+Use the SHOW DATABASESto display all databases in the current server:
+
+mysql> show databases;
+Here is the output:
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.05 sec)
+In this tutorial, you have learned step by step how to install MySQL 8 on CentOS 7.

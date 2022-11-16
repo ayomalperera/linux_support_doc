@@ -1,0 +1,76 @@
+ansible all -i inventory -m ping
+
+ansible all -m apt -a "upgrade-dist" --become --ask-become-pass
+
+ansible all -m apt -a name=vim-nox  --become --ask-become-pass
+
+
+ansible all -m apt -a "name=snapd state=latest"  --become --ask-become-pass
+
+
+##################################################################################
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: update repository index
+    apt: 
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: apache and php mod install
+    apt:
+      name: 
+        - apache2
+        - libapache2-mod-php
+      state: latest
+      update_cache: yes
+     when: ansible_distribution == "Ubuntu"
+
+# for Centos
+  - name: httpd and php install
+    dnf:
+      name:
+        - httpd
+        - php
+      state: latest
+      update_cache: yes
+
+    when: ansibel_destribution == "CentOS"
+
+
+
+
+# for remove state: absent
+
+###################################################################
+with variabels 
+
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  
+  - name: install apache and php 
+    package:  # commen module for all OS
+      name: 
+        - "{{ apache_package}}"  # package details define in host file
+        - "{{ php_package}}"
+      state: latest
+      update_cache: yes
+
+host file 
+192.168.133.130 apache_package=apache2 php_package=libapache2-mod-php
+192.168.133.100 apache_package=httpd php_package=php
+
+##################################################################################
+
+     
+
+
+
+

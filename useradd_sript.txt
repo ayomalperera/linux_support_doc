@@ -1,0 +1,48 @@
+CREATING USER IN LINUX   
+useradd
+passwd username
+groupadd group_name
+
+usermod -aG wheel username
+authconfig --enablereqlower --enablerequpper --enablereqdigit --enablereqother --passminlen=10  --update
+
+
+
+# vi user-add.sh
+
+#!/bin/sh
+for user in `more userlist.txt`
+do
+echo "$user"
+useradd $user
+echo "$user@epiclanka" | passwd --stdin "$user"
+# force to change pw
+chage -d 0 $user
+usermod -aG wheel $user
+authconfig --enablereqlower --enablerequpper --enablereqdigit --enablereqother --passminlen=10  --update
+done
+
+
+========================
+
+chage --lastday 0 ravi
+
+=============================
+single user add
+
+
+useradd aaa; echo "aaa@epic" | passwd --stdin "aaa" ; usermod -aG wheel aaa;chage -d 0 aaa
+
+useradd epicadmin; echo "Ep1klanka@321" | passwd --stdin "epicadmin" ; usermod -aG wheel epicadmin;
+
+useradd epicuser; echo "Ep1klanka@321" | passwd --stdin "epicuser" 
+
+authconfig --enablereqlower --enablerequpper --enablereqdigit --enablereqother --passminlen=10  --update
+
+ usermod -s /sbin/nologin [username]
+
+
+
+
+
+

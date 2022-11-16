@@ -1,0 +1,84 @@
+fdisk /dev/sda or gdisk /dev/sda accordingly
+
+# pvcreate /dev/sdaX
+# vgcreate  vg1 /dev/sdaX
+# lvcreate -L 50G -n lvm02
+# mkfs.ext4 /dev/vg1/lvm02
+# blkid /dev/vg1/lv1
+# mkdir -p /mnt/data
+# vim /etc/fstab
+UUID=xxxxxxxx /mnt/data ext4 defaults 0 0
+# mount -a
+# mount (Verify)
+
+
+
+
+#########################Logical Volume Extending
+
+Extending Volume Group
+
+#pvcreate /dev/sda1
+
+#vgextend vg_test /dev/sda1
+
+
+
+# vgs
+# pvscan
+# vgdisplay
+There are 4607 free PE available = 18GB Free space available. So we can expand our logical volume up-to 18GB more. Let us use the PE size to extend.
+# lvextend -l +4607 /dev/vg_test/LogVol01
+# resize2fs /dev/vg_test/LogVol01
+
+or  xfs_growf  /dev/vg_test/LogVol01
+
+################################Reducing Logical Volume (LVM)
+First unmount the mount point.
+# umount -v /mnt/test_reduce_test/
+Then check for the file-system error using following command.
+# e2fsck -ff /dev/vg_test_extra/test_reduce_test
+# resize2fs /dev/vg_test_extra/test_reduce_test 10GB
+Reduce the Logical volume using GB size.
+# lvreduce -L -8G /dev/vg_test_extra/test_reduce_test
+To Reduce Logical volume using PE Size we need to Know the size of default PE size and total PE size of a Volume Group to put a small calculation for accurate Reduce size.
+# lvdisplay vg_test_extra
+Here we need to do a little calculation to get the PE size of 10GB using bc command.
+
+1024MB x 10GB = 10240MB or 10GB
+
+10240MB / 4PE = 2048PE
+Press CRTL+D to exit from BC.
+
+Calculate PE Size
+Calculate PE Size
+Reduce the size using PE.
+
+# lvreduce -l -2048 /dev/vg_test_extra/test_reduce_test
+Reduce Size Using PE
+Reduce Size Using PE
+Re-size the file-system back, In this step if there is any error that means we have messed-up our file-system.
+
+# resize2fs /dev/vg_test_extra/test_reduce_test
+Resize File System
+Resize File System
+Mount the file-system back to same point.
+
+# mount /dev/vg_test_extra/test_reduce_test /mnt/test_reduce_test/
+Mount File System
+Mount File System
+Check the size of partition and files.
+
+# lvdisplay vg_test_extra
+Here we can see the final result as the logical volume was reduced to 10GB size.
+
+Verify Logical Volume Size
+Verify Logical Volume Size
+
+
+lvreduce -L -2.5G -r /dev/vg00/vol_projects
+# lvextend -l +100%FREE -r /dev/vg00/vol_backups
+
+
+
+

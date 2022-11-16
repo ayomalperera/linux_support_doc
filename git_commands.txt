@@ -1,0 +1,110 @@
+#######git usn
+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
+
+
+
+
+############### remote URL:
+
+git remote -v
+
+(git remote remove  origin)
+
+git config --get remote.origin.url
+
+
+
+git remote add origin  https://github.com/ultrasupernew/fuso-theme.git
+
+
+##############git current checkeout branch
+
+git rev-parse --abbrev-ref HEAD
+
+############ List all branches
+git branch -a
+
+## sync 
+
+git fetch
+
+
+ 
+ 
+ 
+ 
+ create new branch
+git checkout -b "name"
+delete git -D "name"
+
+####copy brnach
+git checkout -b "name" <old branch n>ame
+
+modify local folder/filesc
+ navigate root 
+ 
+
+git add </path to new folder>
+
+git commit -m "comment "
+
+git push 
+
+
+
+
+
+
+	cd MyDocuments/GIT/
+
+	  git clone https://github.com/ayomalperera/cicd-test.git
+	 git checkout -b test
+ 
+	 cd cicd-test
+	pwd
+  
+	  vim php.inf
+
+	  git status
+	 git add php.inf
+	  git commit -m "first test"
+	  git config --global user.name "<ayomalperera>"
+	 #git config --global user.email "ayomalperera@gmail.com"
+	  git config --global user.name "ayomalperera"
+	  git config --global user.email "ayomalperera@gmail.com"
+	 git commit -m "first test"
+ 	  git push
+ 	  git push --set-upstream origin test
+ 	 ls
+	 vim php.inf
+	   git add php.inf
+	  ll
+	   git commit -m "first test"
+	   git push
+ 	  ping 192.168.28.122
+ 	 vim Jenkinsfile
+ 
+ 
+ 
+ ### Git SSh clone
+
+ git clone git@github.com:ultrasupernew/fuso-theme.git
+
+  
+ 
+ ## Crate new repo
+
+git init
+git add README.md
+git commit -m "first commit"
+
+git remort add origin https://github.com/judepererausn/docker-react.git
+
+git push -u origin master 
+ 
+ 
+ ################# from malinda
+ 
+ git remote -v - view url
+ 
+ git branch - view branch

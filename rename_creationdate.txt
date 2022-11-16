@@ -1,0 +1,4 @@
+for f in *.jpg
+do
+    mv -n "$f" "$(exiftool -d "%Y%m%d_%H%M%S" -CreateDate "$f" | awk '{print $4".jpg"}')"
+done

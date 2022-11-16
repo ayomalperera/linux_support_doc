@@ -1,0 +1,21 @@
+
+
+
+
+
+   
+   
+CREATING USER IN LINUX   
+useradd
+passwd username
+groupadd group_name
+
+usermod -aG wheel epicadmin
+
+
+###################useradd -g group_name user_name###############################################
+
+
+
+
+

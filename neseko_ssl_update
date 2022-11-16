@@ -1,0 +1,14 @@
+sudo /opt/bitnami/ctlscript.sh stop
+sudo /opt/bitnami/letsencrypt/lego --tls --email="jude.perera@ultrasupernew.com" --domains="www.nisekoannupuriresidences.com" --path="/opt/bitnami/letsencrypt" renew --days 90
+sudo /opt/bitnami/letsencrypt/lego --tls --email="jude.perera@ultrasupernew.com" --domains="nisekoannupuriresidences.com" --path="/opt/bitnami/letsencrypt" renew --days 90
+sudo /opt/bitnami/ctlscript.sh start
+
+
+
+
+
+
+
+
+
+

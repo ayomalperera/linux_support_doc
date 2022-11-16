@@ -1,0 +1,70 @@
+Java applicatio add into systemd service
+=======================================
+
+This is done by two steps, firstly create script to run java app and then that script add to systemctl to run when boot procees
+
+
+
+1. Create script to run java app 
+
+# mkdir -p /bin/mysript
+
+# vim /bin/mysript/myjava_app.sh
+(insert below sript to it)
+
+
+	#!/bin/bash
+	nohup <full java path >  -jar <path to my javaapp.jar>  &
+
+
+2.set excutable permission to all
+# chmod +x  myjava_app.sh
+
+#############################################################################################################
+	 eg:  nohup /opt/webapp/jdk1.8.0_201/bin/java  -jar /opt/webapp/artifacts/eland_service_v1_11.jar &
+
+
+
+
+########################################################################################################
+Create systemd service script to run abobe sript 
+
+3.	#cd /etc/systemd/system
+
+	#vim service_name.service (create file)
+	(insert below sript to it)
+
+
+Description=eLand service
+After=syslog.target network.target
+
+[Service]
+Type=forking
+# set java home
+Environment="JAVA_HOME=/opt/webapp/jdk1.8.0_211"
+User=root
+Group=root
+
+# add script path
+ExecStart= /opt/webapp/artifacts/eland_systemmd_service.sh
+
+
+#RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+########################################################################################
+
+4.	systemctl daemon-reload
+5.	systemctl enable service_name.service
+6.	systemctl start service_name.service
+7.	(Now you can use)
+8.	systemctl start/stop/status service_name.service
+#########################################################################################
+
+jude
+
+                 

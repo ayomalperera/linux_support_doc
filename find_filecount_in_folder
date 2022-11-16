@@ -1,0 +1,1 @@
+find /path/to/directory -mindepth 1 -type f -name "*.mp4" -printf x | wc -c

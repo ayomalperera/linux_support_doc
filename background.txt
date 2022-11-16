@@ -1,0 +1,14 @@
+# [CTRL-Z]
+[2]+  Stopped                 find / -ctime -1 > /tmp/changed-file-list.txt
+
+# bg
+# jobs
+
+# jobs
+[1]   Running                 bash download-file.sh &
+[2]-  Running                 evolution &
+[3]+  Done                    nautilus .
+
+# fg
+
+# kill %2

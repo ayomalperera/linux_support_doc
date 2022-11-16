@@ -1,0 +1,7 @@
+
+
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/global_file_system/ch-manage#s1-manage-makefs
+https://www.unixarena.com/2013/10/how-to-install-cluster-lvm2-and-gfs2-on.html/
+
+
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_gfs2_file_systems/assembly_troubleshooting-gfs2-creating-mounting-gfs2

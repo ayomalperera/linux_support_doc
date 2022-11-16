@@ -1,0 +1,3 @@
+netstat -an|grep ESTABLISHED
+total con number:  netstat -ant | grep ESTABLISHED | wc -l
+ ip and connection list.: netstat -natu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n

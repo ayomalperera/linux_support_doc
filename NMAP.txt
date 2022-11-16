@@ -1,0 +1,17 @@
+
+
+
+
+
+
+
+nmap -p- IP_For_scan
+
+
+##########HOW TO FIND RPM VERSION##########################
+
+
+rpm -q tomcat(rpm name)
+
+
+ netstat -ntupl

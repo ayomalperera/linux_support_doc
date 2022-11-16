@@ -1,0 +1,13 @@
+https://linuxhostsupport.com/blog/how-to-install-grafana-on-ubuntu-20-04/
+
+
+
+
+
+Node exporter
+
+https://prometheus.io/download/#node_exporter
+
+install
+
+https://ourcodeworld.com/articles/read/1686/how-to-install-prometheus-node-exporter-on-ubuntu-2004

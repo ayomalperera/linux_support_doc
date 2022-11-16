@@ -1,0 +1,116 @@
+
+HOW TO MAKE A PACEMAKER CLUSTERTER 
+
+STEP 1
+
+CREATING LOCAL REPOSITORY
+
+1. mkdir /repo
+2. vim /etc/yum.repos.d/cluster.repo
+3. (copy below to file)
+####################################################################################
+[repo-update]
+gpgcheck=0
+enabled=1
+baseurl=file:///repo
+name=repo-update
+
+[repo-ha]
+gpgcheck=0
+enabled=1
+baseurl=file:///repo/addons/HighAvailability
+name=repo-ha
+
+[repo-storage]
+gpgcheck=0
+enabled=1
+baseurl=file:///repo/addons/ResilientStorage
+name=repo-storage
+#######################################################################################
+4. createrepo /repo
+
+STEP 2
+
+INSTALLING PACEMAKER SOFTWARE
+
+1. (installig cluster software)
+   yum install pcs pacemaker fence-agents-all
+   yum install -y pacemaker pcs psmisc policycoreutils-python
+   
+2. (check status of firewalld)
+   systemctl status firewalld
+   
+3. (make avalable ports for cluster software)
+   firewall-cmd --permanent --add-service=high-availability
+   firewall-cmd --add-service=high-availability
+   
+4. (setting password to cluster administration user)
+   passwd hacluster
+   [Changing password for user hacluster.
+   New password:
+   Retype new password:
+   passwd: all authentication tokens updated successfully.]
+   
+5. (To start the cluster on boot process)
+   systemctl start pcsd.service
+   systemctl enable pcsd.service
+
+6. (Authenticate the user)
+   pcs cluster auth z1.example.com z2.example.com
+   Username: hacluster
+   Password:
+   [z1.example.com: Authorized
+   z2.example.com: Authorized]
+   
+7. (To create the cluster run the following command in node one)
+   pcs cluster setup --start --name my_cluster \
+   z1.example.com z2.example.com
+   z1.example.com: Succeeded
+   z1.example.com: Starting Cluster...
+   z2.example.com: Succeeded
+   z2.example.com: Starting Cluster...
+   
+8. (enable the cluster service in each node after reboot the node)
+   pcs cluster enable --all
+   systemctl enable corosync.service
+   systemctl enable pacemaker.service
+#######################  #########################################################################################` 
+   pcs cluster auth 192.168.0.1 192.168.0.2
+   pcs cluster setup --name mycluster 192.168.0.1 192.168.0.2
+   pcs cluster start --all
+#################################################################################################################   
+9. (check cluter status)
+    pcs cluster status
+	
+STEP 3
+
+DISABLE UNWANTED SERVICES FOR TWO NODE CLUSTER
+
+1.	pcs property set stonith-enabled=false
+	pcs property set no-quorum-policy=ignore
+	
+STEP 4
+
+CREATE CLUSTERING RESOURCE
+
+
+1.	sudo pcs resource create Cluster_VIP ocf:heartbeat:IPaddr2 ip=192.168.56.5 cidr_netmask=24 op monitor interval=20s
+
+2.	pcs resource create restservice systemd:restservice.service  op monitor interval=30s op start timeout=180s op stop timeout=180s op status timeout=15
+
+############set piority levels make ensure both service run same node##############33
+
+sudo pcs constraint colocation add restservice.service Cluster_VIP INFINITY
+
+
+
+BASIC CLUSTER MANAGEMENT COMMANDS:
+
+1.	pcs cluster status
+2.  pcs cluster start --all
+3.  pcs cluster stop --all
+4.	pcs resource delete resorce_name
+5.	pcs cluster start/stop node_ip
+
+
+

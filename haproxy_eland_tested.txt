@@ -1,0 +1,37 @@
+
+#########################################################################
+frontend frontend_front
+ bind *:8080
+  default_backend frontend_back
+
+backend frontend_back
+ balance roundrobin
+ server webserver1 192.168.119.14:8080 check
+ server webserver2 192.168.119.21:8080 check
+###################################################################################
+frontend api_front
+ bind *:9292
+  default_backend api_back
+
+backend api_back
+ balance roundrobin
+ server webserver1 192.168.119.14:9292 check
+ server webserver2 192.168.119.21:9292 check
+##############################################################################
+frontend nms_front
+ bind *:56666
+  default_backend nms_back
+
+backend nms_back
+ balance roundrobin
+ server webserver1 192.168.119.5:56666 check
+
+##############################################################
+ frontend db_front
+ bind *:49450
+  default_backend db_back
+
+backend db_back
+ balance roundrobin
+ server webserver1 192.168.119.11:55306 check
+################### end #####################################

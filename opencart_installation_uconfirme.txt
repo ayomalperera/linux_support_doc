@@ -1,0 +1,130 @@
+Steps to Install OpenCart on Centos 7
+
+Step 1: Install EPEL-Repository
+#yum install epel-release
+
+Step 2: Disable SELinux Firewall
+#setenforce 0
+
+Part - A Apache Web Server
+
+Step 1: Install Apache Web Server
+#yum -y install httpd
+
+Step 2: Start Apache Server
+#systemctl start httpd
+
+Step 3: Enable Apache Server to start with Linux OS
+#systemctl enable httpd
+
+Step 4: Test Apache Server
+#systemctl status httpd
+
+Open Firefox
+addressbar type: localhost
+
+Step 5: Enable Mod_Rewrite module in Apache Server
+Open the file:
+#	
+
+Change AllowOverride None
+to
+
+AllowOverride All
+
+Save the file and Exit
+
+Part-B Installing MariaDB Database Server
+
+Step 1: Installing MariaDB- Server
+#yum install mariadb-server mariadb
+
+Step 2: Start Mariadb Server
+#systemctl start mariadb
+
+Step 3: Configuring Server
+#mysql_secure_installation
+
+Press Enter and Change the Password
+Press Y on everything else and exit
+
+Part-C Installing Php
+
+Step 1: Installing Php and other Php dependencies
+#yum -y install php php-mysql php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-snmp php-soap php-mcrypt curl zlib
+
+Step 2: Installing Phpmyadmin
+#yum -y install phpmyadmin
+
+Step 3: Restart Apache Web Server
+#systemctl restart httpd.service
+
+Open web browser
+localhost/phpmyadmin
+
+Part-D Installing opencart
+#mkdir opencart
+#cd opencart
+
+Open web browser and following link to download
+opencart
+http://www.opencart.com/index.php?rou...
+
+
+It is 20 MB Version
+
+#cd Download
+#cp 2.2... /root/opencart
+#cd opencart
+#unzip 2.2.....zip
+
+Rename the folder to opencart
+#mv 2.20... /root/opencart/opencart
+
+Copy the "opencart" Folder to /var/www/html
+
+#cp -avr opencart /var/www/html
+#cd /var/www/html
+
+#chmod -R 777 opencart
+#chown apache:apache opencart
+
+Now change directory to following location
+#cd opencart/upload
+
+Rename the config-dist.php to config.php
+#cp config-dist.php config.php
+
+Rename the following other files also
+#cp /var/www/html/opencart/upload/admin/config-dist.php /var/www/html/opencart/upload/admin/config.php
+
+Test in Browser:
+localhost/opencart
+
+Click on Next to Begin
+Click on "I Agree,...." and click Next
+Check for Green Signals
+
+Back to Terminal
+Issue the following:
+
+#chmod -R 777 admin
+#chmod 777 config.php
+
+Now Proceed with installation
+And now refersh the browser
+
+Give the Other Details on Next Page
+Click Next
+
+Database Name: other details
+
+Go to localhost/phpmyadmin
+Login with root and password which you have set
+
+And click on new and create database
+name: opencart click ok
+
+And now click next on main menu
+
+And Opencart would be installed...

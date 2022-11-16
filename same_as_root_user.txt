@@ -1,0 +1,14 @@
+1. Add the user:
+
+# useradd -u -g -m -d /home/ -s /bin/ username
+2. Take a back up of the file /etc/sudoers:
+
+# cp -pv /etc/sudoers /etc/sudoers.bak
+3. Edit the file using visuo command:
+
+# visudo
+4. In the file the changes to be made are as follows:
+
+## Allow root to run any commands anywhere
+root ALL=(ALL) ALL
+username ALL=(ALL) NOPASSWD:ALL      ### add this line

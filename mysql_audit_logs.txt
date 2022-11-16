@@ -1,0 +1,3 @@
+vim /etc/ my.cnf
+add 
+general-log=1

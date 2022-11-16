@@ -1,0 +1,91 @@
+use bellow link for create yum local repo using redaht dvd.
+
+1[root@techbrown ~]# cd /
+
+2[root@techbrown /]# mkdir localrepo
+
+3 vim /etc/yum.repos.d/local.repo
+
+copy below txt to repo file 
+
+[rhel7]
+name=rhel7
+baseurl=file:///localrepo/
+enabled=1
+gpgcheck=0
+
+4 createrepo /localrepo/
+
+5 yum clean all
+
+
+mariadb repo
+
+vim /etc/yum.repos.d/MariaDB.repo
+
+
+
+# MariaDB 10.3 RedHat repository list - created 2019-01-25 10:30 UTC
+# http://downloads.mariadb.org/mariadb/repositories/
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.3/rhel7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+
+6 sudo yum install MariaDB-server MariaDB-client -y
+
+
+check mariadb version 
+
+mysql -V
+
+
+	systemctl status mariadb
+    systemctl status mysql
+   systemctl start mysql
+  systemctl enable mariadb
+
+MySQL secure installation
+# mysql_secure_installation
+
+Enter password for user root:
+Change the password for root ? ((Press y|Y for Yes, any other key for No) : n
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : Y
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : Y
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : Y
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
+
+Create user:
+
+Login as root
+# mysql -u root -p   
+
+mysql> use mysql;
+mysql> CREATE USER 'etle'@'localhost' IDENTIFIED BY 'Password#123';
+mysql> CREATE USER 'etle'@'%' IDENTIFIED BY 'Password#123';
+mysql> FLUSH PRIVILEGES;
+
+Create database
+mysql> create database epictle;
+mysql> exit
+
+Import SQL dump
+# mysql –u root –p epictle < /opt/dump.sql
+ 
+Exporting SQL dump
+# mysqldump –u root –p epictle > /PATH/FILENAME.sql” 
+
+
+
+
+
+
+
+local repository creat 
+
+https://www.techbrown.com/create-local-yum-repository-centos-7/
+
+
+
+

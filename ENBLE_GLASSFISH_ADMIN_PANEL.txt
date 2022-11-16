@@ -1,0 +1,6 @@
+
+
+
+
+./asadmin --host localhost --port 4848 change-admin-password
+./asadmin --host localhost --port 4848 enable-secure-admin

@@ -1,0 +1,25 @@
+https://superuser.com/questions/944246/you-dont-have-permission-to-access-phpmyadmin-on-this-server
+
+
+
+ edited the file /etc/httpd/conf.d/phpMyAdmin.conf like the following :
+
+<Directory /usr/share/phpMyAdmin/>
+ AddDefaultCharset UTF-8
+
+ <IfModule mod_authz_core.c>
+ # Apache 2.4
+ <RequireAny>
+   Require ip 127.0.0.1
+   Require ip ::1
+ </RequireAny>
+</IfModule>
+<IfModule !mod_authz_core.c>
+#   Apache 2.2
+    Order Deny,Allow
+#     Deny from All
+    Allow from 127.0.0.1
+    Allow from ::1
+</IfModule>
+</Directory>
+Basically I commented out : "Deny from All", httpd restarted and it works!

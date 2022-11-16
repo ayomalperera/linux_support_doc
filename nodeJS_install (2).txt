@@ -1,0 +1,24 @@
+. Add NodeSource yum repository
+The current LTS version of Node.js is version 10.x. If you want to install version 8 just change setup_10.x with setup_8.x in the command below.
+
+Run the following curl command to add the NodeSource yum repository to your system:
+
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+2. Install Node.js and npm
+Once the NodeSource repository is enabled, install Node.js and npm by typing:
+
+sudo yum install nodejs
+When prompted to import the repository GPG key, type y, and press Enter.
+
+
+3. Verify the Node.js and npm Installation
+To check that the installation was successful, run the following commands which will print the Node.js and npm versions.
+
+Print Node.js version:
+
+node --version
+v10.13.0
+Print npm version:
+
+npm --version
+6.4.1

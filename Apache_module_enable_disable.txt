@@ -1,0 +1,9 @@
+Apache_module_enable_disable
+
+
+sudo a2dismod <module_name>
+
+ sudo a2enmod <module_name>
+ 
+ test
+ apachectl -M | grep heade

@@ -1,0 +1,90 @@
+
+
+
+
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+	worker_connections 768;
+	# multi_accept on;
+}
+
+http {
+
+
+################################################################
+server {
+    listen 443;
+    ssl                  on;
+   # ssl_certificate      /etc/ssl/certificate.crt;
+   # ssl_certificate_key  /etc/ssl/private.key;
+    ssl_certificate           /etc/letsencrypt/live/light.ultrasupernew.com/fullchain.pem;
+    ssl_certificate_key	 /etc/letsencrypt/live/light.ultrasupernew.com/privkey.pem;
+
+
+	
+    server_name light.ultrasupernew.com;
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_pass http://127.0.0.1:3000;
+        proxy_redirect off;
+    }
+}
+
+
+################ Rewriting http to https #############################################
+server {
+    server_name light.ultrasupernew.com;
+
+    rewrite ^(.*) https://$server_name$1 permanent;
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/light.ultrasupernew.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/light.ultrasupernew.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+#########################################################################################
+
+
+
+
+server {
+    listen 80;
+    server_name 35.73.165.123;
+
+
+
+
+
+    location / {
+
+        proxy_set_header Host $host;
+        proxy_pass http://127.0.0.1:3200;
+        proxy_redirect off;
+    }
+}
+
+###############################################################
+
+
+
+server {
+    if ($host = light.ultrasupernew.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name light.ultrasupernew.com;
+    return 404; # managed by Certbot
+
+
+}}
+
+

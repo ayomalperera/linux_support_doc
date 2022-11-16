@@ -1,0 +1,4 @@
+https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/install-monitorix-centos-7-ubuntu-16-04-fedora-24-debian-8-opensource-lightweight-system-monitoring-tool.html
+
+
+yum -y install monitorix

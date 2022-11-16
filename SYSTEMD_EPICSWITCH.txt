@@ -1,0 +1,61 @@
+
+
+
+
+
+
+############################## SYSTEMD SERVICE SCRIPT FOR EPIC SWITCH ##################################
+[Unit]
+Description=Epic switch
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+ExecStart=/opt/epic_dlb/bin/eonline start
+ExecStop=/opt/epic_dlb/bin/eonline stop
+TimeoutSec=180
+
+[Install]
+WantedBy=multi-user.target
+
+###########################################################################################################3
+
+If the Process ID is not listed, just restart the failed service with
+
+$ systemctl restart systemd-modules-load
+
+/opt/wildfly-16.0.0.Final/bin
+
+
+
+Run java application as a linux service
+
+1.	Create shell script  to run app
+a.	#vim myapp.sh
+#!/bin/bash
+nohup  <java path>    -jar  <path to java app > &
+
+eg:   nohup /opt/webapp/jdk1.8.0_201/bin/java  -jar  /opt/webapp/artifacts/eland_service_v1_11.jar &
+
+2	create systemd sript
+
+	# vim /etc/system/system/myservice.service  
+
+		[Unit]
+Description=Epic switch
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+ExecStart=/opt/epic_dlb/bin/eonline start
+ExecStop=/opt/epic_dlb/bin/eonline stop
+TimeoutSec=180
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+

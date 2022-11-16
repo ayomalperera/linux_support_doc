@@ -1,0 +1,10 @@
+$jar -xvf jarfile.jar ** Extracts the files
+
+** edit the file **
+
+$jar -cvf jarfile.jar ** Create the new Jar file
+Like Reactions:abronsdilan
+
+
+
+zip [option] output_file_name input1 input2

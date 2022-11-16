@@ -1,0 +1,17 @@
+
+URL: http://41.216.184.150:12000/
+Server IP 41.216.184.150
+Mysql version: 5.7
+Mysql port: 55306
+Mysql database: wprdi2
+Mysql username: wprduser
+Mysql password: Ep1klanka@321
+Deployed file location: /opt/epic_deployments/wprd/v1.00
+Web DocumentRoot /var/www/wprd
+CustomLog : /varlogs/wprd_access_log
+ErrorLog : /varlogs/wprd_error_log
+
+
+
+
+

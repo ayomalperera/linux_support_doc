@@ -1,0 +1,8 @@
+
+
+
+
+
+https://azureossd.github.io/2021/09/02/php-8-rewrite-rule/
+
+cp /home/default /etc/nginx/sites-enabled/default; service nginx restart

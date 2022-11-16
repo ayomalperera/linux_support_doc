@@ -1,0 +1,21 @@
+putty key gen linux
+https://www.ssh.com/academy/ssh/putty/linux/puttygen
+
+
+sudo aptitude install putty-tools
+
+puttygen -t rsa -b 2048 -C "user@host" -o keyfile.ppk
+
+To extract the public key, use:
+
+puttygen -L keyfile.ppk
+
+Use the following command to change the passphrase:
+
+puttygen keyfile.ppk -P
+
+
+
+##### Convert PPK to PEM in Linux
+
+puttygen server1.ppk -O private-openssh -o server1.pem 

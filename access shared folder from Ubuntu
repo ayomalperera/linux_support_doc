@@ -1,0 +1,6 @@
+access shared folder from Ubuntu
+
+
+
+install smb
+smb://server/folder

@@ -1,0 +1,15 @@
+
+
+
+##################doxpro deployment ####################
+
+1.create /home/vladmin/PERMISSIONS folder
+2.copy
+
+path:
+/home/vladmin/glassfish/glassfish4/glassfish/domains/domain1/lib
+
+file:
+mysql-connector-java-5.1.23-bin.jar
+
+

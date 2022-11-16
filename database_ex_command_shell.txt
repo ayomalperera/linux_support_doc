@@ -1,0 +1,8 @@
+mysql --login-path=myhostalias -e 'show databases;'
+
+
+mysql --login-path=myhostalias --port=55306 -e 'show tables; 'elottery_test
+
+
+*/5 * * * *
+

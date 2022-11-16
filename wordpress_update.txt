@@ -1,0 +1,67 @@
+###### core update 
+
+sudo mysqldump -u root -p wp_database > wp_database.sql
+sudo rsync -Waq /var/www/wordpress  /path/to/backup/directory/
+
+
+
+cd /tmp/ && wget https://wordpress.org/latest.zip
+
+unzip latest.zip
+tar -xzvf latest.tar.gz
+#### delete your wp-includes and wp-admin directories
+sudo rm -rf /var/www/wordpress/wp-includes
+sudo rm -rf /var/www/wordpress/wp-admin
+
+### Copy the new wp-includes and wp-admin
+sudo cp -R ~/downloads/wordpress/wp-includes/ ./
+sudo cp -R ~/downloads/wordpress/wp-admin/ ./
+
+#### Do NOT delete your existing wp-content folder, overwrtite it
+sudo cp -R ~/downloads/wordpress/wp-content/ ./
+
+#### Copy all files from the root directory of the new version of WordPress. You will overwrite any existing files and new files
+
+sudo cp ~/downloads/wordpress/* ./
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://wordpress.org/support/article/updating-wordpress/
+https://wordpress.org/support/article/upgrading-wordpress-extended-instructions/
+https://wpsites.net/wordpress/wordpress-update-how-to-update-wordpress-manually/
+
+
+
+Overview of the Upgrade Process #Overview of the Upgrade Process
+1.Backup your database.
+2.Backup ALL your WordPress files in your WordPress directory. Don’t forget your .htaccess file.
+3.Verify the backups you created are there and usable. This is essential.
+4.Deactivate ALL your Plugins.
+5.Ensure first four steps are completed. Do not attempt the upgrade unless you have completed the first four steps.
+6.Download and extract the WordPress package from https://wordpress.org/download/.
+7.Delete the old WordPress files on your site, but DO NOT DELETE
+– wp-config.php file;
+– wp-content folder; Special Exception: the wp-content/cache and the wp-content/plugins/widgets folders should be deleted.
+– wp-images folder;
+– .htaccess file–if you have added custom rules to your .htaccess, do not delete it;
+– robots.txt file–if your blog lives in the root of your site (ie. the blog is the site) and you have created such a file, do not delete it.
+8.Upload the new files from your computer’s hard drive to the appropriate WordPress folder on your site.
+9.Run the WordPress upgrade program and follow the instructions on the screen.
+10.Update Permalinks and .htaccess.
+11.Install updated Plugins and Themes.
+12.Reactivate Plugins
+13.Review what has changed in WordPress.

@@ -1,0 +1,5 @@
+
+
+1.go to wildfly bin
+2. ./add press tab and run 
+3.folow the questions 

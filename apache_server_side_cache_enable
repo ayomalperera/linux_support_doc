@@ -1,0 +1,36 @@
+Apache2 server side cache
+
+sudo apt-get update
+sudo apt-get install apache2-utils
+
+sudo a2enmod cache
+sudo a2enmod cache_disk
+sudo a2enmod expires
+sudo a2enmod headers
+
+ systemctl restart apache2
+ systemctl start apache-htcacheclean
+ 
+ ## Add the virtual host configurations
+ 
+ CacheQuickHandler off
+CacheLock on
+CacheLockPath /tmp/mod_cache-lock
+CacheLockMaxAge 5
+CacheIgnoreHeaders Set-Cookie
+
+<Location />
+    CacheEnable disk
+    CacheHeader on
+    CacheDefaultExpire 800
+    CacheMaxExpire 64000
+    CacheIgnoreNoLastMod On
+    ExpiresActive on
+    ExpiresDefault A300
+</Location>
+
+
+sudo apachectl configtest
+
+## test
+ls -la /var/cache/apache2/mod_cache_disk/

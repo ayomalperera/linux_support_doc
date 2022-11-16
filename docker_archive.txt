@@ -1,0 +1,31 @@
+
+
+List all containers
+
+#docker container ls -a
+
+converted to image
+
+
+#docker container commit <my_containerID>  <new_image_name>
+
+List docker images
+
+#docker images
+
+
+Export a container's filesystem as a tar archive
+
+
+# docker export [containerID] > [imagename].tar
+	eg:docker export df2 > nginx.tar
+
+Import archived image
+
+#docker import - mynginx < nginx.tar
+
+
+docker save <docker image name> | gzip > <docker image name>.tar.gz
+
+
+

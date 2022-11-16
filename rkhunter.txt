@@ -1,0 +1,43 @@
+# rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+# yum -y install rkhunter
+
+
+Update Rootkit Signatures
+#rkhunter --update
+
+Rootkit Malware Scanner with Rkhunter
+# rkhunter -c
+
+Analyse the Rootkit logs
+# grep -i warning /var/log/rkhunter/rkhunter.log
+
+
+###############################################################################
+First, I found where those commands belong to
+
+# rpm -qf /usr/sbin/ifdown /usr/sbin/ifup /usr/bin/egrep /usr/bin/fgrep
+initscripts-9.49.37-1.el7_3.1.x86_64
+initscripts-9.49.37-1.el7_3.1.x86_64
+grep-2.20-2.el7.x86_64
+grep-2.20-2.el7.x86_64
+
+
+Then, I verified those packages:
+
+# rpm -V initscripts grep && echo OK
+OK
+
+Finally, I added these lines to /etc/rkhunter.conf.local to disable those warnings
+
+SCRIPTWHITELIST=/usr/sbin/ifdown
+SCRIPTWHITELIST=/usr/sbin/ifup
+SCRIPTWHITELIST=/usr/bin/fgrep
+SCRIPTWHITELIST=/usr/bin/egrep
+
+
+And checked again:
+
+# rkhunter --check --rwo && echo OK
+OK
+
+

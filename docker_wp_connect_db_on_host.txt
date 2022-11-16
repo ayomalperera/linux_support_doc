@@ -1,0 +1,23 @@
+Connect to MySQL database on the host
+If you really want to connect the service in the container with a service on the host, you will need to connect the container to the appropriate network.
+
+First, you will need to create a network. Assuming that your local machine has a fixed IP of 192.168.0.1, you should be able to do this with:
+
+
+
+
+
+docker network create -d bridge --subnet 192.168.0.0/24 --gateway 192.168.0.1 dockernet
+You can then:
+
+
+
+
+
+
+docker run --name  test-wordpress --net=dockernet -p 8081:80 -d wordpress
+
+
+
+
+https://stackoverflow.com/questions/55223576/docker-wordpress-connection-to-the-database-server-on-the-localhost

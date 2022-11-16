@@ -1,0 +1,17 @@
+ We are planning for some maintenance activities in our Data Centers on 31 August 2013 (10 a.m.  - 10 p.m. PDT ) .  
+
+During this maintenance activity, accessing the "https://www.mitsubishi-fuso.com.hk" web site may be intermittently interrupted.
+
+We appricieate your pation and understanding
+
+######################################
+
+Please be aware that we will be performing server maintenance on (date/time) to (date/time). This is necessary for server performance and also (any other reasons).  
+
+As a result, the following systems/functions will be unavailable during this time:
+
+(list of services).
+
+For more information, or if you have any questions, please contact the IT Team at (contact details).
+
+#############################################

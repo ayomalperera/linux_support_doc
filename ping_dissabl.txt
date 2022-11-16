@@ -1,0 +1,22 @@
+# Enable TCP SYN cookie protection
+net.ipv4.tcp_syncookies = 1
+
+# Enable IP spoofing protection
+net.ipv4.conf.all.rp_filter = 1
+
+# Enable ignoring to ICMP requests and broadcasts request
+net.ipv4.icmp_echo_ignore_all = 1
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+# Enable logging of spoofed packets, source routed packets and redirect packets
+net.ipv4.conf.all.log_martians = 1
+
+# Disable IP source routing
+net.ipv4.conf.all.accept_source_route = 0
+
+# Disable ICMP redirect acceptance
+net.ipv4.conf.all.accept_redirects = 0
+
+sysctl -p
+
+sysctl --system

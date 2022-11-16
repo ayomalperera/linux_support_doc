@@ -1,0 +1,4 @@
+ rm -f /var/run/yum.pid 20360
+
+ps aux | grep yum
+kill -9 [insert pid]

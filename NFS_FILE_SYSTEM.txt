@@ -1,0 +1,85 @@
+showmount -e [nfs server ip] 
+disply export list
+
+
+
+
+###########HOW TO CREATE NFS FILE SERVER##################################
+
+##########NFS SERVER CONFIGARATION################################################
+
+	rpm -q nfs-utils
+
+	yum install nfs-utils rpcbind
+	
+	mkdir -p /opt/nfs
+	chown nfsnobody /nfsshare
+	vim /etc/exports
+  (add to exports) /opt/nfs 10.1.1.18(no_root_squash,rw,sync)
+  NMRA: /opt/filedata 192.168.28.12(rw,sync,no_root_squash)
+
+
+systemctl start nfs;
+systemctl start nfs-server;
+systemctl start rpcbind;
+Trouble shooting
+
+rpcinfo -p <server ip>
+
+
+
+systemctl enable nfs;
+systemctl enable nfs-server;
+systemctl enable rpcbind;
+
+systemctl start nfs-server;
+systemctl start nfs-server;
+systemctl enable nfs-server;
+systemctl enable nfs-server;
+
+service nfs status;
+
+
+
+service nfs restart;
+systemctl enable nfs-server;	
+
+
+firewall-cmd --permanent --add-service={nfs,mountd,rpc-bind};
+firewall-cmd --add-port={2049,111}/tcp --permanent;
+firewall-cmd --add-port={111,2049}/udp --permanent;
+firewall-cmd --reload
+
+
+
+
+############NFS CLIENT CONFIGARATION ########################################
+1.	yum install nfs-utils rpcbind
+2.	rpm -q nfs-utils
+3.	service rpcbind start
+4.	mkdir -p /mnt/nfs
+5.	mount 10.1.1.110:/opt/nfs /mnt/nfs/
+6.	systemctl enable nfs-server
+7.	vim /etc/fstab
+8.  (add to fstab) 10.1.1.110:/opt/nfs	/mnt/nfs	nfs	defaults 		0 0
+NMRA >>> 192.168.28.9:/opt/filedata /opt/webapp nfs rw,sync,hard,intr 0 0
+DFAR >> 172.16.16.4:/opt/DFAR_DOCUMENT /opt/DFAR_DOCUMENT nfs rw,sync,hard,intr  0 0
+
+
+link:
+https://linuxconfig.org/quick-nfs-server-configuration-on-redhat-7-linux
+
+
+
+NMRA
+
+
+/opt/filedata 192.168.28.10(rw,sync,no_root_squash)
+/opt/filedata 192.168.28.6(rw,sync,no_root_squash)
+
+######## NFS Ubuntu
+
+Jude Perera
+ 6:55 PM
+https://www.tecmint.com/install-nfs-server-on-ubuntu/
+~

@@ -1,0 +1,5 @@
+file moved
+
+####### cp| mv | last n lines to des
+
+cp `ls -rt * | tail -10` /Test

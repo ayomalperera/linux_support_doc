@@ -1,0 +1,4 @@
+
+
+DB connections
+/opt/wildfly-15.0.1.Final/standalone/configuration/standalone.xml

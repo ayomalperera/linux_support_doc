@@ -1,0 +1,27 @@
+
+
+############TO OBTAIN NUMBER OF CONNECTIONS###########
+show status like 'Conn%';
+show processlist;
+show status like '%onn%';
+
+show variables like 'max_connections';
+
+show variables like '%timeout';
+
+
+###########SET NUMBER OF CONNECTIONS###########
+
+SET GLOBAL max_connections = 500;
+
+
+in cy.cfg
+max_connections = 150
+
+############SET THE PATH PERMENANTLY###########3
+sudo vim /etc/mysql/my.cnf
+sudo service mysql stop
+sudo service mysql start
+
+show variables like '%max_allowed_packet';
+SET GLOBAL max_allowed_packet=1073741824;

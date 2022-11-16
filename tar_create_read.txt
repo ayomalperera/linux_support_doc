@@ -1,0 +1,49 @@
+43.224.126.196
+168.195.39
+
+235
+13
+202
+
+
+
+
+
+
+tar -cvf opt_public-app1.tar /opt
+tar -tvf opt_public-app1.tar 
+
+
+
+tar -cvf etc_public-app1.tar /etc
+tar -tvf etc_public-app1.tar 
+
+tar -cvf tmp_public-app1.tar /tmp
+tar -tvf tmp_public-app1.tar 
+
+tar -cvf var_log_public-app1.tar /var/log
+tar -tvf var_log_public-app1.tar 
+
+
+tar -czvf home_public-app1.tgz /home
+tar -tzvf home_public-app1.tgz
+
+tar -cvf home_public-app1.tar /home
+tar -tvf home_public-app1.tar
+
+===========================================
+history > history_public-app1_09-06-2021.txt
+
+
+cat /etc/fstab > fstab_public-app1.txt
+
+
+*** 
+mysql log if not in /var/log  tar relavant dir;
+
+
+
+
+
+
+

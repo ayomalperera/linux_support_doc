@@ -1,0 +1,14 @@
+$ sudo docker swarm init --advertise-addr <manager IP>
+
+$ sudo docker service create --name web-server --publish 8080:80 nginx:latest
+
+$ sudo docker service create --name web-server --publish 8080:80 nginx:latest
+
+## Scale 
+$ sudo docker service scale web-server=3
+
+
+AddOutputFilterByType DEFLATE application/x-font-woff
+AddOutputFilterByType DEFLATE application/x-font-woff2
+AddOutputFilterByType DEFLATE font/woff
+AddOutputFilterByType DEFLATE font/woff2

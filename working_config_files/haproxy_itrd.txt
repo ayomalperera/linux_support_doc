@@ -1,0 +1,89 @@
+global
+ log /dev/log local0
+ log /dev/log local1 notice
+ chroot /var/lib/haproxy
+ stats socket /run/haproxy/admin.sock mode 660 level admin
+ stats timeout 30s
+ maxconn 4000
+ user haproxy
+ group haproxy
+ daemon
+
+defaults
+ log global
+ mode tcp
+ option tcplog
+ option dontlognull
+ timeout connect 5000
+ timeout client 120000
+ timeout server 120000
+
+
+
+#---------------------------------------------------------------------
+# main frontend which proxys to the backends
+#---------------------------------------------------------------------
+#frontend  main *:5000
+#    acl url_static       path_beg       -i /static /images /javascript /stylesheets
+#    acl url_static       path_end       -i .jpg .gif .png .css .js
+#
+#    use_backend static          if url_static
+#    default_backend             app
+#
+#---------------------------------------------------------------------
+#########################################################################
+	frontend frontend_front
+	bind *:80
+
+	server webserver1 127.0.0.1:81 check
+
+###############################################
+	frontend frontend_8080_front
+ 	bind *:81
+
+ 	default_backend frontend_8080_back
+	backend frontend_8080_back
+	balance source
+	hash-type consistent
+
+	server webserver1 127.0.0.1:8080 check
+
+###################################################################################
+#########################################################################
+	frontend frontend_9191_front
+	bind *:9191
+
+ 	default_backend frontend_9191_back
+	backend frontend_9191_back
+
+	balance source
+	hash-type consistent
+
+	server webserver1 127.0.0.1:9191 check
+##########################################################################
+	frontend 9292_front
+ 	bind *:9292
+
+  	default_backend 9292_back
+
+	backend 9292_back
+	balance source
+	hash-type consistent
+
+	server webserver1 127.0.0.1:9292 check
+
+##########################################################################
+	frontend 9393_front
+ 	bind *:9393
+
+  	default_backend 9393_back
+
+	backend 9393_back
+	balance source
+	hash-type consistent
+
+	server webserver1 127.0.0.1:9393 check
+###################################################################################
+
+
+################### end #####################################

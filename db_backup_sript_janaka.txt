@@ -1,0 +1,37 @@
+
+Create passwordless login
+-------------------------------
+
+# mysql_config_editor set --login-path=myhostalias --host=localhost --user=root --password
+
+
+backup script
+------------------------------
+
+# mkdir /dbbackup
+# mkdir -p /opt/scripts
+# vi /opt/scripts/dbbackup.sh
+
+________ insert below -------- into above file
+
+
+#!/bin/bash
+mysqldump --login-path=myhostalias  elottery > "/dbbackup/elottey_$(date +\%Y%m%d%H%M).sql"
+
+
+
+
+
+# chmod +x /opt/scripts/dbbackup.sh
+#################################################################################################
+
+# crontab -e 
+
+________ insert below -------- into above file
+
+
+ 59 23 * * *  /opt/scripts/dbbackup.sh
+
+
+
+

@@ -1,0 +1,5 @@
+semanage port -l
+
+semanage port -a -t http_port_t -p tcp 9094
+
+semanage port -m -t http_port_t -p tcp 5000

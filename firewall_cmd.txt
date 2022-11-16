@@ -1,0 +1,49 @@
+ firewall-cmd --zone=public --add-port=8080/tcp --permanent
+
+ firewall-cmd --add-port=5400/tcp --permanent
+
+ firewall-cmd --remove-port=8080/tcp --permanent
+
+firewall-cmd --reload
+
+
+===================================================================================================================
+sudo iptables-save > iptables.bak
+iptables-restore < iptables_backup.conf
+sudo iptables -F    [iptables flush]
+
+sudo iptables -L
+
+==============open===============
+sudo iptables -A INPUT -p tcp --dport ssh -j ACCEPT
+
+sudo iptables -A INPUT -p tcp --dport 9494 -j ACCEPT;
+sudo iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 55306 -j ACCEPT
+
+service iptables save
+===========close ========================
+iptables -I INPUT -p tcp –-dport 4848 -j REJECT
+
+/sbin/service iptables save
+
+
+
+sudo iptables -P INPUT DROP
+
+sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+ =============port fowarding========================
+
+#firewall-cmd --permanent --add-forward-port=port=80:proto=tcp:toport=3000
+
+
+# firewall-cmd --permanent --remove-forward-port=port=80:proto=tcp:toport=3000
+# firewall-cmd --reload
+
+
+

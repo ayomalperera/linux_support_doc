@@ -1,0 +1,27 @@
+useradd -s /sbin/nologin glassfish;
+cd /opt;
+su glassfish
+
+wget http://download.oracle.com/glassfish/5.0/release/glassfish-5.0.zip;
+unzip glassfish-5.0.zip
+
+
+[Unit]
+Description = GlassFish Server v5.0
+After = syslog.target network.target
+
+[Service]
+User = glassfish
+ExecStart = /usr/bin/java -jar /opt/glassfish5/glassfish/lib/client/appserver-cli.jar start-domain
+ExecStop = /usr/bin/java -jar /opt/glassfish5/glassfish/lib/client/appserver-cli.jar stop-domain
+ExecReload = /usr/bin/java -jar /opt/glassfish5/glassfish/lib/client/appserver-cli.jar restart-domain
+Type = forking
+
+[Install]
+WantedBy = multi-user.target
+
+
+systemctl daemon-reload;
+systemctl enable glassfish;
+systemctl status glassfish
+

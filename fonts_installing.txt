@@ -1,0 +1,13 @@
+For all users:
+
+Login as root.
+Create a directory in /usr/share/fonts/
+For example: /usr/share/fonts/custom
+
+Copy the fonts to this directory and run:
+# fc-cache -f /usr/share/fonts/
+==========================================redhat================
+ ##copy it to the /usr/local/share/fonts/ directory. If that directory does not exist, create it.
+
+ # 	
+

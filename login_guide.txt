@@ -1,0 +1,20 @@
+In order to login, please use the attached key and refer to the guid.
+
+step 1
+server IP : 41.216.184.120
+User name: epicuser
+password: use attached key
+
+
+step 2
+#su [your user first name]
+# password  <  ($user@epiclanka)eg: jude@epiclanka
+server ask change the password
+current password #
+new password #
+retype new password#
+
+
+step 3
+if you want to root privilages
+use "sudo" befor every command  or switch to root using "sudo su"

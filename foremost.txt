@@ -1,0 +1,5 @@
+
+
+
+
+foremost -t jpg,pdf -v -q -i /dev/sdc1 -o /root/desktop/recover

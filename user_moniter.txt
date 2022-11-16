@@ -1,0 +1,232 @@
+user moniter 
+
+# last 
+-n 10
+-a
+
+
+kasun_n  pts/4        112.134.211.252  Tue Nov 26 11:25 - 11:26  (00:00)
+root     pts/3        112.134.211.252  Tue Nov 26 11:20 - 11:26  (00:06)
+root     pts/2        112.134.211.252  Tue Nov 26 11:10   still logged in
+root     pts/0        112.134.211.252  Tue Nov 26 11:09   still logged in
+
+
+# who
+
+-H (display column headings)
+-r (current runlevel)
+-a (display information provided by most options).
+
+
+
+
+# w
+
+12:07:26 up 4 days,  1:34,  3 users,  load average: 0.01, 0.02, 0.05
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+root     pts/0    112.134.211.252  11:09   57:34   0.01s  0.00s mysql -uroot -p
+kasun_n  pts/1    112.134.211.252  10:12    1:54m  0.01s  0.01s -bash
+root     pts/2    112.134.211.252  11:10    6.00s  0.08s  0.01s w
+
+#lastlog
+The login name, port, and last login time are displayed.
+
+
+GNU accounting utilities=========================================
+
+$ sudo yum install psacct
+Enable and start the psacct service using commands:
+
+$ sudo systemctl enable psacct
+$ sudo systemctl start psacct
+On Debian, Ubuntu, Linux Mint, install it like below.
+
+$ sudo apt-get install acct
+The above command will install acct and start its service automatically.
+
+You can verify whether it is started or not using command:
+
+$ sudo systemctl status acct
+
+Monitor User Activity In Linux
+The psacct (Process accounting) package contains following useful utilities to monitor the user and process activities.
+
+ac – Displays statistics about how long users have been logged on.
+lastcomm – Displays information about previously executed commands.
+accton – Turns process accounting on or off.
+dump-acct – Transforms the output file from the accton format to a human-readable format.
+dump-utmp – Prints utmp files in human-readable format.
+sa – Summarizes information about previously executed commands.
+
+
+Let us see one bye one with examples.
+
+ac
+The ac utility will display the report of connect time in hours. It can tell you how long a user or group of users were connected to the system.
+
+$ ac
+This command displays the total connect time of all users in hours.
+
+total       30.62
+You can sort this result by day-wise by using -d flag as shown below.
+
+$ ac -d
+Sample output:
+
+Nov 24 total 0.81
+Apr 12 total 0.01
+Jun 20 total 9.27
+Jun 30 total 0.23
+Mar 11 total 5.34
+Mar 16 total 0.70
+Mar 21 total 9.55
+Mar 23 total 1.77
+Today total 3.03
+Also, you can display how long each user was connected with the system with -p flag.
+
+$ ac -p
+Sample output:
+
+sk 0.03
+root 30.73
+total 30.76
+And also, you can display the individual user’s total login time as well.
+
+$ ac sk
+Sample output:
+
+total 0.03
+To display individual user’s login time by day-wise, run:
+
+$ ac -d root
+Sample output:
+
+Nov 24 total 0.81
+Apr 12 total 0.01
+Jun 20 total 9.27
+Jun 30 total 0.23
+Mar 11 total 5.34
+Mar 16 total 0.70
+Mar 21 total 9.55
+Mar 23 total 1.77
+Today total 3.41
+For more details, refer the man pages.
+
+$ man ac
+lastcomm
+The lastcomm utility displays the list of previously executed commands. The most recent executed commands will be listed first.
+
+$ lastcomm
+Sample output:
+
+sshd SF sshd __ 0.01 secs Fri Mar 24 15:09
+unix_chkpwd S root __ 0.00 secs Fri Mar 24 15:09
+unix_chkpwd S root __ 0.00 secs Fri Mar 24 15:09
+systemd-cgroups S root __ 0.00 secs Fri Mar 24 15:09
+systemd-cgroups S root __ 0.00 secs Fri Mar 24 15:09
+sshd S root __ 0.06 secs Fri Mar 24 15:09
+sshd SF sk __ 0.06 secs Fri Mar 24 15:09
+bash sk pts/1 0.00 secs Fri Mar 24 15:09
+clear sk pts/1 0.00 secs Fri Mar 24 15:09
+vi sk pts/1 0.00 secs Fri Mar 24 15:09
+cat sk pts/1 0.00 secs Fri Mar 24 15:09
+bash F sk pts/1 0.00 secs Fri Mar 24 15:09
+consoletype sk pts/1 0.00 secs Fri Mar 24 15:09
+grep sk pts/1 0.00 secs Fri Mar 24 15:09
+bash F sk pts/1 0.00 secs Fri Mar 24 15:09
+The above command display all user’s commands. You can display the previously executed commands by a particular user using command:
+
+$ lastcomm sk
+Sample output:
+
+sshd SF sk __ 0.06 secs Fri Mar 24 15:09
+bash sk pts/1 0.00 secs Fri Mar 24 15:09
+clear sk pts/1 0.00 secs Fri Mar 24 15:09
+vi sk pts/1 0.00 secs Fri Mar 24 15:09
+cat sk pts/1 0.00 secs Fri Mar 24 15:09
+bash F sk pts/1 0.00 secs Fri Mar 24 15:09
+consoletype sk pts/1 0.00 secs Fri Mar 24 15:09
+grep sk pts/1 0.00 secs Fri Mar 24 15:09
+Also, you can view how many times a particular command has been executed.
+
+$ lastcomm vi
+Sample output:
+
+vi sk pts/1 0.00 secs Fri Mar 24 15:09
+vi root pts/1 0.00 secs Fri Mar 24 15:03
+As you see in the above output, vi command has been executed twice by root and sk users.
+
+For more details, refer the man pages.
+
+$ man lastcomm
+accton
+This utility will allow you to turn on or turn off accounting.
+
+To turn on process accounting, run:
+
+$ accton on
+To turn it off, run:
+
+$ accton off
+For more details, refer the man pages.
+
+$ man accton
+dump-acct and dump-utmp
+The dump-acct utility displays the output file from the accton format to a human-readable format.
+
+$ dump-acct /var/account/pacct
+dump-utmp displays utmp files in human-readable format.
+
+$ dump-utmp /var/run/utmp
+For more details, refer the man pages.
+
+$ man dump-acct
+$ man dump-utmp
+sa
+The sa utility will summarize the information about previously executed commands.
+
+$ sa
+Sample output:
+
+ 318 951.07re 0.01cp 0avio 15299k
+ 4 33.04re 0.01cp 0avio 26352k sshd
+ 7 2.05re 0.00cp 0avio 25184k sshd*
+ 2 0.01re 0.00cp 0avio 89856k dnf
+ 35 0.00re 0.00cp 0avio 29767k man*
+ 29 0.00re 0.00cp 0avio 7377k bash*
+ 12 0.00re 0.00cp 0avio 6259k unix_chkpwd
+ 12 0.00re 0.00cp 0avio 2674k systemd-cgroups
+ 10 0.00re 0.00cp 0avio 2260k grep
+ 9 166.31re 0.00cp 0avio 25375k ***other*
+ 9 110.33re 0.00cp 0avio 0k kworker/0:2*
+ 9 110.33re 0.00cp 0avio 0k kworker/0:0*
+ 9 0.00re 0.00cp 0avio 3830k id
+ 8 0.00re 0.00cp 0avio 1080k ac
+ 8 0.00re 0.00cp 0avio 26976k logger
+ 8 0.00re 0.00cp 0avio 26976k basename
+ 6 93.90re 0.00cp 0avio 29712k man
+ 6 0.00re 0.00cp 0avio 1629k clear
+ 5 119.94re 0.00cp 0avio 0k kworker/0:2H*
+ 5 93.90re 0.00cp 0avio 27568k less
+To print the number of processes and number of CPU minutes on a per-user basis, just run:
+
+$ sa -m
+Sample output:
+
+337 961.10re 0.01cp 0avio 15593k
+root 286 857.82re 0.01cp 0avio 16672k
+sk 45 3.88re 0.00cp 0avio 7992k
+sshd 5 0.34re 0.00cp 0avio 20966k
+postfix 1 99.06re 0.00cp 0avio 22272k
+For more details, refer the man pages.
+
+$ man sa
+
+And, that’s all. Every Linux administrator should aware of GNU accounting utilities to keep an eye on all users. These utilities will be helpful in troubleshooting time.
+
+If you find this guide useful, please share it on your social networks and support us.
+
+Cheers!
+
+https://www.ostechnix.com/monitor-user-activity-linux/
+

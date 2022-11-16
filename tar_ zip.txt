@@ -1,0 +1,84 @@
+
+#######   ZIP  ######
+#To compress all files in a given directory, 
+ zip -r tecmint_files.zip tecmint_files 
+
+zip -r temp_dir.zip temp_dir
+
+Change the compression level -6 , -9 
+gzip -9 -r filename
+
+########## GZIP ############
+# for file 
+gzip -k filename
+
+gzip -c filename > filename.gz
+
+#Verbose
+gzip -v filename  
+
+# Multiples
+gzip file1 file2 file3
+
+
+create a gzipped tar on the commandline as follows:
+
+tar czvf mytar.tar.gz dir1 dir2 .. dirN
+
+
+
+
+## Decompressing 
+####### Extract GZ with keep original
+
+gzip -dk filename.gz
+
+gzip -d file1.gz file2.gz file3.gz
+
+gzip -dr directory
+
+
+
+
+ 
+
+
+
+### Tar folder
+
+tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
+
+
+    -c: Create an archive.
+    -z: Compress the archive with gzip.
+    -v: Display 
+    -f: Allows you to specify the filename of the archive.
+
+
+tar -cjvf archive.tar.bz2 stuff
+
+
+==========================================================
+Extract an Archive
+
+tar -xzvf archive.tar.gz
+
+
+==========================================
+
+
+
+
+$ xz bigfile
+$ ls -l bigfile*
+-rw-rw-r-- 1 shs shs 13427236 Apr 15 17:30 bigfile.xz
+
+for folder
+tar -cf - foo/ | xz -9 -c - > foo.tar.xz 
+
+
+
+
+
+
+

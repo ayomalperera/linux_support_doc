@@ -1,0 +1,22 @@
+mysql -h <host> -u<user> -p<password> database -e   "SELECT * FROM blah WHERE foo='bar';"
+
+mysql --login-path=myhostalias -e "show databases;"
+
+
+echo "UPDATE `DLB_WB_RESULT` SET `STATUS` = 27 WHERE DATE = DATE_FORMAT(NOW(),'%Y-%m-%d') AND `STATUS`=31;" | mysql  --login-path=myhostalias elottery
+
+
+mysql -u [username] -p [dbname] -e [query]
+
+
+mysql --login-path=myhostalias -e "use elottery; UPDATE `DLB_WB_RESULT` SET `STATUS` = 27 WHERE DATE = DATE_FORMAT(NOW(),'%Y-%m-%d') AND `STATUS`=31;"
+
+
+
+mysql --login-path=myhostalias elottery -e "UPDATE `DLB_WB_RESULT` SET `STATUS` = '27' WHERE `STATUS`='31';"
+
+mysql --login-path=myhostalias -e "use elottery; UPDATE `DLB_WB_RESULT` SET `STATUS` = '27' WHERE `STATUS` = '31';"
+
+
+echo "show tables;" | mysql  --login-path=myhostalias -D elottery
+
