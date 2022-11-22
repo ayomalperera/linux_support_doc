@@ -11,8 +11,8 @@ PUSH:    rsync --progress --update -avzh -e ssh  /source/ root@10.30.152.12:/des
 
 sshpass -p 'Consular@789' rsync --progress --update -avzh -e ssh  /opt/webapp/DOXPRO/ root@10.30.152.12:/opt/webapp/DOXPRO
 
-
-
+Sony phone###
+ rsync --remove-source-files -av -e 'ssh -p 2222' admin@192.168.8.150:/storage/emulated/0/DCIM/100ANDRO/*.mp4 .
 
 rsync --remove-source-files -options /path/to/src/ /path/to/dest
 rsync --remove-source-files -options /path/to/src/ computerB:/path/to/dest

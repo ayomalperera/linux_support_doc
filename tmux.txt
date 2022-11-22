@@ -1,0 +1,6 @@
+
+
+## vertical split in tmux
+
+tmux split-window -hf
+
