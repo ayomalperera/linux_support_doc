@@ -10,6 +10,30 @@
 #####php code
 
 <?php
+
+// This block Auth password
+
+if ($_SERVER['PHP_AUTH_USER'] !== 'usn'&& $_SERVER['PHP_AUTH_PW'] !== 'colombo')
+
+{
+
+header('WWW-Authenticate: Basic realm="USN_Backups"');
+    header('HTTP/1.0 401 Unauthorized');
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // This block MUST be at the very top of the page!
 @ob_start('ob_gzhandler');
 if(isset($_GET['icon']))

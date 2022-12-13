@@ -20,4 +20,6 @@ Articles###############
 https://www.xplg.com/linux-security-investigate-suspected-break-in/
 
 
-	
+##	Server Banner disable
+
+https://www.inmotionhosting.com/support/server/apache/hide-apache-version-and-linux-os/

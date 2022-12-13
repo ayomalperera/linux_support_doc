@@ -1,0 +1,46 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/user/repo.git']]])
+      }
+    }
+    stage('Build') {
+      steps {
+        sh 'npm install'
+        sh 'npm run build'
+      }
+    }
+    stage('Test') {
+      steps {
+        sh 'npm test'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'npm run deploy'
+      }
+    }
+  }
+}
+
+
+=====================================================================================================================
+
+
+pipeline {
+  agent any
+
+  stages {
+    // Other stages...
+
+    stage('Deploy') {
+      steps {
+        sh 'npm run build'
+        sh "rsync -avz -e 'ssh -p 22' dist/ user@host:/var/www/html/staging"
+      }
+    }
+  }
+}

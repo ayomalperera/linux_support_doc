@@ -1,0 +1,33 @@
+Here is a sample email template for a server maintenance notification:
+
+Subject: Scheduled Server Maintenance
+
+Hello [Name],
+
+We would like to inform you that we will be performing scheduled maintenance on our server on [Date] at [Time]. During this time, our website and any services that are hosted on the server may be unavailable.
+
+We apologize for any inconvenience this may cause, and we appreciate your patience while we complete this necessary maintenance.
+
+If you have any questions or concerns, please don't hesitate to contact us.
+
+Thank you,
+[Your Name]
+
+===================================================================================================================
+
+Here is a sample email template for a notification that scheduled server maintenance is complete:
+
+Subject: Scheduled Server Maintenance Complete
+
+Hello [Name],
+
+We are happy to announce that the scheduled maintenance on our server is now complete. Our website and services are now available and running smoothly.
+
+We apologize again for any inconvenience that this maintenance may have caused, and we appreciate your patience while we completed this necessary work.
+
+If you have any questions or concerns, please don't hesitate to contact us.
+
+Thank you,
+[Your Name]
+
+
