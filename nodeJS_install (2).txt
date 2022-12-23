@@ -1,3 +1,12 @@
+https://github.com/nodesource/distributions/blob/master/README.md
+
+
+
+
+
+
+
+
 . Add NodeSource yum repository
 The current LTS version of Node.js is version 10.x. If you want to install version 8 just change setup_10.x with setup_8.x in the command below.
 

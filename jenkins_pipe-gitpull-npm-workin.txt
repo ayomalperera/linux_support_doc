@@ -1,0 +1,50 @@
+pipeline {
+       agent any
+
+stages {
+
+stage('Git pull') {
+
+        steps {
+        script {
+          node {
+            def remote = [:]
+                remote.name = 'test'
+                remote.host = '52.193.131.100'
+                remote.user = 'ubuntu'
+                remote.password = 'Subash@135'
+                remote.allowAnyHosts = true
+
+
+            sshCommand remote:remote, command: "git -C /opt/usn-feather-revamp/ pull "
+
+
+          }
+        }
+      }
+      }
+    stage('deploy app and reports') {
+      steps {
+        script {
+          node {
+            def remote = [:]
+                remote.name = 'test'
+                remote.host = '52.193.131.100'
+                remote.user = 'ubuntu'
+                remote.password = 'Subash@135'
+                remote.allowAnyHosts = true
+
+
+            sshCommand remote:remote, command: "npm --prefix /opt/usn-feather-revamp install /opt/usn-feather-revamp"
+            sshCommand remote:remote, command: "npm --prefix /opt/usn-feather-revamp install /opt/usn-feather-revamp"
+            sshCommand remote:remote, command: "npm --prefix /opt/usn-feather-revamp run build /opt/usn-feather-revamp"
+            sshCommand remote:remote, command: "cd /opt/usn-feather-revamp && sudo pm2 stop all"
+            sshCommand remote:remote, command: "cd /opt/usn-feather-revamp && sudo pm2 start npm --  start"
+            sshCommand remote:remote, command: "sudo netstat -ntpl"
+
+          }
+        }
+      }
+    }
+  }
+}

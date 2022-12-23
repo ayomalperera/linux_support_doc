@@ -1,0 +1,12 @@
+save git credentials
+
+
+git config --global credential.helper store
+git pull
+
+change pw
+
+~/.git-credentials
+
+
+https://stackoverflow.com/questions/35942754/how-can-i-save-username-and-password-in-git

@@ -126,6 +126,18 @@ rsync -avz -e ssh /opt/Database_backups/*.gz  ubuntu@54.178.140.3:/opt/database_
 find /opt/Database_backups/* -mtime +14 -exec rm {} \;
 
 
+
+==============================
+~.my.cnf
+
+[mysqldump]
+host = 127.0.0.1
+port = 3306
+user = iI85%84uyZsf
+password = iI85%84uyZsf
+
+
+
 ########################  SKYN
 #!/bin/bash
 

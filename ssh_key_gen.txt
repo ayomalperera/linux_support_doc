@@ -1,3 +1,8 @@
+ssh key to GIT
+ssh-keygen  -t rsa -b 4096 -C "jude.perera@ultrasupernew.com"
+
+
+
 
  Convert PPK to PEM in Linux
 

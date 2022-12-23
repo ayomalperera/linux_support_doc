@@ -1,0 +1,211 @@
+basic tools, apache2, php8.1=======================
+
+
+---
+- hosts: all
+
+  tasks:
+     - name: Change Time Zone to Tokyo
+       become: yes
+       ansible.builtin.shell: timedatectl set-timezone Asia/Tokyo
+
+
+     - name: install vim 
+       become: yes
+       apt:
+         pkg:
+           - vim
+           - unzip
+           - htop
+           - net-tools
+           - curl
+           - git
+- name: install vim 
+       become: yes
+       apt:
+         pkg:
+           - vim
+           - unzip
+           - htop
+           - net-tools
+           - curl
+           - git
+- name: install vim 
+       become: yes
+       apt:
+         pkg:
+           - vim
+           - unzip
+           - htop
+           - net-tools
+           - curl
+           - git
+- name: install vim 
+       become: yes
+       apt:
+         pkg:
+           - vim
+           - unzip
+           - htop
+           - net-tools
+           - curl
+           - git
+- name: install vim 
+       become: yes
+       apt:
+         pkg:
+           - vim
+           - unzip
+           - htop
+           - net-tools
+           - curl
+           - git
+- name: install vim 
+       become: yes
+       apt:
+         pkg:
+           - vim
+           
+- name: install unzip 
+       become: yes
+       apt:
+         pkg:
+           
+           - unzip
+           
+- name: install net-tools 
+       become: yes
+       apt:
+         pkg:
+          - net-tools
+           
+           - git
+- name: install net-tools 
+       become: yes
+       apt:
+         pkg:
+		- git
+- name: install curl 
+       become: yes
+       apt:
+         pkg:
+		- curl
+
+- name: Installation php8 dependencies
+      apt:
+        pkg:
+          - lsb-release
+          - ca-certificates
+          - apt-transport-https
+          - software-properties-common
+
+    - name: "Repo PHP 8.0"
+      apt_repository:
+        repo="ppa:ondrej/php"
+
+
+
+    - name: Installation PHP 8.0
+      apt: name=php8.0 state=present
+
+    - name: install lamp stack
+      apt:
+        pkg:
+          - php8.0-mysql
+          - php8.0-curl
+          - php8.0-json
+          - php8.0-cgi
+          - php8.0-xsl
+          - php8.0-cgi
+          - php8.0-gd
+          - php8.0-mbstring
+          - php8.0-zip
+          - php8.0-xmlrpc
+          - php8.0-soap
+          - php8.0-intl
+          - libapache2-mod-php
+        state: present
+        update_cache: yes
+
+- name: install Mysql client
+      apt:
+        pkg:
+		- mysql-client
+
+- name: setup webserver vhost
+  hosts: all
+  become: true
+  gather_facts: no
+  vars:
+    app_user: "www-data"
+    http_host: "{{ http_port }}example.com"
+    http_conf: "{{ http_port }}example.com.conf"
+    http_port: "80"
+    disable_default: true
+  tasks:
+
+    - name: apache installed
+      ansible.builtin.apt:
+        name: apache2
+        update_cache: true
+        state: latest
+
+    
+    - name: document root exist
+      ansible.builtin.file:
+        path: "/var/www/{{ http_host }}"
+        state: directory
+        owner: "{{ app_user }}"
+        mode: '0755'
+
+    - name: custom index.html
+      ansible.builtin.copy:
+        dest: "/var/www/{{ http_host }}/index.html"
+        content: |
+                    Custom Web Page
+
+    - name: set up Apache virtualhost
+      ansible.builtin.template:
+        src: "apache.conf.j2"
+        dest: "/etc/apache2/sites-available/{{ http_conf }}"
+
+    - name: enable new site
+      ansible.builtin.command: "/usr/sbin/a2ensite {{ http_conf }}"
+      notify: reload Apache
+
+    - name: disable default Apache site
+      ansible.builtin.command: "/usr/sbin/a2dissite 000-default.conf"
+      when: disable_default
+      notify: reload Apache
+
+    - name: open firewall
+      community.general.ufw:
+        rule: allow
+        port: "{{ http_port }}"
+        proto: tcp
+
+  handlers:
+    - name: reload Apache
+      ansible.builtin.service:
+        name: apache2
+        state: reloaded
+
+
+######################################################
+
+
+<VirtualHost *:{{ http_port }}>
+  ServerAdmin webmaster@localhost
+  ServerName {{ http_host }}
+  ServerAlias www.{{ http_host }}
+  ErrorLog /var/log/apache2/error.log
+  CustomLog /var/log/apache2/access.log combined
+  DocumentRoot "/var/www/{{ http_host }}"
+</VirtualHost>
+
+
+
+
+
+
+

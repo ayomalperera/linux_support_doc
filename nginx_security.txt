@@ -1,0 +1,3 @@
+https://onelinerhub.com/nginx/configure-xss-protection
+
+https://webdock.io/en/docs/how-guides/security-guides/how-to-configure-security-headers-in-nginx-and-apache

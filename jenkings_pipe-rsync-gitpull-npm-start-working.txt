@@ -1,0 +1,43 @@
+pipeline {
+       agent any
+
+stages {
+    stage('git clone') {
+            steps {
+                git credentialsId: 'GIT_USN', url: 'https://github.com/ultrasupernew/usn-feather-revamp.git'
+            }
+            }
+
+    stage('Deploy') {
+      steps {
+        sh "rsync -avz -e 'ssh -p 22' /var/lib/jenkins/workspace/pipeLineRsyncWordpress/ ubuntu@192.168.133.152:/var/www/80example.com"
+      }
+    }
+
+    stage('deploy app and reports') {
+      steps {
+        script {
+          node {
+            def remote = [:]
+ 		remote.name = 'test'
+ 		remote.host = '192.168.133.152'
+  		remote.user = 'ubuntu'
+  		remote.password = 'ubuntu'
+  		remote.allowAnyHosts = true
+
+           
+            
+            sshCommand remote:remote, command: "npm --prefix /var/www/80example.com install /var/www/80example.com"
+            sshCommand remote:remote, command: "npm --prefix /var/www/80example.com run build /var/www/80example.com"
+            sshCommand remote:remote, command: "cd /var/www/80example.com && sudo pm2 stop all"
+            sshCommand remote:remote, command: "cd /var/www/80example.com && sudo pm2 start npm --  start"
+            sshCommand remote:remote, command: "netstat -ntpl"
+            sshCommand remote:remote, command: "cd /var/www/80example.com && sudo pm2 start npm --  start"
+            sshCommand remote:remote, command: "sudo netstat -ntpl"
+            
+          }
+        }
+      }
+    }
+  }
+}

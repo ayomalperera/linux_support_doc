@@ -4,7 +4,9 @@ freestyle project
 
 Source Code Management :git
 Build Triggers: github hook
-Build Environment:
+Build Environment: 
+*** install SSH plugin
+
 Execute shell script on remote host using ssh
 Post build script:
 git -C  /var/www/html/80-port pull

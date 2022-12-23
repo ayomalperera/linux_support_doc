@@ -69,7 +69,7 @@ FLUSH PRIVILEGES;
 #############################################################################
 FOR MYSQL 8
 #############################################################################
-CREATE USER 'dfar_user'@'%' IDENTIFIED BY 'Dfar@Ep1k';
+CREATE USER 'skynuser'@'%' IDENTIFIED BY 'iI85%84uyZsf';
 
 
 
@@ -108,7 +108,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'ssb_user'@'%' IDENTIFIED BY 'Ep1klanka@321';
 
 GRANT ALL PRIVILEGES ON eland_v1_27.* To 'eland_user'@'localhost' IDENTIFIED BY 'Ep1klanka@321';
 
-GRANT ALL PRIVILEGES ON dfardbv1_19_1_test.* To 'dfar_user'@'%' IDENTIFIED BY 'Ep1klanka@321';
+GRANT ALL PRIVILEGES ON skynrevamp1.* To 'skynuser'@'%' IDENTIFIED BY 'Ep1klanka@321';
 
 
 GRANT ALL PRIVILEGES ON slpa_test.* To 'root'@'localhost' IDENTIFIED BY 'Ep1klanka@321';
@@ -202,6 +202,21 @@ GRANT ALL PRIVILEGES ON itrddbv4.* To 'itrd_user'@'localhost';
 FLUSH PRIVILEGES;
 
 CREATE USER 'orims_user'@'%' IDENTIFIED BY 'Orims@101';
-GRANT ALL PRIVILEGES ON orims_dev.* To 'orims_user'@'%';
+GRANT ALL PRIVILEGES ON usn_gallery_new_site_stagin.* To 'gallery-admin'@'%';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
 
 

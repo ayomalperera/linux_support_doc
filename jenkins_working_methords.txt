@@ -1,0 +1,80 @@
+Git pull ===== working==========================
+
+tested with hello world html
+
+Source Code Management:
+Repository URL
+
+Branch Specifier (blank for 'any'):
+GitHub hook trigger for GITScm polling:
+Execute shell script on remote host using ssh:
+SSH site:
+Post build script: git -C  /var/www/html/84-port pull
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Pipeline
+git clone and rsync to remort server
+add user jenking ssh key to remort web user 
+check ownership
+
+
+pipeline {
+  agent any
+
+  stages {
+    stage('git clone') {
+            steps {
+                git credentialsId: 'GIT_USN', url: 'https://github.com/ultrasupernew/usn-feather-revamp.git'
+            }
+            }   
+
+    stage('Deploy') {
+      steps {
+        sh "rsync -avz -e 'ssh -p 22' /var/lib/jenkins/workspace/pipeLineRsyncWordpress/ ubuntu@192.168.133.152:/var/www/80example.com"
+      }
+    }
+  }
+}
+========================================================================================================
+
+
+pipeline {
+       agent any
+
+stages {
+    stage('git clone') {
+            steps {
+                git credentialsId: 'GIT_USN', url: 'https://github.com/ultrasupernew/usn-feather-revamp.git'
+            }
+            }
+
+    stage('Deploy') {
+      steps {
+        sh "rsync -avz -e 'ssh -p 22' /var/lib/jenkins/workspace/pipeLineRsyncWordpress/ ubuntu@192.168.133.152:/var/www/80example.com"
+      }
+    }
+
+    stage('deploy app and reports') {
+      steps {
+        script {
+          node {
+            def remote = [:]
+ 		remote.name = 'test'
+ 		remote.host = '192.168.133.152'
+  		remote.user = 'ubuntu'
+  		remote.password = 'ubuntu'
+  		remote.allowAnyHosts = true
+
+           
+            #sshCommand remote:remote, command: "git -C /var/www/80example.com pull origin master;"
+            sshCommand remote:remote, command: 'npm install'
+            sshCommand remote:remote, command: 'pwd'
+          }
+        }
+      }
+    }
+  }
+}
+============================================================================================================
+
